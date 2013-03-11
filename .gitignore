@@ -1,7 +1,14 @@
 *.class
 
+#Sublime project files
+*.sublime-*
+
 # Package Files #
 *.war
 *.ear
 doc/*
 bin/*
+
+*~
+*.DS_Store
+*.log
