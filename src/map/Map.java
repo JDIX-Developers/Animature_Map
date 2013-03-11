@@ -6,6 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+import utils.Lang;
+
 /**
  * @author Razican (Iban Eguia)
  */
@@ -73,7 +78,10 @@ public class Map {
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			// TODO Error message
+			System.err.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, Lang.getLine("map_save_error"),
+			Lang.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
+			"img/error.png"));
 		}
 	}
 

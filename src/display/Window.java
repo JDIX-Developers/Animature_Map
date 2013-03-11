@@ -1,0 +1,30 @@
+package display;
+
+import javax.swing.JFrame;
+
+/**
+ * @author Razican (Iban Eguia)
+ */
+public class Window extends JFrame {
+
+	private static final long	serialVersionUID	= -8641413596663241575L;
+	private static Window		instance;
+
+	private Window()
+	{
+		super();
+	}
+
+	/**
+	 * @return Instance for the current Window
+	 */
+	public static Window getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new Window();
+		}
+
+		return instance;
+	}
+}
