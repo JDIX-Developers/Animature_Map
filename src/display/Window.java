@@ -14,6 +14,10 @@ public class Window extends JFrame {
 	{
 		super();
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setIconImage(null); // TODO set Animature World Icon
+		setSize(800, 600);
+		setLocationRelativeTo(null);
+		// setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
 	}
 
 	/**

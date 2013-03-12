@@ -45,10 +45,8 @@ public class Start extends JPanel {
 			e.printStackTrace();
 		}
 
-		Window.getInstance().setContentPane(new Start());
-		Window.getInstance().setSize(800, 600);
-		Window.getInstance().setLocationRelativeTo(null);
 		Window.getInstance().setJMenuBar(new Menu());
+		Window.getInstance().setContentPane(new Start());
 		Window.getInstance().setVisible(true);
 	}
 }

@@ -64,7 +64,8 @@ public class Menu extends JMenuBar {
 			{
 				JOptionPane.showConfirmDialog(Window.getInstance()
 				.getContentPane(), new Preferences(), Lang
-				.getLine("preferences"), JOptionPane.OK_CANCEL_OPTION);
+				.getLine("preferences"), JOptionPane.OK_CANCEL_OPTION,
+				JOptionPane.PLAIN_MESSAGE, null);
 			}
 		});
 

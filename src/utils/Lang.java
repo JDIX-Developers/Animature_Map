@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -121,6 +122,31 @@ public class Lang {
 			currentLang = new Lang();
 		}
 		return locales;
+	}
+
+	/**
+	 * @return Currently available locales
+	 */
+	public static Vector<String> getCombableLocales()
+	{
+		if (locales == null)
+		{
+			initializeLocales();
+		}
+		if (currentLang == null)
+		{
+			currentLang = new Lang();
+		}
+
+		Vector<String> combo = new Vector<>(locales.size());
+
+		for (Locale l: locales)
+		{
+			combo.add(l.getDisplayLanguage() + " (" + l.getDisplayCountry()
+			+ ")");
+		}
+
+		return combo;
 	}
 
 	/**

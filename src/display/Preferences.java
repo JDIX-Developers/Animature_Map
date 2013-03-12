@@ -2,6 +2,7 @@ package display;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -26,5 +27,10 @@ public class Preferences extends JPanel {
 
 		JLabel lblLanguage = new JLabel(Lang.getLine("pref_lang"));
 		panel.add(lblLanguage);
+
+		JComboBox<String> langCombo = new JComboBox<>(Lang.getCombableLocales());
+		panel.add(langCombo);
+
+		setSize(600, 600);
 	}
 }

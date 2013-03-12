@@ -1,8 +1,10 @@
 package utils;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Locale;
 
 /**
@@ -19,14 +21,29 @@ public class Preferences {
 		locale = l;
 	}
 
-	private static void init()
+	private void update()
 	{
-		ObjectInputStream oos;
+		ObjectOutputStream oos;
 		try
 		{
-			oos = new ObjectInputStream(new FileInputStream("config.pref"));
-			preferences = (Preferences) oos.readObject();
+			oos = new ObjectOutputStream(new FileOutputStream("config.pref"));
+			oos.writeObject(preferences);
 			oos.close();
+		}
+		catch (IOException e)
+		{
+			preferences = new Preferences(Locale.getDefault());
+		}
+	}
+
+	private static void init()
+	{
+		ObjectInputStream ois;
+		try
+		{
+			ois = new ObjectInputStream(new FileInputStream("config.pref"));
+			preferences = (Preferences) ois.readObject();
+			ois.close();
 		}
 		catch (IOException | ClassNotFoundException e)
 		{
@@ -65,5 +82,7 @@ public class Preferences {
 		{
 			preferences.locale = Lang.getDefaultLocale();
 		}
+
+		preferences.update();
 	}
 }
