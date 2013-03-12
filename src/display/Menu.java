@@ -4,6 +4,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import utils.Lang;
+
 /**
  * @author Razican (Iban Eguia)
  */
@@ -20,12 +22,12 @@ public class Menu extends JMenuBar {
 	{
 		super();
 
-		file = new JMenu("File");// Lang.getLine("menu_file"));
-		help = new JMenu("Help");// Lang.getLine("menu_help"));
+		file = new JMenu(Lang.getLine("menu_file"));
+		help = new JMenu(Lang.getLine("menu_help"));
 
-		JMenuItem open = new JMenuItem("Open...");
-		JMenuItem save = new JMenuItem("Save");
-		JMenuItem save_where = new JMenuItem("Save...");
+		JMenuItem open = new JMenuItem(Lang.getLine("menu_open..."));
+		JMenuItem save = new JMenuItem(Lang.getLine("menu_save"));
+		JMenuItem save_where = new JMenuItem(Lang.getLine("menu_save..."));
 
 		file.add(open);
 		file.add(save);

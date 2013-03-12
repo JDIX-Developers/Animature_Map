@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import utils.Lang;
+
 /**
  * @author Razican (Iban Eguia)
  */
@@ -22,8 +24,8 @@ public class Start extends JPanel {
 		JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
 		add(tabs, BorderLayout.CENTER);
 
-		tabs.addTab("Map Editor", new MapEditor());
-		tabs.addTab("Sprite Editor", new SpriteEditor());
+		tabs.addTab(Lang.getLine("map_editor"), new MapEditor());
+		tabs.addTab(Lang.getLine("sprite_editor"), new SpriteEditor());
 	}
 
 	/**

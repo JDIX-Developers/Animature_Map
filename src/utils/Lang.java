@@ -46,9 +46,8 @@ public class Lang {
 
 		try
 		{
-			st = new ObjectInputStream(
-			new FileInputStream("lang/" + locale.getDisplayLanguage() + "_"
-			+ locale.getCountry() + ".lang"));
+			st = new ObjectInputStream(new FileInputStream("lang/"
+			+ locale.getLanguage() + "_" + locale.getCountry() + ".lang"));
 
 			lines = (HashMap<String, String>) st.readObject();
 
@@ -56,10 +55,10 @@ public class Lang {
 		}
 		catch (IOException | ClassNotFoundException e)
 		{
-			e.printStackTrace();
 			System.err.println(e.getMessage());
-			JOptionPane.showMessageDialog(null, "Error loading language file",
-			"Error", JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
+			JOptionPane.showMessageDialog(null, "Error loading language file: "
+			+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE,
+			new ImageIcon("img/error.png"));
 		}
 	}
 
