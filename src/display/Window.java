@@ -13,6 +13,7 @@ public class Window extends JFrame {
 	private Window()
 	{
 		super();
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 	/**
