@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,7 +23,7 @@ public class Lang {
 
 	private Lang()
 	{
-		this(Locale.getDefault());
+		this(Preferences.getLocale());
 	}
 
 	private Lang(Locale l)
@@ -33,7 +34,7 @@ public class Lang {
 		}
 		else
 		{
-			this.locale = locales.get(0);
+			this.locale = getDefaultLocale();
 		}
 
 		loadLines();
@@ -69,8 +70,16 @@ public class Lang {
 
 	private static void initializeLocales()
 	{
-		locales = new ArrayList<>(1);
-		locales.add(new Locale("es", "ES"));
+		locales = new ArrayList<>();
+		for (File file: (new File("lang").listFiles()))
+		{
+			if (file.getName().matches("[a-z]{2}_[A-Z]{2}.lang"))
+			{
+				String lang = file.getName().substring(0, 2);
+				String country = file.getName().substring(3, 5);
+				locales.add(new Locale(lang, country));
+			}
+		}
 	}
 
 	/**
@@ -88,5 +97,47 @@ public class Lang {
 			currentLang = new Lang();
 		}
 		return currentLang.getLines().get(key);
+	}
+
+	/**
+	 * @param l Locale to set for the new language
+	 */
+	public static void setLanguage(Locale l)
+	{
+		currentLang = new Lang(l);
+	}
+
+	/**
+	 * @return Currently available locales
+	 */
+	public static ArrayList<Locale> getAvailableLocales()
+	{
+		if (locales == null)
+		{
+			initializeLocales();
+		}
+		if (currentLang == null)
+		{
+			currentLang = new Lang();
+		}
+		return locales;
+	}
+
+	/**
+	 * @return Default locale for the program
+	 */
+	public static Locale getDefaultLocale()
+	{
+		if (locales == null)
+		{
+			initializeLocales();
+		}
+		if (currentLang == null)
+		{
+			currentLang = new Lang();
+		}
+
+		return locales.contains(new Locale("es", "ES")) ? new Locale("es", "ES")
+		: locales.get(0);
 	}
 }

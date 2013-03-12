@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import utils.Lang;
 
@@ -33,11 +35,20 @@ public class Start extends JPanel {
 	 */
 	public static void main(String[] args)
 	{
+		try
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (ClassNotFoundException | InstantiationException
+		| IllegalAccessException | UnsupportedLookAndFeelException e)
+		{
+			e.printStackTrace();
+		}
+
 		Window.getInstance().setContentPane(new Start());
 		Window.getInstance().setSize(800, 600);
 		Window.getInstance().setLocationRelativeTo(null);
 		Window.getInstance().setJMenuBar(new Menu());
 		Window.getInstance().setVisible(true);
-
 	}
 }

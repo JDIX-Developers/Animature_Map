@@ -77,8 +77,8 @@ public class Map {
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
 			System.err.println(e.getMessage());
+
 			JOptionPane.showMessageDialog(null, Lang.getLine("map_save_error"),
 			Lang.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
 			"img/error.png"));
