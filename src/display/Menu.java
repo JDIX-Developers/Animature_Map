@@ -4,6 +4,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -62,10 +63,25 @@ public class Menu extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				JOptionPane.showConfirmDialog(Window.getInstance()
-				.getContentPane(), new Preferences(), Lang
-				.getLine("preferences"), JOptionPane.OK_CANCEL_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null);
+				Window.getInstance().getGlassPane().setVisible(true);
+
+				String[] options = {Lang.getLine("conf_dialog_ok"),
+				Lang.getLine("conf_dialog_cancel")};
+				JOptionPane pane = new JOptionPane(new Preferences(),
+				JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
+				options, options[1]);
+				JDialog dialog = pane.createDialog(Lang.getLine("preferences"));
+				dialog.setSize(500, 500);
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setLocationRelativeTo(Window.getInstance());
+				dialog.setVisible(true);
+
+				Window.getInstance().getGlassPane().setVisible(false);
+
+				// JOptionPane.showConfirmDialog(Window.getInstance()
+				// .getContentPane(), new Preferences(), Lang
+				// .getLine("preferences"), JOptionPane.OK_CANCEL_OPTION,
+				// JOptionPane.PLAIN_MESSAGE, null);
 			}
 		});
 

@@ -1,6 +1,9 @@
 package display;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * @author Razican (Iban Eguia)
@@ -17,7 +20,22 @@ public class Window extends JFrame {
 		setIconImage(null); // TODO set Animature World Icon
 		setSize(800, 600);
 		setLocationRelativeTo(null);
+		setGlassPane(new GlassPane());
 		// setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+	}
+
+	/**
+	 * @author Razican (Iban Eguia)
+	 */
+	private class GlassPane extends JPanel {
+
+		private static final long	serialVersionUID	= -1090557698531749088L;
+
+		private GlassPane()
+		{
+			super();
+			setBackground(new Color(0, 0, 0, 50));
+		}
 	}
 
 	/**

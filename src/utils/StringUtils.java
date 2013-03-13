@@ -73,4 +73,13 @@ public final class StringUtils {
 
 		return toHex(sha1hash);
 	}
+
+	/**
+	 * @param s String to convert
+	 * @return The string with the first letter in uppercase
+	 */
+	public static String firstToUpper(String s)
+	{
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
+	}
 }

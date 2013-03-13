@@ -142,8 +142,8 @@ public class Lang {
 
 		for (Locale l: locales)
 		{
-			combo.add(l.getDisplayLanguage() + " (" + l.getDisplayCountry()
-			+ ")");
+			combo.add(StringUtils.firstToUpper(l.getDisplayLanguage()) + " ("
+			+ l.getDisplayCountry() + ")");
 		}
 
 		return combo;
