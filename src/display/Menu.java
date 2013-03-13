@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import utils.Lang;
 
@@ -76,18 +77,7 @@ public class Menu extends JMenuBar {
 				dialog.setLocationRelativeTo(Window.getInstance());
 				dialog.setVisible(true);
 
-				int option = 0;
-
-				for (int i = 0; i < options.length; i++)
-				{
-					if (options[i] == pane.getValue())
-					{
-						option = i;
-						break;
-					}
-				}
-
-				if (option == 0)
+				if (pane.getValue() == options[0])
 				{
 					utils.Preferences.setLocale(Lang.getAvailableLocales().get(
 					p.getLocaleIndex()));
@@ -95,7 +85,8 @@ public class Menu extends JMenuBar {
 					Lang.setLang(Lang.getAvailableLocales().get(
 					p.getLocaleIndex()));
 
-					// Window.getInstance().repaint();
+					Window.getInstance().repaint();
+					((JPanel) Window.getInstance().getContentPane()).updateUI();
 				}
 
 				Window.getInstance().getGlassPane().setVisible(false);

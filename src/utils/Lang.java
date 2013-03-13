@@ -67,27 +67,32 @@ public class Lang {
 	@SuppressWarnings ("unchecked")
 	private void changeLocale(Locale newLocale)
 	{
-		HashMap<String, String> newHM = null;
-		ObjectInputStream st;
+		if (locales.contains(newLocale))
+		{
+			locale = newLocale;
+			HashMap<String, String> newHM = null;
+			ObjectInputStream st;
 
-		try
-		{
-			st = new ObjectInputStream(new FileInputStream("lang/"
-			+ newLocale.getLanguage() + "_" + newLocale.getCountry() + ".lang"));
-			newHM = (HashMap<String, String>) st.readObject();
-			st.close();
-		}
-		catch (IOException | ClassNotFoundException e1)
-		{
-			System.err.println(e1.getMessage());
-			JOptionPane.showMessageDialog(null, "Error loading language file: "
-			+ e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE,
-			new ImageIcon("img/error.png"));
-		}
+			try
+			{
+				st = new ObjectInputStream(new FileInputStream("lang/"
+				+ newLocale.getLanguage() + "_" + newLocale.getCountry()
+				+ ".lang"));
+				newHM = (HashMap<String, String>) st.readObject();
+				st.close();
+			}
+			catch (IOException | ClassNotFoundException e1)
+			{
+				System.err.println(e1.getMessage());
+				JOptionPane.showMessageDialog(null,
+				"Error loading language file: " + e1.getMessage(), "Error",
+				JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
+			}
 
-		for (Map.Entry<String, String> e: lines.entrySet())
-		{
-			e.getValue().replace(e.getValue(), newHM.get(e.getKey()));
+			for (Map.Entry<String, String> e: lines.entrySet())
+			{
+				e.getValue().replace(e.getValue(), newHM.get(e.getKey()));
+			}
 		}
 	}
 
