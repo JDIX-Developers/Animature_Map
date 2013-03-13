@@ -64,24 +64,41 @@ public class Menu extends JMenuBar {
 			public void actionPerformed(ActionEvent e)
 			{
 				Window.getInstance().getGlassPane().setVisible(true);
+				Preferences p = new Preferences();
 
 				String[] options = {Lang.getLine("conf_dialog_ok"),
 				Lang.getLine("conf_dialog_cancel")};
-				JOptionPane pane = new JOptionPane(new Preferences(),
+				JOptionPane pane = new JOptionPane(p,
 				JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
 				options, options[1]);
 				JDialog dialog = pane.createDialog(Lang.getLine("preferences"));
 				dialog.setSize(500, 500);
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setLocationRelativeTo(Window.getInstance());
 				dialog.setVisible(true);
 
-				Window.getInstance().getGlassPane().setVisible(false);
+				int option = 0;
 
-				// JOptionPane.showConfirmDialog(Window.getInstance()
-				// .getContentPane(), new Preferences(), Lang
-				// .getLine("preferences"), JOptionPane.OK_CANCEL_OPTION,
-				// JOptionPane.PLAIN_MESSAGE, null);
+				for (int i = 0; i < options.length; i++)
+				{
+					if (options[i] == pane.getValue())
+					{
+						option = i;
+						break;
+					}
+				}
+
+				if (option == 0)
+				{
+					utils.Preferences.setLocale(Lang.getAvailableLocales().get(
+					p.getLocaleIndex()));
+
+					Lang.setLang(Lang.getAvailableLocales().get(
+					p.getLocaleIndex()));
+
+					// Window.getInstance().repaint();
+				}
+
+				Window.getInstance().getGlassPane().setVisible(false);
 			}
 		});
 

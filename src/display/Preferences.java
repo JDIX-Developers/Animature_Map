@@ -14,6 +14,7 @@ import utils.Lang;
 public class Preferences extends JPanel {
 
 	private static final long	serialVersionUID	= -9082799207563983259L;
+	private JComboBox<String>	langCombo;
 
 	/**
 	 * Create the panel.
@@ -28,9 +29,18 @@ public class Preferences extends JPanel {
 		JLabel lblLanguage = new JLabel(Lang.getLine("pref_lang"));
 		panel.add(lblLanguage);
 
-		JComboBox<String> langCombo = new JComboBox<>(Lang.getCombableLocales());
+		langCombo = new JComboBox<>(Lang.getCombableLocales());
 		panel.add(langCombo);
 
 		setSize(600, 600);
+
+	}
+
+	/**
+	 * @return Current selected locale's index
+	 */
+	public int getLocaleIndex()
+	{
+		return langCombo.getSelectedIndex();
 	}
 }

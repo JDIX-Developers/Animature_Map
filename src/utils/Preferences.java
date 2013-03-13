@@ -5,15 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Locale;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class Preferences {
+public class Preferences implements Serializable {
 
+	private static final long	serialVersionUID	= -1140374742103678200L;
 	private static Preferences	preferences;
-
 	private Locale				locale;
 
 	private Preferences(Locale l)
@@ -48,6 +49,7 @@ public class Preferences {
 		catch (IOException | ClassNotFoundException e)
 		{
 			preferences = new Preferences(Locale.getDefault());
+			preferences.update();
 		}
 	}
 
