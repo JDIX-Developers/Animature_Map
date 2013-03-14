@@ -22,7 +22,7 @@ public class Menu extends JMenuBar {
 	private static final long	serialVersionUID	= -2674054941368737779L;
 
 	private JMenu				file, edit, help;
-	private JMenuItem			open, save, save_where;
+	private JMenuItem			newMap, open, save, save_where;
 	private JMenuItem			preferences;
 
 	/**
@@ -53,6 +53,9 @@ public class Menu extends JMenuBar {
 			}
 		});
 
+		newMap = new JMenuItem();
+		Lang.setLine(newMap, "menu_new_map");
+		newMap.setMargin(new Insets(5, 5, 5, 5));
 		open = new JMenuItem();
 		Lang.setLine(open, "menu_open...");
 		open.setMargin(new Insets(5, 5, 5, 5));
@@ -81,7 +84,6 @@ public class Menu extends JMenuBar {
 				JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
 				options, options[1]);
 				JDialog dialog = pane.createDialog(Lang.getLine("preferences"));
-				dialog.setSize(500, 500);
 				dialog.setLocationRelativeTo(Window.getInstance());
 				dialog.setVisible(true);
 
@@ -101,6 +103,7 @@ public class Menu extends JMenuBar {
 			}
 		});
 
+		file.add(newMap);
 		file.add(open);
 		file.add(save);
 		file.add(save_where);

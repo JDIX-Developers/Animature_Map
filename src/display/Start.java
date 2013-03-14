@@ -3,26 +3,17 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.io.File;
-import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-import map.Map;
-import map.Sprite;
-import map.Square;
 import utils.Lang;
 
 import components.JLabel;
 import components.JTabbedPane;
-
-import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -56,18 +47,18 @@ public class Start extends JPanel {
 		copyLabel.setBorder(new EmptyBorder(0, 0, 3, 7));
 		add(copyLabel, BorderLayout.SOUTH);
 
-		try
-		{
-			Square.setSprite(new Sprite(new File("sprites/test.png"),
-			(short) 32));
-			mapEditor.setMap(new Map(30, 20));
-		}
-		catch (SpriteException | IOException e)
-		{
-			JOptionPane.showMessageDialog(null, e.getMessage(), Lang
-			.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
-			"img/error.png"));
-		}
+		// try
+		// {
+		// Square.setSprite(new Sprite(new File("sprites/test.png"),
+		// (short) 32));
+		// mapEditor.setMap(new Map(30, 20));
+		// }
+		// catch (SpriteException | IOException e)
+		// {
+		// JOptionPane.showMessageDialog(null, e.getMessage(), Lang
+		// .getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
+		// "img/error.png"));
+		// }
 	}
 
 	/**

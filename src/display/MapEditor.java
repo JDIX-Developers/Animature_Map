@@ -36,7 +36,7 @@ public class MapEditor extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		lblClickToLoad = new JLabel();
-		Lang.setLine(lblClickToLoad, "click_to_load");
+		Lang.setLine(lblClickToLoad, "no_map");
 		lblClickToLoad.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblClickToLoad, BorderLayout.CENTER);
 	}
