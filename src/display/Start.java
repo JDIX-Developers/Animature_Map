@@ -21,6 +21,7 @@ import components.JTabbedPane;
 public class Start extends JPanel {
 
 	private static final long	serialVersionUID	= -6969744533822338215L;
+	private JTabbedPane			tabs;
 
 	/**
 	 * Create the panel.
@@ -29,7 +30,7 @@ public class Start extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
+		tabs = new JTabbedPane(JTabbedPane.TOP);
 		add(tabs, BorderLayout.CENTER);
 
 		MapEditor mapEditor = new MapEditor();
@@ -46,19 +47,14 @@ public class Start extends JPanel {
 		copyLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		copyLabel.setBorder(new EmptyBorder(0, 0, 3, 7));
 		add(copyLabel, BorderLayout.SOUTH);
+	}
 
-		// try
-		// {
-		// Square.setSprite(new Sprite(new File("sprites/test.png"),
-		// (short) 32));
-		// mapEditor.setMap(new Map(30, 20));
-		// }
-		// catch (SpriteException | IOException e)
-		// {
-		// JOptionPane.showMessageDialog(null, e.getMessage(), Lang
-		// .getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
-		// "img/error.png"));
-		// }
+	/**
+	 * @return Current tabbed pane of the view
+	 */
+	public JTabbedPane getTabbedPane()
+	{
+		return tabs;
 	}
 
 	/**

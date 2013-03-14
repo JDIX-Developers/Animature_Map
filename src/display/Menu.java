@@ -3,21 +3,29 @@ package display;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import map.Map;
+import map.Sprite;
+import map.Square;
 import utils.Lang;
 
 import components.JMenu;
 import components.JMenuItem;
 
+import exceptions.SpriteException;
+
 /**
  * @author Razican (Iban Eguia)
  */
-public class Menu extends JMenuBar {
+public class Menu extends JMenuBar implements ActionListener {
 
 	private static final long	serialVersionUID	= -2674054941368737779L;
 
@@ -43,19 +51,12 @@ public class Menu extends JMenuBar {
 		help = new JMenu();
 		Lang.setLine(help, "menu_help");
 		help.setMargin(new Insets(5, 5, 5, 5));
-		help.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				// TODO Create help menu
-			}
-		});
 
 		newMap = new JMenuItem();
 		Lang.setLine(newMap, "menu_new_map");
 		newMap.setMargin(new Insets(5, 5, 5, 5));
+		newMap.setActionCommand("new");
+		newMap.addActionListener(this);
 		open = new JMenuItem();
 		Lang.setLine(open, "menu_open...");
 		open.setMargin(new Insets(5, 5, 5, 5));
@@ -113,5 +114,30 @@ public class Menu extends JMenuBar {
 		add(file);
 		add(edit);
 		add(help);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		switch (e.getActionCommand())
+		{
+			case "new":
+				// TODO Create "New Map" dialog
+				MapEditor mapEditor = (MapEditor) ((Start) Window.getInstance()
+				.getContentPane()).getTabbedPane().getComponentAt(0);
+				try
+				{
+					Square.setSprite(new Sprite(new File("sprites/test.png"),
+					(short) 32));
+					mapEditor.setMap(new Map(30, 20));
+				}
+				catch (SpriteException | IOException e1)
+				{
+					JOptionPane.showMessageDialog(null, e1.getMessage(),
+					Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
+					new ImageIcon("img/error.png"));
+				}
+			break;
+		}
 	}
 }
