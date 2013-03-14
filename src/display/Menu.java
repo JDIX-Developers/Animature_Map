@@ -32,13 +32,16 @@ public class Menu extends JMenuBar {
 	{
 		super();
 
-		file = new JMenu(Lang.getLine("menu_file"));
+		file = new JMenu();
+		Lang.setLine(file, "menu_file");
 		file.setMargin(new Insets(5, 5, 5, 5));
 
-		edit = new JMenu(Lang.getLine("menu_edit"));
+		edit = new JMenu();
+		Lang.setLine(edit, "menu_edit");
 		edit.setMargin(new Insets(5, 5, 5, 5));
 
-		help = new JMenuItem(Lang.getLine("menu_help"));
+		help = new JMenuItem();
+		Lang.setLine(help, "menu_help");
 		help.setMargin(new Insets(5, 5, 5, 5));
 		help.addActionListener(new ActionListener()
 		{
@@ -50,20 +53,25 @@ public class Menu extends JMenuBar {
 			}
 		});
 
-		open = new JMenuItem(Lang.getLine("menu_open..."));
+		open = new JMenuItem();
+		Lang.setLine(open, "menu_open...");
 		open.setMargin(new Insets(5, 5, 5, 5));
-		save = new JMenuItem(Lang.getLine("menu_save"));
+		save = new JMenuItem();
+		Lang.setLine(save, "menu_save");
 		save.setMargin(new Insets(5, 5, 5, 5));
-		save_where = new JMenuItem(Lang.getLine("menu_save..."));
+		save_where = new JMenuItem();
+		Lang.setLine(save_where, "menu_save...");
 		save_where.setMargin(new Insets(5, 5, 5, 5));
 
-		preferences = new JMenuItem(Lang.getLine("preferences"));
+		preferences = new JMenuItem();
+		Lang.setLine(preferences, "preferences");
 		preferences.addActionListener(new ActionListener()
 		{
 
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+
 				Window.getInstance().getGlassPane().setVisible(true);
 				Preferences p = new Preferences();
 

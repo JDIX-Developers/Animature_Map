@@ -30,10 +30,12 @@ public class Start extends JPanel {
 
 		JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
 		add(tabs, BorderLayout.CENTER);
-		tabs.addTab(Lang.getLine("sprite_editor"), new SpriteEditor());
 
-		MapEditor mapEditor = new MapEditor();
-		tabs.addTab(Lang.getLine("map_editor"), mapEditor);
+		tabs.addTab(null, new MapEditor());
+		Lang.setJTabbedPaneTitle(tabs, 0, "map_editor");
+
+		tabs.addTab(null, new SpriteEditor());
+		Lang.setJTabbedPaneTitle(tabs, 1, "sprite_editor");
 
 		JLabel copyLabel = new JLabel("JDIX Developers");
 		copyLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 10));

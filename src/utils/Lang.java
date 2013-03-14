@@ -1,26 +1,33 @@
 package utils;
 
+import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
 /**
  * @author Razican (Iban Eguia)
  */
 public class Lang {
 
-	private static Vector<Locale>	locales;
-	private static Lang				currentLang;
-	private Locale					locale;
-	private HashMap<String, String>	lines;
+	private static Vector<Locale>									locales;
+	private static Lang												currentLang;
+	private static HashMap<Component, String>						observed;
+	private static HashMap<Map.Entry<JTabbedPane, Integer>, String>	observedTabTitles;
+	private Locale													locale;
+	private HashMap<String, String>									lines;
 
 	private Lang()
 	{
@@ -70,7 +77,6 @@ public class Lang {
 		if (locales.contains(newLocale))
 		{
 			locale = newLocale;
-			HashMap<String, String> newHM = null;
 			ObjectInputStream st;
 
 			try
@@ -78,7 +84,7 @@ public class Lang {
 				st = new ObjectInputStream(new FileInputStream("lang/"
 				+ newLocale.getLanguage() + "_" + newLocale.getCountry()
 				+ ".lang"));
-				newHM = (HashMap<String, String>) st.readObject();
+				lines = (HashMap<String, String>) st.readObject();
 				st.close();
 			}
 			catch (IOException | ClassNotFoundException e1)
@@ -89,9 +95,24 @@ public class Lang {
 				JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
 			}
 
-			for (Map.Entry<String, String> e: lines.entrySet())
+			for (Map.Entry<Component, String> e: observed.entrySet())
 			{
-				e.getValue().replace(e.getValue(), newHM.get(e.getKey()));
+				if (e.getKey() instanceof AbstractButton)
+				{
+					((AbstractButton) e.getKey())
+					.setText(getLine(e.getValue()));
+				}
+				else if (e.getKey() instanceof JLabel)
+				{
+					((JLabel) e.getKey()).setText(getLine(e.getValue()));
+				}
+			}
+
+			for (Map.Entry<Map.Entry<JTabbedPane, Integer>, String> e: observedTabTitles
+			.entrySet())
+			{
+				e.getKey().getKey()
+				.setTitleAt(e.getKey().getValue(), getLine(e.getValue()));
 			}
 		}
 	}
@@ -108,6 +129,50 @@ public class Lang {
 				locales.add(new Locale(lang, country));
 			}
 		}
+	}
+
+	/**
+	 * @param c Component to change language. Should be an AbstractButton or
+	 *            JLabel, since if it's not, this method will do nothing.
+	 * @param key Language key
+	 */
+	public static void setLine(Component c, String key)
+	{
+		if (observed == null)
+		{
+			observed = new HashMap<>();
+		}
+
+		if (c instanceof AbstractButton)
+		{
+			observed.put(c, key);
+			((AbstractButton) c).setText(getLine(key));
+		}
+		else if (c instanceof JLabel)
+		{
+			observed.put(c, key);
+			((JLabel) c).setText(getLine(key));
+		}
+	}
+
+	/**
+	 * @param p JTabbedPane to set title
+	 * @param tabIndex Index of the Tab for the new title
+	 * @param key Language key of the text
+	 */
+	public static void setJTabbedPaneTitle(JTabbedPane p, int tabIndex,
+	String key)
+	{
+		if (observedTabTitles == null)
+		{
+			observedTabTitles = new HashMap<>();
+		}
+
+		Map.Entry<JTabbedPane, Integer> newKey = new SimpleImmutableEntry<JTabbedPane, Integer>(
+		p, new Integer(tabIndex));
+		observedTabTitles.put(newKey, key);
+
+		p.setTitleAt(tabIndex, getLine(key));
 	}
 
 	/**
@@ -184,6 +249,14 @@ public class Lang {
 
 		return locales.contains(new Locale("es", "ES")) ? new Locale("es", "ES")
 		: locales.get(0);
+	}
+
+	/**
+	 * @return Index of the current locale
+	 */
+	public static int getCurrentLocaleKey()
+	{
+		return locales.indexOf(currentLang.locale);
 	}
 
 	/**
