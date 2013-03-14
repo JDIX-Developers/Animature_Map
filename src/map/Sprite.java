@@ -33,6 +33,7 @@ public class Sprite {
 		else
 		{
 			this.image = ImageIO.read(sprite);
+			this.size = size;
 			this.height = this.image.getHeight() / size;
 			this.width = this.image.getWidth() / size;
 		}

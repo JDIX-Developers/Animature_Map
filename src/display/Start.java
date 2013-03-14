@@ -3,16 +3,26 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
+import map.Map;
+import map.Sprite;
+import map.Square;
 import utils.Lang;
+
+import components.JLabel;
+import components.JTabbedPane;
+
+import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -31,11 +41,12 @@ public class Start extends JPanel {
 		JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
 		add(tabs, BorderLayout.CENTER);
 
-		tabs.addTab(null, new MapEditor());
-		Lang.setJTabbedPaneTitle(tabs, 0, "map_editor");
+		MapEditor mapEditor = new MapEditor();
+		tabs.addTab(null, mapEditor);
+		Lang.setLine(tabs.getTabAt(0), "map_editor");
 
 		tabs.addTab(null, new SpriteEditor());
-		Lang.setJTabbedPaneTitle(tabs, 1, "sprite_editor");
+		Lang.setLine(tabs.getTabAt(1), "sprite_editor");
 
 		JLabel copyLabel = new JLabel("JDIX Developers");
 		copyLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 10));
@@ -44,6 +55,19 @@ public class Start extends JPanel {
 		copyLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		copyLabel.setBorder(new EmptyBorder(0, 0, 3, 7));
 		add(copyLabel, BorderLayout.SOUTH);
+
+		try
+		{
+			Square.setSprite(new Sprite(new File("sprites/test.png"),
+			(short) 32));
+			mapEditor.setMap(new Map(30, 20));
+		}
+		catch (SpriteException | IOException e)
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage(), Lang
+			.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
+			"img/error.png"));
+		}
 	}
 
 	/**

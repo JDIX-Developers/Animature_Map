@@ -5,13 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import utils.Lang;
+
+import components.JMenu;
+import components.JMenuItem;
 
 /**
  * @author Razican (Iban Eguia)
@@ -20,8 +21,7 @@ public class Menu extends JMenuBar {
 
 	private static final long	serialVersionUID	= -2674054941368737779L;
 
-	private JMenu				file, edit;
-	private JMenuItem			help;
+	private JMenu				file, edit, help;
 	private JMenuItem			open, save, save_where;
 	private JMenuItem			preferences;
 
@@ -40,7 +40,7 @@ public class Menu extends JMenuBar {
 		Lang.setLine(edit, "menu_edit");
 		edit.setMargin(new Insets(5, 5, 5, 5));
 
-		help = new JMenuItem();
+		help = new JMenu();
 		Lang.setLine(help, "menu_help");
 		help.setMargin(new Insets(5, 5, 5, 5));
 		help.addActionListener(new ActionListener()
@@ -71,7 +71,7 @@ public class Menu extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-
+				edit.updateUI();
 				Window.getInstance().getGlassPane().setVisible(true);
 				Preferences p = new Preferences();
 

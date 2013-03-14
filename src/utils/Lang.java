@@ -1,33 +1,29 @@
 package utils;
 
-import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
+
+import components.Internationalizable;
 
 /**
  * @author Razican (Iban Eguia)
  */
 public class Lang {
 
-	private static Vector<Locale>									locales;
-	private static Lang												currentLang;
-	private static HashMap<Component, String>						observed;
-	private static HashMap<Map.Entry<JTabbedPane, Integer>, String>	observedTabTitles;
-	private Locale													locale;
-	private HashMap<String, String>									lines;
+	private static Vector<Locale>						locales;
+	private static Lang									currentLang;
+	private static HashMap<Internationalizable, String>	observed;
+	private Locale										locale;
+	private HashMap<String, String>						lines;
 
 	private Lang()
 	{
@@ -95,24 +91,9 @@ public class Lang {
 				JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
 			}
 
-			for (Map.Entry<Component, String> e: observed.entrySet())
+			for (Map.Entry<Internationalizable, String> e: observed.entrySet())
 			{
-				if (e.getKey() instanceof AbstractButton)
-				{
-					((AbstractButton) e.getKey())
-					.setText(getLine(e.getValue()));
-				}
-				else if (e.getKey() instanceof JLabel)
-				{
-					((JLabel) e.getKey()).setText(getLine(e.getValue()));
-				}
-			}
-
-			for (Map.Entry<Map.Entry<JTabbedPane, Integer>, String> e: observedTabTitles
-			.entrySet())
-			{
-				e.getKey().getKey()
-				.setTitleAt(e.getKey().getValue(), getLine(e.getValue()));
+				e.getKey().changeLanguage(getLine(e.getValue()));
 			}
 		}
 	}
@@ -136,43 +117,15 @@ public class Lang {
 	 *            JLabel, since if it's not, this method will do nothing.
 	 * @param key Language key
 	 */
-	public static void setLine(Component c, String key)
+	public static void setLine(Internationalizable c, String key)
 	{
 		if (observed == null)
 		{
 			observed = new HashMap<>();
 		}
 
-		if (c instanceof AbstractButton)
-		{
-			observed.put(c, key);
-			((AbstractButton) c).setText(getLine(key));
-		}
-		else if (c instanceof JLabel)
-		{
-			observed.put(c, key);
-			((JLabel) c).setText(getLine(key));
-		}
-	}
-
-	/**
-	 * @param p JTabbedPane to set title
-	 * @param tabIndex Index of the Tab for the new title
-	 * @param key Language key of the text
-	 */
-	public static void setJTabbedPaneTitle(JTabbedPane p, int tabIndex,
-	String key)
-	{
-		if (observedTabTitles == null)
-		{
-			observedTabTitles = new HashMap<>();
-		}
-
-		Map.Entry<JTabbedPane, Integer> newKey = new SimpleImmutableEntry<JTabbedPane, Integer>(
-		p, new Integer(tabIndex));
-		observedTabTitles.put(newKey, key);
-
-		p.setTitleAt(tabIndex, getLine(key));
+		observed.put(c, key);
+		c.changeLanguage(getLine(key));
 	}
 
 	/**

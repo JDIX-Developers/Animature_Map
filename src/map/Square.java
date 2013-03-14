@@ -111,4 +111,17 @@ public class Square {
 
 		return squares[xi][yi];
 	}
+
+	/**
+	 * @return The current sprite
+	 * @throws SpriteException if the sprite is not set
+	 */
+	public static Sprite getSprite() throws SpriteException
+	{
+		if (sprite == null)
+		{
+			throw new SpriteException();
+		}
+		return sprite;
+	}
 }

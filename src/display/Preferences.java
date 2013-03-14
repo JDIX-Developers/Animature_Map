@@ -32,9 +32,6 @@ public class Preferences extends JPanel {
 		langCombo = new JComboBox<>(Lang.getCombableLocales());
 		langCombo.setSelectedIndex(Lang.getCurrentLocaleKey());
 		panel.add(langCombo);
-
-		setSize(600, 600);
-
 	}
 
 	/**

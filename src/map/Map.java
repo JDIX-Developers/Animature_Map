@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import utils.Lang;
+import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -24,13 +25,16 @@ public class Map {
 	/**
 	 * @param width Map's width
 	 * @param height Map's height
+	 * @throws SpriteException if the sprite is not set
 	 */
-	public Map(int width, int height)
+	public Map(int width, int height) throws SpriteException
 	{
 		this.squares = new Square[height][width];
 		this.width = width;
 		this.height = height;
 		links = new HashMap<>();
+		this.image = new BufferedImage(width * getSquareSize(), height
+		* getSquareSize(), BufferedImage.TYPE_INT_ARGB);
 	}
 
 	/**
@@ -83,6 +87,39 @@ public class Map {
 			Lang.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
 			"img/error.png"));
 		}
+	}
+
+	/**
+	 * @return Current image of the map
+	 */
+	public BufferedImage getImage()
+	{
+		return image;
+	}
+
+	/**
+	 * @return Height of the map in squares
+	 */
+	public int getHeight()
+	{
+		return squares.length;
+	}
+
+	/**
+	 * @return Width of the map in squares
+	 */
+	public int getWidth()
+	{
+		return squares[0].length;
+	}
+
+	/**
+	 * @return The current square size
+	 * @throws SpriteException if the Sprite is not set
+	 */
+	public short getSquareSize() throws SpriteException
+	{
+		return Square.getSprite().getSize();
 	}
 
 	private byte[] compress()
