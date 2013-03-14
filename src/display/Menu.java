@@ -3,24 +3,17 @@ package display;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import map.Map;
-import map.Sprite;
 import map.Square;
 import utils.Lang;
 
 import components.JMenu;
 import components.JMenuItem;
-
-import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -75,7 +68,6 @@ public class Menu extends JMenuBar implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				edit.updateUI();
 				Window.getInstance().getGlassPane().setVisible(true);
 				Preferences p = new Preferences();
 
@@ -122,21 +114,39 @@ public class Menu extends JMenuBar implements ActionListener {
 		switch (e.getActionCommand())
 		{
 			case "new":
-				// TODO Create "New Map" dialog
-				MapEditor mapEditor = (MapEditor) ((Start) Window.getInstance()
-				.getContentPane()).getTabbedPane().getComponentAt(0);
-				try
+				Window.getInstance().getGlassPane().setVisible(true);
+				NewMap p = new NewMap();
+
+				String[] options = {Lang.getLine("conf_dialog_ok"),
+				Lang.getLine("conf_dialog_cancel")};
+				JOptionPane pane = new JOptionPane(p,
+				JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
+				options, options[1]);
+				JDialog dialog = pane.createDialog(Lang.getLine("new_map"));
+				dialog.setLocationRelativeTo(Window.getInstance());
+				dialog.setVisible(true);
+
+				if (pane.getValue() == options[0])
 				{
-					Square.setSprite(new Sprite(new File("sprites/test.png"),
-					(short) 32));
-					mapEditor.setMap(new Map(30, 20));
+					if (p.getMap() == null)
+					{
+						// TODO error message
+					}
+					else if (p.getSprite() == null)
+					{
+						// TODO error message
+					}
+					else
+					{
+						MapEditor mapEditor = (MapEditor) ((Start) Window
+						.getInstance().getContentPane()).getTabbedPane()
+						.getComponentAt(0);
+						Square.setSprite(p.getSprite());
+						mapEditor.setMap(p.getMap());
+					}
 				}
-				catch (SpriteException | IOException e1)
-				{
-					JOptionPane.showMessageDialog(null, e1.getMessage(),
-					Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
-					new ImageIcon("img/error.png"));
-				}
+
+				Window.getInstance().getGlassPane().setVisible(false);
 			break;
 		}
 	}

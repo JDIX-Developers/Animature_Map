@@ -13,9 +13,11 @@ import javax.swing.JTree;
 import javax.swing.SwingConstants;
 
 import map.Map;
+import map.Sprite;
 import utils.Lang;
 
 import components.JLabel;
+import components.SpriteTree;
 
 import exceptions.SpriteException;
 
@@ -26,6 +28,7 @@ public class MapEditor extends JPanel {
 
 	private static final long	serialVersionUID	= -8557921921364871510L;
 	private Map					map;
+	private Sprite				sprite;
 	private JLabel				lblClickToLoad;
 
 	/**
@@ -42,15 +45,25 @@ public class MapEditor extends JPanel {
 	}
 
 	/**
-	 * @param m Map to edit
+	 * @param m - Map to edit
 	 */
 	public void setMap(Map m)
 	{
 		this.map = m;
-		loadMap();
 	}
 
-	private void loadMap()
+	/**
+	 * @param s - Sprite to set
+	 */
+	public void setSprite(Sprite s)
+	{
+		this.sprite = s;
+	}
+
+	/**
+	 * 
+	 */
+	public void loadMap()
 	{
 		remove(lblClickToLoad);
 		JScrollPane panel = new JScrollPane();
@@ -60,7 +73,7 @@ public class MapEditor extends JPanel {
 
 		add(panel, BorderLayout.CENTER);
 
-		JTree tree = new JTree(); // TODO Load Sprite's info
+		JTree tree = new SpriteTree(sprite);
 		add(tree, BorderLayout.EAST);
 	}
 
