@@ -19,6 +19,7 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setIconImage(null); // TODO set Animature World Icon
 		setSize(800, 600);
+		setTitle("Animature Map Creator");
 		setLocationRelativeTo(null);
 		setGlassPane(new GlassPane());
 		// setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
