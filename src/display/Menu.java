@@ -1,13 +1,17 @@
 package display;
 
+import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import map.Square;
 import utils.Lang;
@@ -35,33 +39,50 @@ public class Menu extends JMenuBar implements ActionListener {
 
 		file = new JMenu();
 		Lang.setLine(file, "menu_file");
+		file.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		file.setMargin(new Insets(5, 5, 5, 5));
 
 		edit = new JMenu();
 		Lang.setLine(edit, "menu_edit");
+		edit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		edit.setMargin(new Insets(5, 5, 5, 5));
 
 		help = new JMenu();
 		Lang.setLine(help, "menu_help");
+		help.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		help.setMargin(new Insets(5, 5, 5, 5));
 
 		newMap = new JMenuItem();
 		Lang.setLine(newMap, "menu_new_map");
+		newMap.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		newMap.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+		InputEvent.ALT_MASK | InputEvent.SHIFT_MASK));
 		newMap.setMargin(new Insets(5, 5, 5, 5));
 		newMap.setActionCommand("new");
 		newMap.addActionListener(this);
+
 		open = new JMenuItem();
 		Lang.setLine(open, "menu_open...");
+		open.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+		InputEvent.CTRL_MASK));
 		open.setMargin(new Insets(5, 5, 5, 5));
+
 		save = new JMenuItem();
 		Lang.setLine(save, "menu_save");
+		save.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+		InputEvent.CTRL_MASK));
 		save.setMargin(new Insets(5, 5, 5, 5));
+
 		save_where = new JMenuItem();
 		Lang.setLine(save_where, "menu_save...");
+		save_where.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		save_where.setMargin(new Insets(5, 5, 5, 5));
 
 		preferences = new JMenuItem();
 		Lang.setLine(preferences, "preferences");
+		preferences.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		preferences.addActionListener(new ActionListener()
 		{
 
