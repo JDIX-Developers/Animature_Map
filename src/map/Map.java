@@ -17,7 +17,7 @@ import exceptions.SpriteException;
  */
 public class Map {
 
-	private BufferedImage			image;		// TODO
+	private BufferedImage			image;
 	private Square[][]				squares;
 	private int						width, height;
 	private HashMap<Square, Link>	links;

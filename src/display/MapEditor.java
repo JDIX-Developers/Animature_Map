@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import map.Map;
 import map.Sprite;
+import map.Square;
 import utils.Lang;
 
 import components.JLabel;
@@ -50,21 +51,15 @@ public class MapEditor extends JPanel {
 	public void setMap(Map m)
 	{
 		this.map = m;
-	}
+		try
+		{
+			this.sprite = Square.getSprite();
+		}
+		catch (SpriteException e)
+		{
+			e.printStackTrace();
+		}
 
-	/**
-	 * @param s - Sprite to set
-	 */
-	public void setSprite(Sprite s)
-	{
-		this.sprite = s;
-	}
-
-	/**
-	 * 
-	 */
-	public void loadMap()
-	{
 		remove(lblClickToLoad);
 		JScrollPane panel = new JScrollPane();
 
@@ -75,6 +70,8 @@ public class MapEditor extends JPanel {
 
 		JTree tree = new SpriteTree(sprite);
 		add(tree, BorderLayout.EAST);
+
+		updateUI();
 	}
 
 	private ImageIcon printGrid(BufferedImage img)

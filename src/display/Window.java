@@ -2,6 +2,7 @@ package display;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,7 +18,7 @@ public class Window extends JFrame {
 	{
 		super();
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setIconImage(null); // TODO set Animature World Icon
+		setIconImage((new ImageIcon("img/app-icon.png")).getImage());
 		setSize(800, 600);
 		setTitle("Animature Map Creator");
 		setLocationRelativeTo(null);

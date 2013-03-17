@@ -8,16 +8,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import map.Map;
 import map.Sprite;
+import map.Square;
 import utils.Lang;
 
 import components.JButton;
 import components.JLabel;
+
+import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
@@ -26,7 +31,6 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 
 	private static final long	serialVersionUID	= -4235181786593609509L;
 
-	private Map					map;
 	private Sprite				sprite;
 	private JTextField			textWidth, textHeight;
 	private JButton				btnExamine;
@@ -54,7 +58,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		gbc_lblWidthsquares.gridy = 0;
 		add(lblWidthsquares, gbc_lblWidthsquares);
 
-		textWidth = new JTextField();
+		textWidth = new JTextField("1");
 		textWidth.addKeyListener(this);
 		textWidth.setBackground(Color.WHITE);
 		GridBagConstraints gbc_textWidth = new GridBagConstraints();
@@ -74,7 +78,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		gbc_lblHeightsquares.gridy = 1;
 		add(lblHeightsquares, gbc_lblHeightsquares);
 
-		textHeight = new JTextField();
+		textHeight = new JTextField("1");
 		textHeight.setBackground(Color.WHITE);
 		GridBagConstraints gbc_textHeight = new GridBagConstraints();
 		gbc_textHeight.insets = new Insets(0, 0, 5, 5);
@@ -107,15 +111,29 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	 */
 	public Map getMap()
 	{
-		return this.map;
-	}
+		Map map = null;
+		// Square.setSprite(sprite);
+		try
+		{
+			Square.setSprite(new Sprite(new File("sprites/test.png"),
+			(short) 32));
+		}
+		catch (IOException | SpriteException e1)
+		{
+			e1.printStackTrace();
+		}
 
-	/**
-	 * @return The sprite selected by the user
-	 */
-	public Sprite getSprite()
-	{
-		return this.sprite;
+		try
+		{
+			map = new Map(Integer.parseInt(textWidth.getText()),
+			Integer.parseInt(textWidth.getText()));
+		}
+		catch (NumberFormatException | SpriteException e)
+		{
+			e.printStackTrace();
+		}
+
+		return map;
 	}
 
 	@Override
@@ -131,6 +149,12 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 			+ e.getKeyChar()) > 254)
 			{
 				((JTextField) e.getSource()).setText("254");
+				e.consume();
+			}
+			else if (Integer.parseInt(((JTextField) e.getSource()).getText()
+			+ e.getKeyChar()) < 1)
+			{
+				((JTextField) e.getSource()).setText("1");
 				e.consume();
 			}
 		}
