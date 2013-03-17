@@ -167,17 +167,10 @@ public class Menu extends JMenuBar implements ActionListener {
 
 					if (pane.getValue() == options[0])
 					{
-						if (p.getMap() == null)
-						{
-							// TODO error message
-						}
-						else
-						{
-							MapEditor mapEditor = (MapEditor) ((Start) Window
-							.getInstance().getContentPane()).getTabbedPane()
-							.getComponentAt(0);
-							mapEditor.setMap(p.getMap());
-						}
+						MapEditor mapEditor = (MapEditor) ((Start) Window
+						.getInstance().getContentPane()).getTabbedPane()
+						.getComponentAt(0);
+						mapEditor.setMap(p.getMap());
 					}
 
 					Window.getInstance().getGlassPane().setVisible(false);
