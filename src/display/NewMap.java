@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,6 +16,7 @@ import javax.swing.JTextField;
 import map.Map;
 import map.Sprite;
 import map.Square;
+import utils.FileMode;
 import utils.Lang;
 
 import components.JButton;
@@ -79,6 +79,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		add(lblHeightsquares, gbc_lblHeightsquares);
 
 		textHeight = new JTextField("1");
+		textHeight.addKeyListener(this);
 		textHeight.setBackground(Color.WHITE);
 		GridBagConstraints gbc_textHeight = new GridBagConstraints();
 		gbc_textHeight.insets = new Insets(0, 0, 5, 5);
@@ -112,16 +113,8 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	public Map getMap()
 	{
 		Map map = null;
-		// Square.setSprite(sprite);
-		try
-		{
-			Square.setSprite(new Sprite(new File("sprites/test.png"),
-			(short) 32));
-		}
-		catch (IOException | SpriteException e1)
-		{
-			e1.printStackTrace();
-		}
+
+		Square.setSprite(sprite);
 
 		try
 		{
@@ -175,7 +168,11 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	{
 		if (e.getSource() == btnExamine)
 		{
-			// TODO dialog
+			File f = FileMode.openFileMode(Lang.getLine("sprite_file"), "spr");
+			if (f != null)
+			{
+				sprite = new Sprite(f);
+			}
 		}
 	}
 }
