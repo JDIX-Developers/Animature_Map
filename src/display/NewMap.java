@@ -37,6 +37,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	private Sprite				sprite;
 	private JTextField			textWidth, textHeight;
 	private JButton				btnExamine;
+	private JLabel				lblArchivo;
 
 	/**
 	 * Create the panel.
@@ -44,9 +45,9 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	public NewMap()
 	{
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[] {0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 1.0, 1.0,
+		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 1.0, 1.0, 1.0,
 		Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[] {0.0, 0.0, 0.0,
 		Double.MIN_VALUE};
@@ -65,6 +66,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		textWidth.addKeyListener(this);
 		textWidth.setBackground(Color.WHITE);
 		GridBagConstraints gbc_textWidth = new GridBagConstraints();
+		gbc_textWidth.gridwidth = 2;
 		gbc_textWidth.insets = new Insets(0, 0, 5, 5);
 		gbc_textWidth.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textWidth.gridx = 2;
@@ -85,6 +87,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		textHeight.addKeyListener(this);
 		textHeight.setBackground(Color.WHITE);
 		GridBagConstraints gbc_textHeight = new GridBagConstraints();
+		gbc_textHeight.gridwidth = 2;
 		gbc_textHeight.insets = new Insets(0, 0, 5, 5);
 		gbc_textHeight.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textHeight.gridx = 2;
@@ -103,9 +106,17 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		btnExamine = new JButton();
 		Lang.setLine(btnExamine, "btn_examine");
 		btnExamine.addActionListener(this);
+
+		lblArchivo = new JLabel();
+		GridBagConstraints gbc_lblArchivo = new GridBagConstraints();
+		gbc_lblArchivo.insets = new Insets(0, 0, 0, 5);
+		gbc_lblArchivo.gridx = 2;
+		gbc_lblArchivo.gridy = 2;
+		add(lblArchivo, gbc_lblArchivo);
+
 		GridBagConstraints gbc_btnExamine = new GridBagConstraints();
 		gbc_btnExamine.insets = new Insets(0, 0, 0, 5);
-		gbc_btnExamine.gridx = 2;
+		gbc_btnExamine.gridx = 3;
 		gbc_btnExamine.gridy = 2;
 		add(btnExamine, gbc_btnExamine);
 	}
@@ -177,7 +188,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 				try
 				{
 					sprite = new Sprite(f);
-					// TODO crear label para el nombre de archivo.
+					lblArchivo.setText(f.getName());
 				}
 				catch (IOException | SpriteException e1)
 				{

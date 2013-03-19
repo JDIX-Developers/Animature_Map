@@ -20,6 +20,27 @@ public final class MathUtils {
 	}
 
 	/**
+	 * @param b - Unsigned byte
+	 * @return short representing the byte, so for example, 0xFF would be 255,
+	 *         and not -1
+	 */
+	public static short uByteToShort(byte b)
+	{
+		return (short) (b & 0x00FF);
+	}
+
+	/**
+	 * @param b1 left byte for the short
+	 * @param b2 right byte for the short
+	 * @return Short representing the unsigned number contained by the two
+	 *         bytes.
+	 */
+	public static short twoByteToShort(byte b1, byte b2)
+	{
+		return (short) ((uByteToShort(b1) << 8) + uByteToShort(b2));
+	}
+
+	/**
 	 * @param b byte to convert
 	 * @return String with hexadecimal representation of the byte
 	 */

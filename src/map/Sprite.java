@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import utils.MathUtils;
 import exceptions.SpriteException;
 
 /**
@@ -41,9 +42,8 @@ public class Sprite {
 		byte[] array = new byte[(int) f.length()];
 		st.read(array);
 
-		short size = (short) (array[0] << 8 + array[1]);
-		System.out.println(array[0]);
-		System.out.println(array[1]);
+		short size = MathUtils.twoByteToShort(array[0], array[1]);
+		System.out.println(size);
 
 		if (size != 0)
 		{

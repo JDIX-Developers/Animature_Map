@@ -162,6 +162,7 @@ public class Menu extends JMenuBar implements ActionListener {
 					JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION,
 					null, options, options[1]);
 					JDialog dialog = pane.createDialog(Lang.getLine("new_map"));
+					dialog.setSize(500, 200);
 					dialog.setLocationRelativeTo(Window.getInstance());
 					dialog.setVisible(true);
 
