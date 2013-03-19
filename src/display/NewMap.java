@@ -190,7 +190,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 					sprite = new Sprite(f);
 					lblArchivo.setText(f.getName());
 				}
-				catch (IOException | SpriteException e1)
+				catch (IOException | SpriteException | ClassNotFoundException e1)
 				{
 					sprite = null;
 
