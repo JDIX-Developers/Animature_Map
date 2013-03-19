@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.IOException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -171,7 +174,21 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 			File f = FileMode.openFileMode(Lang.getLine("sprite_file"), "spr");
 			if (f != null)
 			{
-				sprite = new Sprite(f);
+				try
+				{
+					sprite = new Sprite(f);
+					// TODO crear label para el nombre de archivo.
+				}
+				catch (IOException | SpriteException e1)
+				{
+					sprite = null;
+
+					e1.printStackTrace();
+
+					JOptionPane.showMessageDialog(null,
+					Lang.getLine("sprite_load_error"), Lang.getLine("error"),
+					JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
+				}
 			}
 		}
 	}
