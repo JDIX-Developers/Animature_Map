@@ -11,8 +11,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import utils.Lang;
 
@@ -121,8 +123,20 @@ public class Menu extends JMenuBar implements ActionListener {
 					Lang.setLang(Lang.getAvailableLocales().get(
 					p.getLocaleIndex()));
 
-					Window.getInstance().repaint();
-					((JPanel) Window.getInstance().getContentPane()).updateUI();
+					utils.Preferences.setLookAndFeelClass(p.getLookAndFeel());
+
+					try
+					{
+						UIManager.setLookAndFeel(p.getLookAndFeel());
+					}
+					catch (ClassNotFoundException | InstantiationException
+					| IllegalAccessException | UnsupportedLookAndFeelException e1)
+					{
+						e1.printStackTrace();
+					}
+
+					SwingUtilities.updateComponentTreeUI(Window.getInstance());
+					Window.getInstance().pack();
 				}
 
 				Window.getInstance().getGlassPane().setVisible(false);

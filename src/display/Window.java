@@ -26,6 +26,13 @@ public class Window extends JFrame {
 		// setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
 	}
 
+	@Override
+	public void pack()
+	{
+		super.pack();
+		setSize(800, 600);
+	}
+
 	/**
 	 * @author Razican (Iban Eguia)
 	 */

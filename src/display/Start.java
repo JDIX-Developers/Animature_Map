@@ -64,7 +64,7 @@ public class Start extends JPanel {
 	{
 		try
 		{
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel(utils.Preferences.getLookAndFeel());
 		}
 		catch (ClassNotFoundException | InstantiationException
 		| IllegalAccessException | UnsupportedLookAndFeelException e)
