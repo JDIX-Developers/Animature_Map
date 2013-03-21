@@ -30,7 +30,7 @@ public class MapEditor extends JPanel {
 	private static final long	serialVersionUID	= -8557921921364871510L;
 	private Map					map;
 	private Sprite				sprite;
-	private JLabel				lblClickToLoad;
+	private JLabel				lblLoad;
 
 	/**
 	 * Create the panel.
@@ -39,10 +39,10 @@ public class MapEditor extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		lblClickToLoad = new JLabel();
-		Lang.setLine(lblClickToLoad, "no_map");
-		lblClickToLoad.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblClickToLoad, BorderLayout.CENTER);
+		lblLoad = new JLabel();
+		Lang.setLine(lblLoad, "no_map");
+		lblLoad.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblLoad, BorderLayout.CENTER);
 	}
 
 	/**
@@ -60,7 +60,11 @@ public class MapEditor extends JPanel {
 			e.printStackTrace();
 		}
 
-		remove(lblClickToLoad);
+		JLabel lblSquareImage = new JLabel(new ImageIcon("img/void_square.png"));
+		lblSquareImage.setHorizontalAlignment(SwingConstants.RIGHT);
+		add(lblSquareImage, BorderLayout.NORTH);
+
+		remove(lblLoad);
 		JScrollPane panel = new JScrollPane();
 
 		JLabel lblMap = new JLabel(printGrid(map.getImage()));
