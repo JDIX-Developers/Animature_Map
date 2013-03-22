@@ -55,12 +55,12 @@ public class Preferences implements Serializable {
 			preferences = (Preferences) ois.readObject();
 			ois.close();
 		}
-		catch (FileNotFoundException e)
-		{
-		}
 		catch (IOException | ClassNotFoundException e)
 		{
-			e.printStackTrace();
+			if (!(e instanceof FileNotFoundException))
+			{
+				e.printStackTrace();
+			}
 
 			preferences = new Preferences(Locale.getDefault(),
 			UIManager.getSystemLookAndFeelClassName());
