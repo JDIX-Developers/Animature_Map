@@ -100,14 +100,6 @@ public class Sprite {
 	}
 
 	/**
-	 * @return Size of the squares in the sprite to use them in the map
-	 */
-	public short getSize()
-	{
-		return 32;
-	}
-
-	/**
 	 * @return The real size of the squares
 	 */
 	public short getRealSize()

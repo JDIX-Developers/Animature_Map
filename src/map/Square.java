@@ -32,11 +32,10 @@ public class Square {
 		this.x = x;
 		this.y = y;
 
-		this.image = new BufferedImage(sprite.getSize(), sprite.getSize(),
-		BufferedImage.TYPE_INT_ARGB);
+		this.image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 
-		this.image.createGraphics().drawImage(sprite.getImage(),
-		-this.x * sprite.getSize(), -this.y * sprite.getSize(), null);
+		this.image.createGraphics().drawImage(sprite.getImage(), - this.x * 32,
+		- this.y * 32, null);
 	}
 
 	/**
@@ -78,11 +77,11 @@ public class Square {
 	}
 
 	/**
-	 * @param x X coordinate
-	 * @param y Y coordinate
+	 * @param x - X coordinate
+	 * @param y - Y coordinate
 	 * @return Square in that position of the sprite
-	 * @throws SpriteException If the sprite has not been initialized
-	 * @throws CompressionException If there is a compression error
+	 * @throws SpriteException - If the sprite has not been initialized
+	 * @throws CompressionException - If there is a compression error
 	 */
 	public static Square load(byte x, byte y) throws SpriteException,
 	CompressionException
@@ -95,11 +94,9 @@ public class Square {
 		}
 		if (squares == null)
 		{
-			squares = new Square[sprite.getWidth() / sprite.getSize()][sprite
-			.getHeight() / sprite.getSize()];
+			squares = new Square[sprite.getWidth()][sprite.getHeight()];
 		}
-		if (xi > sprite.getWidth() / sprite.getSize() - 1
-		|| yi > sprite.getHeight() / sprite.getSize() - 1)
+		if (xi > sprite.getWidth() - 1 || yi > sprite.getHeight() - 1)
 		{
 			throw new SpriteException("There is no image for coordinates (0x"
 			+ MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")");

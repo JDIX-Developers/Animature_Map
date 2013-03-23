@@ -13,7 +13,10 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import map.Sprite;
+import map.Square;
 import utils.MathUtils;
+import exceptions.CompressionException;
+import exceptions.SpriteException;
 
 /**
  * A simple JTree created with a Sprite
@@ -24,17 +27,15 @@ public class SpriteTree extends JTree {
 
 	private static final long	serialVersionUID	= - 3757649473919856946L;
 
-	private Sprite				sprite;
-
 	/**
-	 * Creates a JTree from a Sprite
+	 * Creates a JTree from the Sprite
 	 * 
-	 * @param sprite - The sprite to use for the JTree
+	 * @throws SpriteException If the sprite has not been initialized
 	 */
-	public SpriteTree(Sprite sprite)
+	public SpriteTree() throws SpriteException
 	{
 		super(new DefaultMutableTreeNode("root"));
-		this.sprite = sprite;
+		Sprite sprite = Square.getSprite();
 
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel
 		.getRoot();
@@ -85,33 +86,19 @@ public class SpriteTree extends JTree {
 	 * Returns the full representation of the selected square
 	 * 
 	 * @return The ImageIcon of the current selected element in 128x128 pixels
+	 * @throws SpriteException If the sprite has not been initialized
 	 */
-	public ImageIcon getSelectedIcon()
+	public ImageIcon getSelectedIcon() throws SpriteException
 	{
+		Sprite sprite = Square.getSprite();
+
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
 		HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
 
 		if (node != null && node.isLeaf())
 		{
-			TreeNode[] path = node.getPath();
-			String formattedPath = "";
-			for (TreeNode element: path)
-			{
-				DefaultMutableTreeNode cN = (DefaultMutableTreeNode) element;
-
-				String pathStr = (String) cN.getUserObject();
-
-				if ( ! pathStr.equals("root"))
-				{
-					formattedPath += pathStr + "/";
-				}
-			}
-
-			formattedPath = formattedPath.substring(0,
-			formattedPath.length() - 1);
-
 			Image img = sprite.getRealImage();
-			Entry<Byte, Byte> coord = coords.get(formattedPath);
+			Entry<Byte, Byte> coord = coords.get(getPath(node));
 
 			BufferedImage i = new BufferedImage(128, 128,
 			BufferedImage.TYPE_INT_RGB);
@@ -129,13 +116,49 @@ public class SpriteTree extends JTree {
 		return null;
 	}
 
+	private String getPath(DefaultMutableTreeNode node) throws SpriteException
+	{
+		TreeNode[] path = node.getPath();
+		String formattedPath = "";
+		for (TreeNode element: path)
+		{
+			DefaultMutableTreeNode cN = (DefaultMutableTreeNode) element;
+
+			String pathStr = (String) cN.getUserObject();
+
+			if ( ! pathStr.equals("root"))
+			{
+				formattedPath += pathStr + "/";
+			}
+		}
+
+		formattedPath = formattedPath.substring(0, formattedPath.length() - 1);
+
+		return formattedPath;
+	}
+
 	/**
 	 * Returns a square ready to be painted in the map
 	 * 
 	 * @return a 32x32 pixel BufferedImage
+	 * @throws CompressionException If there is a compression error
+	 * @throws SpriteException If the sprite has not been initialized
 	 */
-	public BufferedImage getSelectedImage()
+	public Square getSelectedSquare() throws SpriteException,
+	CompressionException
 	{
-		return null; // TODO
+		Sprite sprite = Square.getSprite();
+
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+		HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
+
+		if (node != null && node.isLeaf())
+		{
+			Entry<Byte, Byte> coord = coords.get(getPath(node));
+
+			return Square.load(coord.getKey(), coord.getValue());
+		}
+
+		return null;
 	}
 }

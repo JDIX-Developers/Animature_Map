@@ -3,10 +3,11 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -14,24 +15,23 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
 import map.Map;
-import map.Sprite;
-import map.Square;
 import utils.Lang;
 
 import components.ILabel;
 import components.SpriteTree;
 
+import exceptions.CompressionException;
 import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class MapEditor extends JPanel implements TreeSelectionListener {
+public class MapEditor extends JPanel implements TreeSelectionListener,
+MouseListener {
 
 	private static final long	serialVersionUID	= - 8557921921364871510L;
 	private Map					map;
-	private Sprite				sprite;
-	private ILabel				lblLoad, lblSquareImage;
+	private ILabel				lblLoad, lblSquareImage, lblMap;
 	private SpriteTree			tree;
 
 	/**
@@ -49,23 +49,17 @@ public class MapEditor extends JPanel implements TreeSelectionListener {
 
 	/**
 	 * @param m - Map to edit
+	 * @throws SpriteException if the sprite is not set
 	 */
-	public void setMap(Map m)
+	public void setMap(Map m) throws SpriteException
 	{
 		this.map = m;
-		try
-		{
-			this.sprite = Square.getSprite();
-		}
-		catch (SpriteException e)
-		{
-			e.printStackTrace();
-		}
 
 		remove(lblLoad);
 		JScrollPane mapPanel = new JScrollPane();
 
-		ILabel lblMap = new ILabel(printGrid(map.getImage()));
+		lblMap = new ILabel(printGrid(map.getImage()));
+		lblMap.addMouseListener(this);
 		mapPanel.setViewportView(lblMap);
 
 		add(mapPanel, BorderLayout.CENTER);
@@ -80,7 +74,7 @@ public class MapEditor extends JPanel implements TreeSelectionListener {
 		JScrollPane scrollPane = new JScrollPane();
 		treePanel.add(scrollPane, BorderLayout.CENTER);
 
-		tree = new SpriteTree(sprite);
+		tree = new SpriteTree();
 		tree.addTreeSelectionListener(this);
 		scrollPane.setViewportView(tree);
 
@@ -90,34 +84,20 @@ public class MapEditor extends JPanel implements TreeSelectionListener {
 	private ImageIcon printGrid(BufferedImage img)
 	{
 		Graphics2D graphs = img.createGraphics();
-		short size = 0;
+		short size = 32;
 
-		try
+		graphs.setColor(Color.BLACK);
+
+		// Horizontal lines
+		for (int i = 1; i < map.getHeight(); i++)
 		{
-			size = map.getSquareSize();
-		}
-		catch (SpriteException e)
-		{
-			JOptionPane.showMessageDialog(null, e.getMessage(), Lang
-			.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
-			"img/error.png"));
+			graphs.drawLine(0, i * size, img.getWidth(), i * size);
 		}
 
-		if (size > 0)
+		// Vertical lines
+		for (int i = 1; i < map.getWidth(); i++)
 		{
-			graphs.setColor(Color.BLACK);
-
-			// Horizontal lines
-			for (int i = 1; i < map.getHeight(); i++)
-			{
-				graphs.drawLine(0, i * size, img.getWidth(), i * size);
-			}
-
-			// Vertical lines
-			for (int i = 1; i < map.getWidth(); i++)
-			{
-				graphs.drawLine(i * size, 0, i * size, img.getHeight());
-			}
+			graphs.drawLine(i * size, 0, i * size, img.getHeight());
 		}
 
 		return new ImageIcon(img);
@@ -126,10 +106,62 @@ public class MapEditor extends JPanel implements TreeSelectionListener {
 	@Override
 	public void valueChanged(TreeSelectionEvent arg0)
 	{
-		ImageIcon i = tree.getSelectedIcon();
+		ImageIcon i = null;
+		try
+		{
+			i = tree.getSelectedIcon();
+		}
+		catch (SpriteException e)
+		{
+			e.printStackTrace();
+		}
+
 		if (i != null)
 		{
 			lblSquareImage.setIcon(i);
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{
+		System.out.println((e.getX() / 32) + "," + (e.getY() / 32));
+		try
+		{
+			if (tree.getSelectedSquare() != null)
+			{
+				byte x, y;
+
+				x = (byte) (e.getX() / 32);
+				y = (byte) (e.getY() / 32);
+
+				map.setSquare(x, y, tree.getSelectedSquare());
+				lblMap.setIcon(printGrid(map.getImage()));
+			}
+		}
+		catch (SpriteException | CompressionException e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e)
+	{
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e)
+	{
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e)
+	{
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e)
+	{
 	}
 }

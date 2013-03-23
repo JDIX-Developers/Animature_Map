@@ -22,6 +22,8 @@ import components.IMenu;
 import components.IMenuItem;
 import components.ITabbedPane;
 
+import exceptions.SpriteException;
+
 /**
  * @author Razican (Iban Eguia)
  */
@@ -193,7 +195,14 @@ public class Menu extends JMenuBar implements ActionListener {
 							((Start) Window.getInstance().getContentPane())
 							.getTabbedPane().setComponentAt(0, m);
 
-							m.setMap(p.getMap());
+							try
+							{
+								m.setMap(p.getMap());
+							}
+							catch (SpriteException e1)
+							{
+								e1.printStackTrace();
+							}
 						}
 					}
 

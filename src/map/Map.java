@@ -33,20 +33,28 @@ public class Map {
 		this.width = width;
 		this.height = height;
 		links = new HashMap<>();
-		this.image = new BufferedImage(width * getSquareSize(), height
-		* getSquareSize(), BufferedImage.TYPE_INT_ARGB);
+		this.image = new BufferedImage(width * 32, height * 32,
+		BufferedImage.TYPE_INT_ARGB);
+
+		// Graphics2D g = this.image.createGraphics();
+		// g.setPaint(Color.WHITE);
+		// g.fillRect(0, 0, this.image.getWidth(), this.image.getHeight());
 	}
 
 	/**
 	 * Sets the square in specified coordinates to match specified square
 	 * 
-	 * @param x X coordinate for the new square
-	 * @param y Y coordinate for the new square
+	 * @param x - X coordinate for the new square
+	 * @param y - Y coordinate for the new square
 	 * @param sq Square to set
 	 */
 	public void setSquare(int x, int y, Square sq)
 	{
 		squares[y][x] = sq;
+		int size = 32;
+
+		this.image.createGraphics().drawImage(sq.getImage(), x * size,
+		y * size, (x + 1) * size, (y + 1) * size, 0, 0, size, size, null);
 	}
 
 	/**
@@ -111,15 +119,6 @@ public class Map {
 	public int getWidth()
 	{
 		return squares[0].length;
-	}
-
-	/**
-	 * @return The current square size
-	 * @throws SpriteException if the Sprite is not set
-	 */
-	public short getSquareSize() throws SpriteException
-	{
-		return Square.getSprite().getSize();
 	}
 
 	private byte[] compress()
