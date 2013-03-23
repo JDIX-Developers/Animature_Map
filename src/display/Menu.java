@@ -27,7 +27,7 @@ import components.ITabbedPane;
  */
 public class Menu extends JMenuBar implements ActionListener {
 
-	private static final long	serialVersionUID	= -2674054941368737779L;
+	private static final long	serialVersionUID	= - 2674054941368737779L;
 
 	private IMenu				file, edit, help;
 	private IMenuItem			newFile, open, save, save_as;
@@ -104,7 +104,6 @@ public class Menu extends JMenuBar implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Window.getInstance().getGlassPane().setVisible(true);
 				Preferences p = new Preferences();
 
 				String[] options = {Lang.getLine("conf_dialog_ok"),

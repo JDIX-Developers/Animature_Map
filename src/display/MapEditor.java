@@ -9,8 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTree;
 import javax.swing.SwingConstants;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 
 import map.Map;
 import map.Sprite;
@@ -25,12 +26,13 @@ import exceptions.SpriteException;
 /**
  * @author Razican (Iban Eguia)
  */
-public class MapEditor extends JPanel {
+public class MapEditor extends JPanel implements TreeSelectionListener {
 
 	private static final long	serialVersionUID	= - 8557921921364871510L;
 	private Map					map;
 	private Sprite				sprite;
-	private ILabel				lblLoad;
+	private ILabel				lblLoad, lblSquareImage;
+	private SpriteTree			tree;
 
 	/**
 	 * Create the panel.
@@ -39,10 +41,10 @@ public class MapEditor extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		// lblLoad = new ILabel();
-		// Lang.setLine(lblLoad, "no_map");
-		// lblLoad.setHorizontalAlignment(SwingConstants.CENTER);
-		// add(lblLoad, BorderLayout.CENTER);
+		lblLoad = new ILabel();
+		Lang.setLine(lblLoad, "no_map");
+		lblLoad.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblLoad, BorderLayout.CENTER);
 	}
 
 	/**
@@ -60,20 +62,27 @@ public class MapEditor extends JPanel {
 			e.printStackTrace();
 		}
 
-		ILabel lblSquareImage = new ILabel(new ImageIcon("img/void_square.png"));
-		lblSquareImage.setHorizontalAlignment(SwingConstants.RIGHT);
-		add(lblSquareImage, BorderLayout.NORTH);
-
 		remove(lblLoad);
-		JScrollPane panel = new JScrollPane();
+		JScrollPane mapPanel = new JScrollPane();
 
 		ILabel lblMap = new ILabel(printGrid(map.getImage()));
-		panel.setViewportView(lblMap);
+		mapPanel.setViewportView(lblMap);
 
-		add(panel, BorderLayout.CENTER);
+		add(mapPanel, BorderLayout.CENTER);
 
-		JTree tree = new SpriteTree(sprite);
-		add(tree, BorderLayout.EAST);
+		JPanel treePanel = new JPanel();
+		add(treePanel, BorderLayout.EAST);
+		treePanel.setLayout(new BorderLayout(0, 0));
+
+		lblSquareImage = new ILabel(new ImageIcon("img/void_square.png"));
+		treePanel.add(lblSquareImage, BorderLayout.NORTH);
+
+		JScrollPane scrollPane = new JScrollPane();
+		treePanel.add(scrollPane, BorderLayout.CENTER);
+
+		tree = new SpriteTree(sprite);
+		tree.addTreeSelectionListener(this);
+		scrollPane.setViewportView(tree);
 
 		updateUI();
 	}
@@ -112,5 +121,15 @@ public class MapEditor extends JPanel {
 		}
 
 		return new ImageIcon(img);
+	}
+
+	@Override
+	public void valueChanged(TreeSelectionEvent arg0)
+	{
+		ImageIcon i = tree.getSelectedIcon();
+		if (i != null)
+		{
+			lblSquareImage.setIcon(i);
+		}
 	}
 }

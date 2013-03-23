@@ -1,15 +1,19 @@
 package components;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 
 import map.Sprite;
-import utils.Lang;
+import utils.MathUtils;
 
 /**
  * A simple JTree created with a Sprite
@@ -29,21 +33,22 @@ public class SpriteTree extends JTree {
 	 */
 	public SpriteTree(Sprite sprite)
 	{
-		super(new ITreeNode());
+		super(new DefaultMutableTreeNode("root"));
 		this.sprite = sprite;
-		setRootVisible(false);
 
-		ITreeNode root = (ITreeNode) treeModel.getRoot();
-
-		Lang.setLine(root, "tree_squares");
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel
+		.getRoot();
 
 		for (Entry<String, Entry<Byte, Byte>> ent: sprite.getHierarchy()
 		.entrySet())
 		{
-			System.out.println(ent.getKey());
 			String[] path = ent.getKey().split("/");
 			setNode(root, path, 0);
 		}
+
+		expandRow(0);
+		setRootVisible(false);
+		setShowsRootHandles(true);
 	}
 
 	private void setNode(DefaultMutableTreeNode root, String[] path, int cPath)
@@ -57,7 +62,7 @@ public class SpriteTree extends JTree {
 			DefaultMutableTreeNode cn = (DefaultMutableTreeNode) e
 			.nextElement();
 
-			if (cn.getUserObject().equals(path[cPath]))
+			if (cn.getUserObject().equals(path[cPath]) && cn != root)
 			{
 				n = cn;
 				break;
@@ -83,7 +88,45 @@ public class SpriteTree extends JTree {
 	 */
 	public ImageIcon getSelectedIcon()
 	{
-		return null; // TODO
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+		HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
+
+		if (node != null && node.isLeaf())
+		{
+			TreeNode[] path = node.getPath();
+			String formattedPath = "";
+			for (TreeNode element: path)
+			{
+				DefaultMutableTreeNode cN = (DefaultMutableTreeNode) element;
+
+				String pathStr = (String) cN.getUserObject();
+
+				if ( ! pathStr.equals("root"))
+				{
+					formattedPath += pathStr + "/";
+				}
+			}
+
+			formattedPath = formattedPath.substring(0,
+			formattedPath.length() - 1);
+
+			Image img = sprite.getRealImage();
+			Entry<Byte, Byte> coord = coords.get(formattedPath);
+
+			BufferedImage i = new BufferedImage(128, 128,
+			BufferedImage.TYPE_INT_RGB);
+			Graphics g = i.createGraphics();
+
+			g.drawImage(img, 0, 0, 128, 128,
+			128 * MathUtils.uByteToInt(coord.getKey()),
+			128 * MathUtils.uByteToInt(coord.getValue()),
+			128 * MathUtils.uByteToInt(coord.getKey()) + 128,
+			128 * MathUtils.uByteToInt(coord.getValue()) + 128, null);
+
+			return new ImageIcon(i);
+		}
+
+		return null;
 	}
 
 	/**
