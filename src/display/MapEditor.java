@@ -124,15 +124,14 @@ MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		System.out.println((e.getX() / 32) + "," + (e.getY() / 32));
 		try
 		{
 			if (tree.getSelectedSquare() != null)
 			{
-				byte x, y;
+				int x, y;
 
-				x = (byte) (e.getX() / 32);
-				y = (byte) (e.getY() / 32);
+				x = ((e.getX() - (lblMap.getWidth() - 32 * map.getWidth()) / 2) / 32);
+				y = ((e.getY() - (lblMap.getHeight() - 32 * map.getWidth()) / 2) / 32);
 
 				map.setSquare(x, y, tree.getSelectedSquare());
 				lblMap.setIcon(printGrid(map.getImage()));
