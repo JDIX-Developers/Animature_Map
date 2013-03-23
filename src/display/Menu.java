@@ -163,7 +163,7 @@ public class Menu extends JMenuBar implements ActionListener {
 
 		switch (e.getActionCommand())
 		{
-			case "new":
+			case "new":// TODO avisar si ya hay un mapa
 				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
 				{
 					NewMap p = new NewMap();
@@ -189,10 +189,11 @@ public class Menu extends JMenuBar implements ActionListener {
 						}
 						else
 						{
-							MapEditor mapEditor = (MapEditor) ((Start) Window
-							.getInstance().getContentPane()).getTabbedPane()
-							.getComponentAt(0);
-							mapEditor.setMap(p.getMap());
+							MapEditor m = new MapEditor();
+							((Start) Window.getInstance().getContentPane())
+							.getTabbedPane().setComponentAt(0, m);
+
+							m.setMap(p.getMap());
 						}
 					}
 
