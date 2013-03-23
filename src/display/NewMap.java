@@ -32,7 +32,7 @@ import exceptions.SpriteException;
  */
 public class NewMap extends JPanel implements KeyListener, ActionListener {
 
-	private static final long	serialVersionUID	= -4235181786593609509L;
+	private static final long	serialVersionUID	= - 4235181786593609509L;
 
 	private Sprite				sprite;
 	private JTextField			textWidth, textHeight;
@@ -128,16 +128,19 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	{
 		Map map = null;
 
-		Square.setSprite(sprite);
+		if (sprite != null)
+		{
+			Square.setSprite(sprite);
 
-		try
-		{
-			map = new Map(Integer.parseInt(textWidth.getText()),
-			Integer.parseInt(textWidth.getText()));
-		}
-		catch (NumberFormatException | SpriteException e)
-		{
-			e.printStackTrace();
+			try
+			{
+				map = new Map(Integer.parseInt(textWidth.getText()),
+				Integer.parseInt(textWidth.getText()));
+			}
+			catch (NumberFormatException | SpriteException e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		return map;

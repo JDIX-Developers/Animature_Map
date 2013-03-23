@@ -139,7 +139,7 @@ public class Menu extends JMenuBar implements ActionListener {
 					Window.getInstance().pack();
 				}
 
-				Window.getInstance().getGlassPane().setVisible(false);
+				dialog.dispose();
 			}
 		});
 
@@ -180,13 +180,23 @@ public class Menu extends JMenuBar implements ActionListener {
 
 					if (pane.getValue() == options[0])
 					{
-						MapEditor mapEditor = (MapEditor) ((Start) Window
-						.getInstance().getContentPane()).getTabbedPane()
-						.getComponentAt(0);
-						mapEditor.setMap(p.getMap());
+						if (p.getMap() == null)
+						{
+							JOptionPane.showMessageDialog(null,
+							Lang.getLine("sprite_load_error"),
+							Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
+							new ImageIcon("img/error.png"));
+						}
+						else
+						{
+							MapEditor mapEditor = (MapEditor) ((Start) Window
+							.getInstance().getContentPane()).getTabbedPane()
+							.getComponentAt(0);
+							mapEditor.setMap(p.getMap());
+						}
 					}
 
-					Window.getInstance().getGlassPane().setVisible(false);
+					dialog.dispose();
 				}
 			break;
 		}

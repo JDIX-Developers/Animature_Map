@@ -83,9 +83,9 @@ public class Map {
 		{
 			System.err.println(e.getMessage());
 
-			JOptionPane.showMessageDialog(null, Lang.getLine("map_save_error"),
-			Lang.getLine("error"), JOptionPane.ERROR_MESSAGE, new ImageIcon(
-			"img/error.png"));
+			JOptionPane.showMessageDialog(null,
+			Lang.getLine("sprite_load_error"), Lang.getLine("error"),
+			JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
 		}
 	}
 
