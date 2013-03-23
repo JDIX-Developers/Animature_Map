@@ -12,8 +12,8 @@ import javax.swing.border.EmptyBorder;
 
 import utils.Lang;
 
-import components.JLabel;
-import components.JTabbedPane;
+import components.ILabel;
+import components.ITabbedPane;
 
 /**
  * @author Razican (Iban Eguia)
@@ -21,7 +21,7 @@ import components.JTabbedPane;
 public class Start extends JPanel {
 
 	private static final long	serialVersionUID	= -6969744533822338215L;
-	private JTabbedPane			tabs;
+	private ITabbedPane			tabs;
 
 	/**
 	 * Create the panel.
@@ -30,7 +30,7 @@ public class Start extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		tabs = new JTabbedPane(JTabbedPane.TOP);
+		tabs = new ITabbedPane(ITabbedPane.TOP);
 		add(tabs, BorderLayout.CENTER);
 
 		MapEditor mapEditor = new MapEditor();
@@ -40,7 +40,7 @@ public class Start extends JPanel {
 		tabs.addTab(null, new SpriteEditor());
 		Lang.setLine(tabs.getTabAt(1), "sprite_editor");
 
-		JLabel copyLabel = new JLabel("JDIX Developers");
+		ILabel copyLabel = new ILabel("JDIX Developers");
 		copyLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 10));
 		copyLabel.setForeground(Color.GRAY);
 		copyLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -52,7 +52,7 @@ public class Start extends JPanel {
 	/**
 	 * @return Current tabbed pane of the view
 	 */
-	public JTabbedPane getTabbedPane()
+	public ITabbedPane getTabbedPane()
 	{
 		return tabs;
 	}

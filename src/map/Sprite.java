@@ -1,5 +1,6 @@
 package map;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,11 +21,11 @@ import exceptions.SpriteException;
 public class Sprite {
 
 	private short												size;
-	private int													width;
-	private int													height;
+	private byte												width;
+	private byte												height;
 	private BufferedImage										image;
-	private File												imgPath;
-	private HashMap<java.util.Map.Entry<Byte, Byte>, String>	hierarchy;
+	private BufferedImage										resizedImage;
+	private HashMap<String, java.util.Map.Entry<Byte, Byte>>	hierarchy;
 
 	/**
 	 * @param f The .spr file to load
@@ -58,20 +59,23 @@ public class Sprite {
 			f.getAbsolutePath().length() - 3)
 			+ "png");
 
-			File imgPath = new File(f.getAbsolutePath().substring(0,
-			f.getAbsolutePath().length() - 4));
-
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f
 			.getAbsolutePath().substring(0, f.getAbsolutePath().length() - 4)
 			+ ".dspr"));
 
-			hierarchy = (HashMap<Entry<Byte, Byte>, String>) ois.readObject();
+			hierarchy = (HashMap<String, Entry<Byte, Byte>>) ois.readObject();
+			ois.close();
 
 			this.image = ImageIO.read(sprite);
 			this.size = size;
-			this.height = this.image.getHeight() / size;
-			this.width = this.image.getWidth() / size;
-			this.imgPath = imgPath;
+			this.height = (byte) (this.image.getHeight() / size);
+			this.width = (byte) (this.image.getWidth() / size);
+
+			Image i = this.image.getScaledInstance(this.image.getWidth() / 4,
+			this.image.getHeight() / 4, Image.SCALE_FAST);
+			this.resizedImage = new BufferedImage(i.getWidth(null),
+			i.getHeight(null), BufferedImage.TYPE_INT_RGB);
+			this.resizedImage.getGraphics().drawImage(image, 0, 0, null);
 		}
 		else
 		{
@@ -82,7 +86,7 @@ public class Sprite {
 	/**
 	 * @return Width of the sprite
 	 */
-	public int getWidth()
+	public byte getWidth()
 	{
 		return this.width;
 	}
@@ -90,24 +94,52 @@ public class Sprite {
 	/**
 	 * @return Height of the sprite
 	 */
-	public int getHeight()
+	public byte getHeight()
 	{
 		return this.height;
 	}
 
 	/**
-	 * @return Size of the squares in the sprite
+	 * @return Size of the squares in the sprite to use them in the map
 	 */
 	public short getSize()
+	{
+		return 32;
+	}
+
+	/**
+	 * @return The real size of the squares
+	 */
+	public short getRealSize()
 	{
 		return this.size;
 	}
 
 	/**
-	 * @return Image for the sprite
+	 * Returns a 32 pixel per square image for the map creator.
+	 * 
+	 * @return The BufferedImage for the map creator
 	 */
 	public BufferedImage getImage()
 	{
+		return this.resizedImage;
+	}
+
+	/**
+	 * Returns the real 128 pixel per square image
+	 * 
+	 * @return The real BufferedImage of the sprite
+	 */
+	public BufferedImage getRealImage()
+	{
 		return this.image;
+	}
+
+	/**
+	 * @return the hierarchy
+	 */
+	public HashMap<String, java.util.Map.Entry<Byte, Byte>> getHierarchy()
+	{
+		return hierarchy;
 	}
 }

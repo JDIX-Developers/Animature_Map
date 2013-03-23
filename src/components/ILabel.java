@@ -1,18 +1,19 @@
 package components;
 
 import javax.swing.Icon;
+import javax.swing.JLabel;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class JLabel extends javax.swing.JLabel implements Internationalizable {
+public class ILabel extends JLabel implements Internationalizable {
 
 	private static final long	serialVersionUID	= 774349398573896902L;
 
 	/**
 	 * Creates a label
 	 */
-	public JLabel()
+	public ILabel()
 	{
 		super();
 	}
@@ -21,7 +22,7 @@ public class JLabel extends javax.swing.JLabel implements Internationalizable {
 	 * @param image Image for the label
 	 * @param horizontalAlignment Horizontal alignment
 	 */
-	public JLabel(Icon image, int horizontalAlignment)
+	public ILabel(Icon image, int horizontalAlignment)
 	{
 		super(image, horizontalAlignment);
 	}
@@ -29,7 +30,7 @@ public class JLabel extends javax.swing.JLabel implements Internationalizable {
 	/**
 	 * @param image Image for the label
 	 */
-	public JLabel(Icon image)
+	public ILabel(Icon image)
 	{
 		super(image);
 	}
@@ -39,7 +40,7 @@ public class JLabel extends javax.swing.JLabel implements Internationalizable {
 	 * @param icon Icon for the label
 	 * @param horizontalAlignment Horizontal alignment
 	 */
-	public JLabel(String text, Icon icon, int horizontalAlignment)
+	public ILabel(String text, Icon icon, int horizontalAlignment)
 	{
 		super(text, icon, horizontalAlignment);
 	}
@@ -48,7 +49,7 @@ public class JLabel extends javax.swing.JLabel implements Internationalizable {
 	 * @param text Text for the label
 	 * @param horizontalAlignment Horizontal alignment
 	 */
-	public JLabel(String text, int horizontalAlignment)
+	public ILabel(String text, int horizontalAlignment)
 	{
 		super(text, horizontalAlignment);
 	}
@@ -56,7 +57,7 @@ public class JLabel extends javax.swing.JLabel implements Internationalizable {
 	/**
 	 * @param text Text for the label
 	 */
-	public JLabel(String text)
+	public ILabel(String text)
 	{
 		super(text);
 	}

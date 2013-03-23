@@ -2,18 +2,19 @@ package components;
 
 import javax.swing.Action;
 import javax.swing.Icon;
+import javax.swing.JButton;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class JButton extends javax.swing.JButton implements Internationalizable {
+public class IButton extends JButton implements Internationalizable {
 
-	private static final long	serialVersionUID	= -2868342852969455388L;
+	private static final long	serialVersionUID	= - 2868342852969455388L;
 
 	/**
 	 * Creates a button
 	 */
-	public JButton()
+	public IButton()
 	{
 		super();
 	}
@@ -21,7 +22,7 @@ public class JButton extends javax.swing.JButton implements Internationalizable 
 	/**
 	 * @param a Action of the button
 	 */
-	public JButton(Action a)
+	public IButton(Action a)
 	{
 		super(a);
 	}
@@ -29,7 +30,7 @@ public class JButton extends javax.swing.JButton implements Internationalizable 
 	/**
 	 * @param icon Icon for the button
 	 */
-	public JButton(Icon icon)
+	public IButton(Icon icon)
 	{
 		super(icon);
 	}
@@ -38,7 +39,7 @@ public class JButton extends javax.swing.JButton implements Internationalizable 
 	 * @param text Text for the button
 	 * @param icon Image for the button
 	 */
-	public JButton(String text, Icon icon)
+	public IButton(String text, Icon icon)
 	{
 		super(text, icon);
 	}
@@ -46,7 +47,7 @@ public class JButton extends javax.swing.JButton implements Internationalizable 
 	/**
 	 * @param text Text for the button
 	 */
-	public JButton(String text)
+	public IButton(String text)
 	{
 		super(text);
 	}

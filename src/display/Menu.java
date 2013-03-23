@@ -18,9 +18,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import utils.Lang;
 
-import components.JMenu;
-import components.JMenuItem;
-import components.JTabbedPane;
+import components.IMenu;
+import components.IMenuItem;
+import components.ITabbedPane;
 
 /**
  * @author Razican (Iban Eguia)
@@ -29,9 +29,10 @@ public class Menu extends JMenuBar implements ActionListener {
 
 	private static final long	serialVersionUID	= -2674054941368737779L;
 
-	private JMenu				file, edit, help;
-	private JMenuItem			newFile, open, save, save_as;
-	private JMenuItem			preferences;
+	private IMenu				file, edit, help;
+	private IMenuItem			newFile, open, save, save_as;
+	private IMenuItem			preferences;
+	private ITabbedPane			tabbedPane;
 
 	/**
 	 * Create the menu.
@@ -40,22 +41,22 @@ public class Menu extends JMenuBar implements ActionListener {
 	{
 		super();
 
-		file = new JMenu();
+		file = new IMenu();
 		Lang.setLine(file, "menu_file");
 		file.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		file.setMargin(new Insets(5, 5, 5, 5));
 
-		edit = new JMenu();
+		edit = new IMenu();
 		Lang.setLine(edit, "menu_edit");
 		edit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		edit.setMargin(new Insets(5, 5, 5, 5));
 
-		help = new JMenu();
+		help = new IMenu();
 		Lang.setLine(help, "menu_help");
 		help.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		help.setMargin(new Insets(5, 5, 5, 5));
 
-		newFile = new JMenuItem();
+		newFile = new IMenuItem();
 		Lang.setLine(newFile, "menu_new");
 		newFile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
@@ -65,7 +66,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		newFile.addActionListener(this);
 		newFile.setIcon(new ImageIcon("img/new-icon.png"));
 
-		open = new JMenuItem();
+		open = new IMenuItem();
 		Lang.setLine(open, "menu_open");
 		open.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
@@ -75,7 +76,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		open.addActionListener(this);
 		open.setIcon(new ImageIcon("img/open-icon.png"));
 
-		save = new JMenuItem();
+		save = new IMenuItem();
 		Lang.setLine(save, "menu_save");
 		save.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
@@ -85,7 +86,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		save.addActionListener(this);
 		save.setIcon(new ImageIcon("img/save-icon.png"));
 
-		save_as = new JMenuItem();
+		save_as = new IMenuItem();
 		Lang.setLine(save_as, "menu_save_as");
 		save_as.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		save_as.setMargin(new Insets(5, 5, 5, 5));
@@ -93,7 +94,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		save_as.addActionListener(this);
 		save_as.setIcon(new ImageIcon("img/save-as-icon.png"));
 
-		preferences = new JMenuItem();
+		preferences = new IMenuItem();
 		Lang.setLine(preferences, "preferences");
 		preferences.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		preferences.setIcon(new ImageIcon("img/sett-icon.png"));
@@ -158,7 +159,7 @@ public class Menu extends JMenuBar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		JTabbedPane tabbedPane = ((Start) Window.getInstance().getContentPane())
+		tabbedPane = ((Start) Window.getInstance().getContentPane())
 		.getTabbedPane();
 
 		switch (e.getActionCommand())
@@ -166,8 +167,6 @@ public class Menu extends JMenuBar implements ActionListener {
 			case "new":
 				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
 				{
-					Window.getInstance().getGlassPane().setVisible(true);
-
 					NewMap p = new NewMap();
 
 					String[] options = {Lang.getLine("conf_dialog_ok"),

@@ -1,18 +1,19 @@
 package components;
 
 import javax.swing.Action;
+import javax.swing.JMenu;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class JMenu extends javax.swing.JMenu implements Internationalizable {
+public class IMenu extends JMenu implements Internationalizable {
 
-	private static final long	serialVersionUID	= -3572785689393671429L;
+	private static final long	serialVersionUID	= - 3572785689393671429L;
 
 	/**
 	 * Creates the menu
 	 */
-	public JMenu()
+	public IMenu()
 	{
 		super();
 	}
@@ -20,7 +21,7 @@ public class JMenu extends javax.swing.JMenu implements Internationalizable {
 	/**
 	 * @param a Action for the menu
 	 */
-	public JMenu(Action a)
+	public IMenu(Action a)
 	{
 		super(a);
 	}
@@ -29,7 +30,7 @@ public class JMenu extends javax.swing.JMenu implements Internationalizable {
 	 * @param s the text for the menu label
 	 * @param b can the menu be torn off
 	 */
-	public JMenu(String s, boolean b)
+	public IMenu(String s, boolean b)
 	{
 		super(s, b);
 	}
@@ -37,7 +38,7 @@ public class JMenu extends javax.swing.JMenu implements Internationalizable {
 	/**
 	 * @param s the text for the menu label
 	 */
-	public JMenu(String s)
+	public IMenu(String s)
 	{
 		super(s);
 	}

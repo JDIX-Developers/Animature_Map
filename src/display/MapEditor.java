@@ -17,7 +17,7 @@ import map.Sprite;
 import map.Square;
 import utils.Lang;
 
-import components.JLabel;
+import components.ILabel;
 import components.SpriteTree;
 
 import exceptions.SpriteException;
@@ -27,10 +27,10 @@ import exceptions.SpriteException;
  */
 public class MapEditor extends JPanel {
 
-	private static final long	serialVersionUID	= -8557921921364871510L;
+	private static final long	serialVersionUID	= - 8557921921364871510L;
 	private Map					map;
 	private Sprite				sprite;
-	private JLabel				lblLoad;
+	private ILabel				lblLoad;
 
 	/**
 	 * Create the panel.
@@ -39,10 +39,10 @@ public class MapEditor extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		lblLoad = new JLabel();
-		Lang.setLine(lblLoad, "no_map");
-		lblLoad.setHorizontalAlignment(SwingConstants.CENTER);
-		add(lblLoad, BorderLayout.CENTER);
+		// lblLoad = new ILabel();
+		// Lang.setLine(lblLoad, "no_map");
+		// lblLoad.setHorizontalAlignment(SwingConstants.CENTER);
+		// add(lblLoad, BorderLayout.CENTER);
 	}
 
 	/**
@@ -60,14 +60,14 @@ public class MapEditor extends JPanel {
 			e.printStackTrace();
 		}
 
-		JLabel lblSquareImage = new JLabel(new ImageIcon("img/void_square.png"));
+		ILabel lblSquareImage = new ILabel(new ImageIcon("img/void_square.png"));
 		lblSquareImage.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblSquareImage, BorderLayout.NORTH);
 
 		remove(lblLoad);
 		JScrollPane panel = new JScrollPane();
 
-		JLabel lblMap = new JLabel(printGrid(map.getImage()));
+		ILabel lblMap = new ILabel(printGrid(map.getImage()));
 		panel.setViewportView(lblMap);
 
 		add(panel, BorderLayout.CENTER);

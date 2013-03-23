@@ -1,16 +1,18 @@
 package components;
 
+import javax.swing.JTabbedPane;
+
 /**
  * @author Razican (Iban Eguia)
  */
-public class JTabbedPane extends javax.swing.JTabbedPane {
+public class ITabbedPane extends JTabbedPane {
 
 	private static final long	serialVersionUID	= 9214709772776627079L;
 
 	/**
 	 * Create a tabbed pane
 	 */
-	public JTabbedPane()
+	public ITabbedPane()
 	{
 		super();
 	}
@@ -20,7 +22,7 @@ public class JTabbedPane extends javax.swing.JTabbedPane {
 	 * @param tabLayoutPolicy the policy for laying out tabs when all tabs will
 	 *            not fit on one run
 	 */
-	public JTabbedPane(int tabPlacement, int tabLayoutPolicy)
+	public ITabbedPane(int tabPlacement, int tabLayoutPolicy)
 	{
 		super(tabPlacement, tabLayoutPolicy);
 	}
@@ -28,7 +30,7 @@ public class JTabbedPane extends javax.swing.JTabbedPane {
 	/**
 	 * @param tabPlacement the placement for the tabs relative to the content
 	 */
-	public JTabbedPane(int tabPlacement)
+	public ITabbedPane(int tabPlacement)
 	{
 		super(tabPlacement);
 	}

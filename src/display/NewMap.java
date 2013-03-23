@@ -19,11 +19,11 @@ import javax.swing.JTextField;
 import map.Map;
 import map.Sprite;
 import map.Square;
-import utils.FileMode;
+import utils.FileChooser;
 import utils.Lang;
 
-import components.JButton;
-import components.JLabel;
+import components.IButton;
+import components.ILabel;
 
 import exceptions.SpriteException;
 
@@ -36,8 +36,8 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 
 	private Sprite				sprite;
 	private JTextField			textWidth, textHeight;
-	private JButton				btnExamine;
-	private JLabel				lblArchivo;
+	private IButton				btnExamine;
+	private ILabel				lblArchivo;
 
 	/**
 	 * Create the panel.
@@ -53,7 +53,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		JLabel lblWidthsquares = new JLabel();
+		ILabel lblWidthsquares = new ILabel();
 		Lang.setLine(lblWidthsquares, "map_width");
 		GridBagConstraints gbc_lblWidthsquares = new GridBagConstraints();
 		gbc_lblWidthsquares.anchor = GridBagConstraints.EAST;
@@ -74,7 +74,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		add(textWidth, gbc_textWidth);
 		textWidth.setColumns(10);
 
-		JLabel lblHeightsquares = new JLabel();
+		ILabel lblHeightsquares = new ILabel();
 		Lang.setLine(lblHeightsquares, "map_height");
 		GridBagConstraints gbc_lblHeightsquares = new GridBagConstraints();
 		gbc_lblHeightsquares.anchor = GridBagConstraints.EAST;
@@ -95,7 +95,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		add(textHeight, gbc_textHeight);
 		textHeight.setColumns(10);
 
-		JLabel lblSprite = new JLabel();
+		ILabel lblSprite = new ILabel();
 		Lang.setLine(lblSprite, "map_sprite");
 		GridBagConstraints gbc_lblSprite = new GridBagConstraints();
 		gbc_lblSprite.insets = new Insets(0, 0, 0, 5);
@@ -103,11 +103,11 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		gbc_lblSprite.gridy = 2;
 		add(lblSprite, gbc_lblSprite);
 
-		btnExamine = new JButton();
+		btnExamine = new IButton();
 		Lang.setLine(btnExamine, "btn_examine");
 		btnExamine.addActionListener(this);
 
-		lblArchivo = new JLabel();
+		lblArchivo = new ILabel();
 		GridBagConstraints gbc_lblArchivo = new GridBagConstraints();
 		gbc_lblArchivo.insets = new Insets(0, 0, 0, 5);
 		gbc_lblArchivo.gridx = 2;
@@ -182,7 +182,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	{
 		if (e.getSource() == btnExamine)
 		{
-			File f = FileMode.openFileMode(Lang.getLine("sprite_file"), "spr");
+			File f = FileChooser.openFile(Lang.getLine("sprite_file"), "spr");
 			if (f != null)
 			{
 				try
