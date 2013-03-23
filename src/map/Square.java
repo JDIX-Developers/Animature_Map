@@ -32,7 +32,7 @@ public class Square {
 		this.x = x;
 		this.y = y;
 
-		this.image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+		this.image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
 
 		this.image.createGraphics().drawImage(sprite.getImage(), - this.x * 32,
 		- this.y * 32, null);

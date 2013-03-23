@@ -1,5 +1,7 @@
 package map;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,11 +36,11 @@ public class Map {
 		this.height = height;
 		links = new HashMap<>();
 		this.image = new BufferedImage(width * 32, height * 32,
-		BufferedImage.TYPE_INT_ARGB);
+		BufferedImage.TYPE_INT_RGB);
 
-		// Graphics2D g = this.image.createGraphics();
-		// g.setPaint(Color.WHITE);
-		// g.fillRect(0, 0, this.image.getWidth(), this.image.getHeight());
+		Graphics2D g = this.image.createGraphics();
+		g.setPaint(Color.WHITE);
+		g.fillRect(0, 0, this.image.getWidth(), this.image.getHeight());
 	}
 
 	/**

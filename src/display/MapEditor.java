@@ -84,20 +84,19 @@ MouseListener {
 	private ImageIcon printGrid(BufferedImage img)
 	{
 		Graphics2D graphs = img.createGraphics();
-		short size = 32;
 
 		graphs.setColor(Color.BLACK);
 
 		// Horizontal lines
 		for (int i = 1; i < map.getHeight(); i++)
 		{
-			graphs.drawLine(0, i * size, img.getWidth(), i * size);
+			graphs.drawLine(0, i * 32, img.getWidth(), i * 32);
 		}
 
 		// Vertical lines
 		for (int i = 1; i < map.getWidth(); i++)
 		{
-			graphs.drawLine(i * size, 0, i * size, img.getHeight());
+			graphs.drawLine(i * 32, 0, i * 32, img.getHeight());
 		}
 
 		return new ImageIcon(img);

@@ -75,7 +75,7 @@ public class Sprite {
 			this.image.getHeight() / 4, Image.SCALE_FAST);
 			this.resizedImage = new BufferedImage(i.getWidth(null),
 			i.getHeight(null), BufferedImage.TYPE_INT_RGB);
-			this.resizedImage.getGraphics().drawImage(image, 0, 0, null);
+			this.resizedImage.getGraphics().drawImage(i, 0, 0, null);
 		}
 		else
 		{
