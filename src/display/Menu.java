@@ -32,7 +32,7 @@ public class Menu extends JMenuBar implements ActionListener {
 	private static final long	serialVersionUID	= - 2674054941368737779L;
 
 	private IMenu				file, edit, help;
-	private IMenuItem			newFile, open, save, save_as;
+	private IMenuItem			newFile, open, save, save_as, export;
 	private IMenuItem			preferences;
 	private ITabbedPane			tabbedPane;
 
@@ -57,6 +57,8 @@ public class Menu extends JMenuBar implements ActionListener {
 		Lang.setLine(help, "menu_help");
 		help.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		help.setMargin(new Insets(5, 5, 5, 5));
+		help.setActionCommand("help");
+		help.addActionListener(this);
 
 		newFile = new IMenuItem();
 		Lang.setLine(newFile, "menu_new");
@@ -95,6 +97,13 @@ public class Menu extends JMenuBar implements ActionListener {
 		save_as.setActionCommand("save-as");
 		save_as.addActionListener(this);
 		save_as.setIcon(new ImageIcon("img/save-as-icon.png"));
+
+		export = new IMenuItem();
+		Lang.setLine(export, "menu_export");
+		export.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		export.setActionCommand("export");
+		export.addActionListener(this);
+		export.setIcon(new ImageIcon("img/export-icon.png"));
 
 		preferences = new IMenuItem();
 		Lang.setLine(preferences, "preferences");
@@ -149,6 +158,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		file.add(open);
 		file.add(save);
 		file.add(save_as);
+		file.add(export);
 
 		edit.add(preferences);
 
@@ -165,48 +175,71 @@ public class Menu extends JMenuBar implements ActionListener {
 
 		switch (e.getActionCommand())
 		{
-			case "new":// TODO avisar si ya hay un mapa
+			case "new":
 				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
 				{
-					NewMap p = new NewMap();
-
-					String[] options = {Lang.getLine("conf_dialog_ok"),
-					Lang.getLine("conf_dialog_cancel")};
-					JOptionPane pane = new JOptionPane(p,
-					JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION,
-					null, options, options[1]);
-					JDialog dialog = pane.createDialog(Lang.getLine("new_map"));
-					dialog.setSize(500, 200);
-					dialog.setLocationRelativeTo(Window.getInstance());
-					dialog.setVisible(true);
-
-					if (pane.getValue() == options[0])
+					boolean r = true;
+					if (((MapEditor) tabbedPane.getSelectedComponent())
+					.hasMap())
 					{
-						if (p.getMap() == null)
-						{
-							JOptionPane.showMessageDialog(null,
-							Lang.getLine("sprite_load_error"),
-							Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
-							new ImageIcon("img/error.png"));
-						}
-						else
-						{
-							MapEditor m = new MapEditor();
-							((Start) Window.getInstance().getContentPane())
-							.getTabbedPane().setComponentAt(0, m);
+						String[] options = {Lang.getLine("confirm_yes"),
+						Lang.getLine("confirm_no")};
+						JOptionPane pane = new JOptionPane(
+						Lang.getLine("mess_map_in_editor"),
+						JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION,
+						new ImageIcon("img/warning.png"), options, options[1]);
+						JDialog dialog = pane.createDialog(Lang
+						.getLine("map_in_editor"));
+						dialog.setLocationRelativeTo(Window.getInstance());
+						dialog.setVisible(true);
 
-							try
-							{
-								m.setMap(p.getMap());
-							}
-							catch (SpriteException e1)
-							{
-								e1.printStackTrace();
-							}
-						}
+						r = pane.getValue() == options[0];
+						dialog.dispose();
 					}
 
-					dialog.dispose();
+					if (r)
+					{
+						NewMap p = new NewMap();
+
+						String[] options = {Lang.getLine("conf_dialog_ok"),
+						Lang.getLine("conf_dialog_cancel")};
+						JOptionPane pane = new JOptionPane(p,
+						JOptionPane.PLAIN_MESSAGE,
+						JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
+						JDialog dialog = pane.createDialog(Lang
+						.getLine("new_map"));
+						dialog.setSize(500, 200);
+						dialog.setLocationRelativeTo(Window.getInstance());
+						dialog.setVisible(true);
+
+						if (pane.getValue() == options[0])
+						{
+							if (p.getMap() == null)
+							{
+								JOptionPane.showMessageDialog(null, Lang
+								.getLine("sprite_load_error"), Lang
+								.getLine("error"), JOptionPane.ERROR_MESSAGE,
+								new ImageIcon("img/error.png"));
+							}
+							else
+							{
+								MapEditor m = new MapEditor();
+								((Start) Window.getInstance().getContentPane())
+								.getTabbedPane().setComponentAt(0, m);
+
+								try
+								{
+									m.setMap(p.getMap(), null);
+								}
+								catch (SpriteException e1)
+								{
+									e1.printStackTrace();
+								}
+							}
+						}
+
+						dialog.dispose();
+					}
 				}
 			break;
 		}

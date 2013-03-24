@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -33,12 +34,15 @@ MouseListener {
 	private Map					map;
 	private ILabel				lblLoad, lblSquareImage, lblMap;
 	private SpriteTree			tree;
+	private boolean				isSaved;
+	private File				saveFile;
 
 	/**
 	 * Create the panel.
 	 */
 	public MapEditor()
 	{
+		this.isSaved = true;
 		setLayout(new BorderLayout(0, 0));
 
 		lblLoad = new ILabel();
@@ -49,10 +53,17 @@ MouseListener {
 
 	/**
 	 * @param m - Map to edit
-	 * @throws SpriteException if the sprite is not set
+	 * @param saveFile - The file in which to save the map
+	 * @throws SpriteException - if the sprite is not set
 	 */
-	public void setMap(Map m) throws SpriteException
+	public void setMap(Map m, File saveFile) throws SpriteException
 	{
+		if (saveFile != null)
+		{
+			this.isSaved = true;
+		}
+
+		this.saveFile = saveFile;
 		this.map = m;
 
 		remove(lblLoad);
@@ -102,6 +113,38 @@ MouseListener {
 		return new ImageIcon(img);
 	}
 
+	/**
+	 * @return Whether the actual map has been saved or not
+	 */
+	public boolean isSaved()
+	{
+		return isSaved;
+	}
+
+	/**
+	 * Tell the map editor that the map has been saved
+	 */
+	public void saved()
+	{
+		this.isSaved = true;
+	}
+
+	/**
+	 * @return The file in which to save the map
+	 */
+	public File getFile()
+	{
+		return saveFile;
+	}
+
+	/**
+	 * @return Whether there is a map in the MapEditor or not
+	 */
+	public boolean hasMap()
+	{
+		return map != null;
+	}
+
 	@Override
 	public void valueChanged(TreeSelectionEvent arg0)
 	{
@@ -133,8 +176,13 @@ MouseListener {
 				x = ((e.getX() - (lblMap.getWidth() - 32 * map.getWidth()) / 2) / 32);
 				y = ((e.getY() - (lblMap.getHeight() - 32 * map.getWidth()) / 2) / 32);
 
-				map.setSquare(x, y, tree.getSelectedSquare());
-				lblMap.setIcon(printGrid(map.getImage()));
+				if (x >= 0 && x < map.getWidth() && y >= 0
+				&& y < map.getHeight())
+				{
+					isSaved = false;
+					map.setSquare(x, y, tree.getSelectedSquare());
+					lblMap.setIcon(printGrid(map.getImage()));
+				}
 			}
 		}
 		catch (SpriteException | CompressionException e1)
