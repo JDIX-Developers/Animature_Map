@@ -1,6 +1,8 @@
 package map;
 
 import java.awt.image.BufferedImage;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Arrays;
 
 import utils.MathUtils;
@@ -10,8 +12,9 @@ import exceptions.SpriteException;
 /**
  * @author Razican (Iban Eguia)
  */
-public class Square {
+public class Square implements Serializable {
 
+	private static final long	serialVersionUID	= - 4474108808050819394L;
 	private static Sprite		sprite;
 	private static Square[][]	squares;
 	private BufferedImage		image;
@@ -120,5 +123,36 @@ public class Square {
 			throw new SpriteException();
 		}
 		return sprite;
+	}
+
+	private Object writeReplace() throws ObjectStreamException
+	{
+		Square s = null;
+		try
+		{
+			s = new Square(x, y);
+		}
+		catch (CompressionException e)
+		{
+			e.printStackTrace();
+		}
+
+		s.image = null;
+		return s;
+	}
+
+	private Object readResolve() throws ObjectStreamException
+	{
+		Square s = null;
+		try
+		{
+			s = new Square(x, y);
+		}
+		catch (CompressionException e)
+		{
+			e.printStackTrace();
+		}
+
+		return s;
 	}
 }

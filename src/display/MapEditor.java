@@ -130,6 +130,17 @@ MouseListener {
 	}
 
 	/**
+	 * Tell the map editor that the map has been saved
+	 * 
+	 * @param path The path of the saved file
+	 */
+	public void saved(String path)
+	{
+		this.saveFile = new File(path);
+		this.isSaved = true;
+	}
+
+	/**
 	 * @return The file in which to save the map
 	 */
 	public File getFile()
@@ -209,5 +220,13 @@ MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
+	}
+
+	/**
+	 * @return The map currently in the map editor
+	 */
+	public Map getMap()
+	{
+		return this.map;
 	}
 }

@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import utils.FileChooser;
 import utils.Lang;
 
 import components.IMenu;
@@ -173,6 +174,7 @@ public class Menu extends JMenuBar implements ActionListener {
 		tabbedPane = ((Start) Window.getInstance().getContentPane())
 		.getTabbedPane();
 
+		// TODO sprites
 		switch (e.getActionCommand())
 		{
 			case "new":
@@ -242,6 +244,42 @@ public class Menu extends JMenuBar implements ActionListener {
 					}
 				}
 			break;
+			case "open":
+			// TODO open
+			break;
+			case "save":
+				if (tabbedPane.getSelectedComponent() instanceof MapEditor
+				&& ((MapEditor) tabbedPane.getSelectedComponent()).hasMap())
+				{
+					if (((MapEditor) tabbedPane.getSelectedComponent())
+					.getFile() != null)
+					{
+						// TODO save
+					}
+					else
+					{
+						save_as();
+					}
+				}
+			break;
+			case "save-as":
+				save_as();
+			break;
+			case "export":
+			// TODO export
+			break;
 		}
+	}
+
+	private void save_as()
+	{
+		if (tabbedPane.getSelectedComponent() instanceof MapEditor
+		&& ((MapEditor) tabbedPane.getSelectedComponent()).getMap() != null)
+		{
+			MapEditor editor = (MapEditor) tabbedPane.getSelectedComponent();
+			editor.saved(FileChooser.saveObjectFile(editor.getMap(),
+			Lang.getLine("map_dev_file"), "dmap"));
+		}
+		// TODO sprites
 	}
 }

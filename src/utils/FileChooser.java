@@ -67,9 +67,8 @@ public class FileChooser {
 				}
 				File file = new File(path);
 				if ((file.exists() && JOptionPane.OK_OPTION == JOptionPane
-				.showConfirmDialog(null,
-				"The file exists, do you want to replace it?", "File Exists",
-				JOptionPane.YES_NO_OPTION))
+				.showConfirmDialog(null, Lang.getLine("file_exists_replace"),
+				Lang.getLine("file_exists"), JOptionPane.YES_NO_OPTION))
 				|| ! file.exists())
 				{
 					ObjectOutputStream oos = new ObjectOutputStream(

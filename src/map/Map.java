@@ -3,22 +3,18 @@ package map;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.HashMap;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
-import utils.Lang;
 import exceptions.SpriteException;
 
 /**
  * @author Razican (Iban Eguia)
  */
-public class Map {
+public class Map implements Serializable {
 
+	private static final long		serialVersionUID	= 1630051961654828210L;
 	private BufferedImage			image;
 	private Square[][]				squares;
 	private int						width, height;
@@ -53,10 +49,9 @@ public class Map {
 	public void setSquare(int x, int y, Square sq)
 	{
 		squares[y][x] = sq;
-		int size = 32;
 
-		this.image.createGraphics().drawImage(sq.getImage(), x * size,
-		y * size, (x + 1) * size, (y + 1) * size, 0, 0, size, size, null);
+		this.image.createGraphics().drawImage(sq.getImage(), x * 32, y * 32,
+		(x + 1) * 32, (y + 1) * 32, 0, 0, 32, 32, null);
 	}
 
 	/**
@@ -77,26 +72,38 @@ public class Map {
 	}
 
 	/**
-	 * @param name Name of the map, to be saved
+	 * @return The byte array ready to be exported
 	 */
-	public void save(String name)
+	public byte[] export()
 	{
-		byte[] array = compress();
-		addLinks(array);
-
-		try
+		if (isFinished())
 		{
-			(new FileOutputStream(new File("maps/" + name + "/production/map/"
-			+ name + ".map"))).write(array);
+			byte[] array = compress();
+			addLinks(array);
+			return array;
 		}
-		catch (IOException e)
-		{
-			System.err.println(e.getMessage());
+		return null;
+	}
 
-			JOptionPane.showMessageDialog(null,
-			Lang.getLine("sprite_load_error"), Lang.getLine("error"),
-			JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
+	/**
+	 * @return If the map is completely created
+	 */
+	public boolean isFinished()
+	{
+		boolean finished = true;
+		for (int i = 0; finished && i < squares.length; i++)
+		{
+			for (int h = 0; h < squares[1].length; h++)
+			{
+				if (squares[i][h] == null)
+				{
+					finished = false;
+					break;
+				}
+			}
 		}
+
+		return finished;
 	}
 
 	/**
@@ -223,6 +230,52 @@ public class Map {
 
 	private void addLinks(byte[] array)
 	{
-		// TODO Create map's array
+		// TODO Add links to map's array
+	}
+
+	private Object writeReplace() throws ObjectStreamException
+	{
+		Map m = null;
+		try
+		{
+			m = new Map(width, height);
+		}
+		catch (SpriteException e)
+		{
+			e.printStackTrace();
+		}
+
+		m.image = null;
+		return m;
+	}
+
+	private Object readResolve() throws ObjectStreamException
+	{
+		Map m = null;
+		try
+		{
+			m = new Map(width, height);
+		}
+		catch (SpriteException e)
+		{
+			e.printStackTrace();
+		}
+
+		m.links = links;
+
+		for (int i = 0; i < m.squares.length; i++)
+		{
+			for (int h = 0; h < m.squares[1].length; h++)
+			{
+				Square sq = m.squares[i][h];
+				if (sq != null)
+				{
+					m.image.createGraphics().drawImage(sq.getImage(), h * 32,
+					i * 32, (h + 1) * 32, (i + 1) * 32, 0, 0, 32, 32, null);
+				}
+			}
+		}
+
+		return m;
 	}
 }
