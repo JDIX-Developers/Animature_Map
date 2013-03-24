@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -254,7 +257,21 @@ public class Menu extends JMenuBar implements ActionListener {
 					if (((MapEditor) tabbedPane.getSelectedComponent())
 					.getFile() != null)
 					{
-						// TODO save
+						MapEditor editor = (MapEditor) tabbedPane
+						.getSelectedComponent();
+						ObjectOutputStream oos = null;
+						try
+						{
+							oos = new ObjectOutputStream(new FileOutputStream(
+							editor.getFile()));
+							oos.writeObject(editor.getMap());
+							oos.close();
+						}
+						catch (IOException e1)
+						{
+							e1.printStackTrace();
+						}
+						editor.saved();
 					}
 					else
 					{

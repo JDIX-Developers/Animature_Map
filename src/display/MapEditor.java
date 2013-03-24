@@ -58,10 +58,7 @@ MouseListener {
 	 */
 	public void setMap(Map m, File saveFile) throws SpriteException
 	{
-		if (saveFile != null)
-		{
-			this.isSaved = true;
-		}
+		this.isSaved = saveFile != null;
 
 		this.saveFile = saveFile;
 		this.map = m;
@@ -156,6 +153,14 @@ MouseListener {
 		return map != null;
 	}
 
+	/**
+	 * @return The map currently in the map editor
+	 */
+	public Map getMap()
+	{
+		return this.map;
+	}
+
 	@Override
 	public void valueChanged(TreeSelectionEvent arg0)
 	{
@@ -220,13 +225,5 @@ MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
-	}
-
-	/**
-	 * @return The map currently in the map editor
-	 */
-	public Map getMap()
-	{
-		return this.map;
 	}
 }

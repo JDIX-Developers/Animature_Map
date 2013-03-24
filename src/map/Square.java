@@ -144,11 +144,12 @@ public class Square implements Serializable {
 	private Object readResolve() throws ObjectStreamException
 	{
 		Square s = null;
+
 		try
 		{
-			s = new Square(x, y);
+			s = load(x, y);
 		}
-		catch (CompressionException e)
+		catch (SpriteException | CompressionException e)
 		{
 			e.printStackTrace();
 		}
