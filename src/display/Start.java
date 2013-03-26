@@ -20,7 +20,7 @@ import components.ITabbedPane;
  */
 public class Start extends JPanel {
 
-	private static final long	serialVersionUID	= -6969744533822338215L;
+	private static final long	serialVersionUID	= - 6969744533822338215L;
 	private ITabbedPane			tabs;
 
 	/**
