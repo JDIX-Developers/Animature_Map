@@ -170,6 +170,7 @@ public class OpenMap extends JPanel {
 					if (map != null)
 					{
 						lblMapFile.setText(f.getName());
+						file = f;
 					}
 				}
 			}

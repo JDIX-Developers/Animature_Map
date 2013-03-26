@@ -246,6 +246,9 @@ public class Map implements Serializable {
 		}
 
 		m.image = null;
+		m.squares = squares;
+		m.links = links;
+
 		return m;
 	}
 
@@ -262,6 +265,7 @@ public class Map implements Serializable {
 		}
 
 		m.links = links;
+		m.squares = squares;
 
 		for (int i = 0; i < m.squares.length; i++)
 		{
