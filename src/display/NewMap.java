@@ -1,6 +1,7 @@
 package display;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -108,6 +109,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		btnExamine.addActionListener(this);
 
 		lblArchivo = new ILabel();
+		lblArchivo.setFont(new Font("Dialog", Font.ITALIC, 12));
 		GridBagConstraints gbc_lblArchivo = new GridBagConstraints();
 		gbc_lblArchivo.insets = new Insets(0, 0, 0, 5);
 		gbc_lblArchivo.gridx = 2;

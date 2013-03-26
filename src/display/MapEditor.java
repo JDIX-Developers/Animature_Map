@@ -123,7 +123,7 @@ MouseListener {
 	 */
 	public void saved()
 	{
-		this.isSaved = true;
+		this.isSaved = this.saveFile != null;
 	}
 
 	/**
@@ -133,8 +133,9 @@ MouseListener {
 	 */
 	public void saved(String path)
 	{
-		this.saveFile = new File(path);
-		this.isSaved = true;
+		this.saveFile = path != null && ! path.equals("") ? new File(path)
+		: null;
+		this.isSaved = this.saveFile != null;
 	}
 
 	/**

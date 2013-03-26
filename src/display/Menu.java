@@ -183,26 +183,7 @@ public class Menu extends JMenuBar implements ActionListener {
 			case "new":
 				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
 				{
-					boolean r = true;
-					if (((MapEditor) tabbedPane.getSelectedComponent())
-					.hasMap())
-					{
-						String[] options = {Lang.getLine("confirm_yes"),
-						Lang.getLine("confirm_no")};
-						JOptionPane pane = new JOptionPane(
-						Lang.getLine("mess_map_in_editor"),
-						JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION,
-						new ImageIcon("img/warning.png"), options, options[1]);
-						JDialog dialog = pane.createDialog(Lang
-						.getLine("map_in_editor"));
-						dialog.setLocationRelativeTo(Window.getInstance());
-						dialog.setVisible(true);
-
-						r = pane.getValue() == options[0];
-						dialog.dispose();
-					}
-
-					if (r)
+					if (replaceMap())
 					{
 						NewMap p = new NewMap();
 
@@ -246,9 +227,56 @@ public class Menu extends JMenuBar implements ActionListener {
 						dialog.dispose();
 					}
 				}
+			// TODO Sprites
 			break;
 			case "open":
-			// TODO open
+				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
+				{
+					if (replaceMap())
+					{
+						OpenMap p = new OpenMap();
+
+						String[] options = {Lang.getLine("conf_dialog_ok"),
+						Lang.getLine("conf_dialog_cancel")};
+						JOptionPane pane = new JOptionPane(p,
+						JOptionPane.PLAIN_MESSAGE,
+						JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
+						JDialog dialog = pane.createDialog(Lang
+						.getLine("open_map"));
+						dialog.setSize(500, 200);
+						dialog.setLocationRelativeTo(Window.getInstance());
+						dialog.setVisible(true);
+
+						if (pane.getValue() == options[0])
+						{
+							if (p.getMap() == null)
+							{
+								JOptionPane.showMessageDialog(null, Lang
+								.getLine("map_load_error"), Lang
+								.getLine("error"), JOptionPane.ERROR_MESSAGE,
+								new ImageIcon("img/error.png"));
+							}
+							else
+							{
+								MapEditor m = new MapEditor();
+								((Start) Window.getInstance().getContentPane())
+								.getTabbedPane().setComponentAt(0, m);
+
+								try
+								{
+									m.setMap(p.getMap(), p.getFile());
+								}
+								catch (SpriteException e1)
+								{
+									e1.printStackTrace();
+								}
+							}
+						}
+
+						dialog.dispose();
+					}
+				}
+			// TODO sprites
 			break;
 			case "save":
 				if (tabbedPane.getSelectedComponent() instanceof MapEditor
@@ -278,6 +306,7 @@ public class Menu extends JMenuBar implements ActionListener {
 						save_as();
 					}
 				}
+			// TODO Sprites
 			break;
 			case "save-as":
 				save_as();
@@ -286,6 +315,28 @@ public class Menu extends JMenuBar implements ActionListener {
 			// TODO export
 			break;
 		}
+	}
+
+	private boolean replaceMap()
+	{
+		boolean r = true;
+		if (((MapEditor) tabbedPane.getSelectedComponent()).hasMap())
+		{
+			String[] options = {Lang.getLine("confirm_yes"),
+			Lang.getLine("confirm_no")};
+			JOptionPane pane = new JOptionPane(
+			Lang.getLine("mess_map_in_editor"), JOptionPane.WARNING_MESSAGE,
+			JOptionPane.YES_NO_OPTION, new ImageIcon("img/warning.png"),
+			options, options[1]);
+			JDialog dialog = pane.createDialog(Lang.getLine("map_in_editor"));
+			dialog.setLocationRelativeTo(Window.getInstance());
+			dialog.setVisible(true);
+
+			r = pane.getValue() == options[0];
+			dialog.dispose();
+		}
+
+		return r;
 	}
 
 	private void save_as()
