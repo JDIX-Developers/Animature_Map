@@ -2,6 +2,7 @@ package display;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,6 +21,7 @@ import utils.Lang;
 
 import components.ILabel;
 import components.SpriteTree;
+import components.ToolBar;
 
 import exceptions.CompressionException;
 import exceptions.SpriteException;
@@ -34,6 +36,7 @@ MouseListener {
 	private Map					map;
 	private ILabel				lblLoad, lblSquareImage, lblMap;
 	private SpriteTree			tree;
+	private ToolBar				toolBar;
 	private boolean				isSaved;
 	private File				saveFile;
 	private int					clickX, clickY;
@@ -65,6 +68,10 @@ MouseListener {
 		this.map = m;
 
 		remove(lblLoad);
+
+		toolBar = new ToolBar(this);
+		add(toolBar, BorderLayout.NORTH);
+
 		JScrollPane mapPanel = new JScrollPane();
 
 		lblMap = new ILabel(printGrid(map.getImage()));
@@ -163,6 +170,14 @@ MouseListener {
 		return this.map;
 	}
 
+	/**
+	 * @param cursor - The cursor to set for the map
+	 */
+	public void setMapCursor(int cursor)
+	{
+		lblMap.setCursor(Cursor.getPredefinedCursor(cursor));
+	}
+
 	@Override
 	public void valueChanged(TreeSelectionEvent arg0)
 	{
@@ -185,6 +200,21 @@ MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
+		if (toolBar.isAddingLink())
+		{
+			int x, y;
+
+			x = ((e.getX() - (lblMap.getWidth() - 32 * map.getWidth()) / 2) / 32);
+			y = ((e.getY() - (lblMap.getHeight() - 32 * map.getWidth()) / 2) / 32);
+
+			addLink(x, y);
+		}
+	}
+
+	private void addLink(int x, int y)
+	{
+		// TODO create dialog, etc.
+		toolBar.linkAdded();
 	}
 
 	@Override
@@ -212,7 +242,7 @@ MouseListener {
 	{
 		try
 		{
-			if (tree.getSelectedSquare() != null)
+			if (tree.getSelectedSquare() != null && ! toolBar.isAddingLink())
 			{
 				int x, y;
 

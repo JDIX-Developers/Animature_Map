@@ -55,6 +55,13 @@ public class IButton extends JButton implements Internationalizable {
 	@Override
 	public void changeLanguage(String newText)
 	{
-		setText(newText);
+		if (getIcon() == null)
+		{
+			setText(newText);
+		}
+		else
+		{
+			setToolTipText(newText);
+		}
 	}
 }
