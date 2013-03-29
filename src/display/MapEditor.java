@@ -36,6 +36,7 @@ MouseListener {
 	private SpriteTree			tree;
 	private boolean				isSaved;
 	private File				saveFile;
+	private int					clickX, clickY;
 
 	/**
 	 * Create the panel.
@@ -184,6 +185,31 @@ MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e)
+	{
+		// MouseInfo.getPointerInfo().getLocation();
+		try
+		{
+			if (tree.getSelectedSquare() != null)
+			{
+				this.clickX = ((e.getX() - (lblMap.getWidth() - 32 * map
+				.getWidth()) / 2) / 32);
+				this.clickY = ((e.getY() - (lblMap.getHeight() - 32 * map
+				.getWidth()) / 2) / 32);
+			}
+		}
+		catch (SpriteException | CompressionException e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e)
+	{
 		try
 		{
 			if (tree.getSelectedSquare() != null)
@@ -194,7 +220,7 @@ MouseListener {
 				y = ((e.getY() - (lblMap.getHeight() - 32 * map.getWidth()) / 2) / 32);
 
 				if (x >= 0 && x < map.getWidth() && y >= 0
-				&& y < map.getHeight())
+				&& y < map.getHeight() && x == this.clickX && y == this.clickY)
 				{
 					isSaved = false;
 					map.setSquare(x, y, tree.getSelectedSquare());
@@ -206,16 +232,6 @@ MouseListener {
 		{
 			e1.printStackTrace();
 		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{
 	}
 
 	@Override

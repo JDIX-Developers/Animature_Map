@@ -105,6 +105,8 @@ public class Menu extends JMenuBar implements ActionListener {
 		export = new IMenuItem();
 		Lang.setLine(export, "menu_export");
 		export.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		export.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+		InputEvent.CTRL_MASK));
 		export.setActionCommand("export");
 		export.addActionListener(this);
 		export.setIcon(new ImageIcon("img/export-icon.png"));
@@ -312,7 +314,24 @@ public class Menu extends JMenuBar implements ActionListener {
 				save_as();
 			break;
 			case "export":
-			// TODO export
+				if (tabbedPane.getSelectedComponent() instanceof MapEditor
+				&& ((MapEditor) tabbedPane.getSelectedComponent()).hasMap())
+				{
+					if (((MapEditor) tabbedPane.getSelectedComponent())
+					.getMap().isFinished())
+					{
+						FileChooser.saveFile(((MapEditor) tabbedPane
+						.getSelectedComponent()).getMap().export(), Lang
+						.getLine("map_file"), "map");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null,
+						Lang.getLine("map_not_finished"),
+						Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
+						new ImageIcon("img/error.png"));
+					}
+				}
 			break;
 		}
 	}
