@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -233,13 +234,20 @@ MouseListener {
 
 	private void editLink(int x, int y)
 	{
+		// JOptionPane.showInputDialog(paintingChild, aaTextInfo, name, y, null,
+		// eventCache, aaTextInfo);
 		// TODO create dialog, etc.
 		toolBar.linkEdited();
 	}
 
 	private void removeLink(int x, int y)
 	{
-		// TODO create dialog, etc.
+		if (JOptionPane.showConfirmDialog(null,
+		Lang.getLine("remove_link_confirm"), Lang.getLine("remove_link"),
+		JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+		{
+			map.removeLink((byte) x, (byte) y);
+		}
 		toolBar.linkRemoved();
 	}
 

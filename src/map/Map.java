@@ -5,7 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import exceptions.SpriteException;
 
@@ -14,11 +16,11 @@ import exceptions.SpriteException;
  */
 public class Map implements Serializable {
 
-	private static final long		serialVersionUID	= 1630051961654828210L;
-	private BufferedImage			image;
-	private Square[][]				squares;
-	private int						width, height;
-	private HashMap<Square, Link>	links;
+	private static final long					serialVersionUID	= 1630051961654828210L;
+	private BufferedImage						image;
+	private Square[][]							squares;
+	private int									width, height;
+	private HashMap<Entry<Byte, Byte>, Link>	links;
 
 	/**
 	 * @param width Map's width
@@ -55,20 +57,22 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * @param sq Square of the link
+	 * @param x - The X coordinate for the link
+	 * @param y - The Y coordinate for the link
 	 * @param l Link for the square
 	 */
-	public void addLink(Square sq, Link l)
+	public void addLink(byte x, byte y, Link l)
 	{
-		links.put(sq, l);
+		links.put(new SimpleEntry<Byte, Byte>(x, y), l);
 	}
 
 	/**
-	 * @param sq Square of the link to remove
+	 * @param x - The X coordinate of the link
+	 * @param y - The Y coordinate of the link
 	 */
-	public void removeLink(Square sq)
+	public void removeLink(byte x, byte y)
 	{
-		links.remove(sq);
+		links.remove(new SimpleEntry<Byte, Byte>(x, y));
 	}
 
 	/**
