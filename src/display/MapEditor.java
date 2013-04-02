@@ -115,6 +115,8 @@ MouseListener {
 			graphs.drawLine(i * 32, 0, i * 32, img.getHeight());
 		}
 
+		// TODO Draw links
+
 		return new ImageIcon(img);
 	}
 
@@ -200,14 +202,26 @@ MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		if (toolBar.isAddingLink())
+		if (toolBar.isAddingLink() || toolBar.isEditingLink()
+		|| toolBar.isRemovingLink())
 		{
 			int x, y;
 
 			x = ((e.getX() - (lblMap.getWidth() - 32 * map.getWidth()) / 2) / 32);
 			y = ((e.getY() - (lblMap.getHeight() - 32 * map.getWidth()) / 2) / 32);
 
-			addLink(x, y);
+			if (toolBar.isAddingLink())
+			{
+				addLink(x, y);
+			}
+			else if (toolBar.isEditingLink())
+			{
+				editLink(x, y);
+			}
+			else if (toolBar.isRemovingLink())
+			{
+				removeLink(x, y);
+			}
 		}
 	}
 
@@ -215,6 +229,18 @@ MouseListener {
 	{
 		// TODO create dialog, etc.
 		toolBar.linkAdded();
+	}
+
+	private void editLink(int x, int y)
+	{
+		// TODO create dialog, etc.
+		toolBar.linkEdited();
+	}
+
+	private void removeLink(int x, int y)
+	{
+		// TODO create dialog, etc.
+		toolBar.linkRemoved();
 	}
 
 	@Override

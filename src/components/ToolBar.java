@@ -18,8 +18,8 @@ import display.MapEditor;
 public class ToolBar extends JToolBar implements ActionListener {
 
 	private static final long	serialVersionUID	= - 8432386582582038108L;
-	private IButton				btnAddLink;
-	private boolean				addingLink;
+	private IButton				btnAddLink, btnEditLink, btnRemoveLink;
+	private boolean				addingLink, editingLink, removingLink;
 
 	/**
 	 * Creates the ToolBar
@@ -51,9 +51,19 @@ public class ToolBar extends JToolBar implements ActionListener {
 		btnAddLink.setFocusable(false);
 		btnAddLink.addActionListener(this);
 
-		add(btnAddLink);
+		btnEditLink = new IButton(new ImageIcon("img/edit-link-icon.png"));
+		Lang.setLine(btnEditLink, "edit_link");
+		btnEditLink.setFocusable(false);
+		btnEditLink.addActionListener(this);
 
-		// TODO
+		btnRemoveLink = new IButton(new ImageIcon("img/remove-link-icon.png"));
+		Lang.setLine(btnRemoveLink, "remove_link");
+		btnRemoveLink.setFocusable(false);
+		btnRemoveLink.addActionListener(this);
+
+		add(btnAddLink);
+		add(btnEditLink);
+		add(btnRemoveLink);
 	}
 
 	private void loadSpriteToolBar()
@@ -70,12 +80,48 @@ public class ToolBar extends JToolBar implements ActionListener {
 	}
 
 	/**
+	 * @return If the user is editing a link
+	 */
+	public boolean isEditingLink()
+	{
+		return this.editingLink;
+	}
+
+	/**
+	 * @return If the user is removing a link
+	 */
+	public boolean isRemovingLink()
+	{
+		return this.removingLink;
+	}
+
+	/**
 	 * Called when the link is added
 	 */
 	public void linkAdded()
 	{
 		this.addingLink = false;
 		btnAddLink.setSelected(false);
+		((MapEditor) getParent()).setMapCursor(Cursor.DEFAULT_CURSOR);
+	}
+
+	/**
+	 * Called when a link is edited
+	 */
+	public void linkEdited()
+	{
+		this.editingLink = false;
+		btnEditLink.setSelected(false);
+		((MapEditor) getParent()).setMapCursor(Cursor.DEFAULT_CURSOR);
+	}
+
+	/**
+	 * Called when a link is removed
+	 */
+	public void linkRemoved()
+	{
+		this.removingLink = false;
+		btnRemoveLink.setSelected(false);
 		((MapEditor) getParent()).setMapCursor(Cursor.DEFAULT_CURSOR);
 	}
 
@@ -92,6 +138,38 @@ public class ToolBar extends JToolBar implements ActionListener {
 			{
 				addingLink = true;
 				btnAddLink.setSelected(true);
+				btnEditLink.setSelected(false);
+				btnRemoveLink.setSelected(false);
+				((MapEditor) getParent()).setMapCursor(Cursor.CROSSHAIR_CURSOR);
+			}
+		}
+		else if (e.getSource() == btnEditLink)
+		{
+			if (editingLink)
+			{
+				linkEdited();
+			}
+			else
+			{
+				editingLink = true;
+				btnEditLink.setSelected(true);
+				btnAddLink.setSelected(false);
+				btnRemoveLink.setSelected(false);
+				((MapEditor) getParent()).setMapCursor(Cursor.CROSSHAIR_CURSOR);
+			}
+		}
+		else if (e.getSource() == btnRemoveLink)
+		{
+			if (removingLink)
+			{
+				linkRemoved();
+			}
+			else
+			{
+				removingLink = true;
+				btnRemoveLink.setSelected(true);
+				btnAddLink.setSelected(false);
+				btnEditLink.setSelected(false);
 				((MapEditor) getParent()).setMapCursor(Cursor.CROSSHAIR_CURSOR);
 			}
 		}
