@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
+import map.Link;
 import map.Map;
 import utils.Lang;
 
@@ -228,16 +230,64 @@ MouseListener {
 
 	private void addLink(int x, int y)
 	{
-		// TODO create dialog, etc.
-		toolBar.linkAdded();
+		Link l = map.getLink((byte) x, (byte) y);
+
+		if (l == null)
+		{
+			EditLink p = new EditLink();
+
+			String[] options = {Lang.getLine("conf_dialog_ok"),
+			Lang.getLine("conf_dialog_cancel")};
+			JOptionPane pane = new JOptionPane(p, JOptionPane.PLAIN_MESSAGE,
+			JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
+			JDialog dialog = pane.createDialog(Lang.getLine("add_link"));
+			dialog.setSize(500, 200);
+			dialog.setLocationRelativeTo(Window.getInstance());
+			dialog.setVisible(true);
+
+			if (pane.getValue() == options[0])
+			{
+				// TODO add link
+			}
+
+			dialog.dispose();
+
+			toolBar.linkAdded();
+			lblMap.setIcon(printGrid(map.getImage()));
+		}
+		else
+		{
+			editLink(x, y);
+		}
 	}
 
 	private void editLink(int x, int y)
 	{
-		// JOptionPane.showInputDialog(paintingChild, aaTextInfo, name, y, null,
-		// eventCache, aaTextInfo);
-		// TODO create dialog, etc.
-		toolBar.linkEdited();
+		Link l = map.getLink((byte) x, (byte) y);
+
+		if (l != null)
+		{
+			EditLink p = new EditLink(l);
+
+			String[] options = {Lang.getLine("conf_dialog_ok"),
+			Lang.getLine("conf_dialog_cancel")};
+			JOptionPane pane = new JOptionPane(p, JOptionPane.PLAIN_MESSAGE,
+			JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
+			JDialog dialog = pane.createDialog(Lang.getLine("edit_link"));
+			dialog.setSize(500, 200);
+			dialog.setLocationRelativeTo(Window.getInstance());
+			dialog.setVisible(true);
+
+			if (pane.getValue() == options[0])
+			{
+				// TODO edit link
+			}
+
+			dialog.dispose();
+
+			toolBar.linkEdited();
+			lblMap.setIcon(printGrid(map.getImage()));
+		}
 	}
 
 	private void removeLink(int x, int y)
@@ -249,6 +299,7 @@ MouseListener {
 			map.removeLink((byte) x, (byte) y);
 		}
 		toolBar.linkRemoved();
+		lblMap.setIcon(printGrid(map.getImage()));
 	}
 
 	@Override

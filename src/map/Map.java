@@ -76,6 +76,16 @@ public class Map implements Serializable {
 	}
 
 	/**
+	 * @param x - The X coordinate of the link
+	 * @param y - The Y coordinate of the link
+	 * @return The link in the given coordinates
+	 */
+	public Link getLink(byte x, byte y)
+	{
+		return links.get(new SimpleEntry<Byte, Byte>(x, y));
+	}
+
+	/**
 	 * @return The byte array ready to be exported
 	 */
 	public byte[] export()
