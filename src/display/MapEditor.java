@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -118,7 +119,21 @@ MouseListener {
 			graphs.drawLine(i * 32, 0, i * 32, img.getHeight());
 		}
 
-		// TODO Draw links
+		graphs.setColor(Color.GREEN);
+
+		for (Entry<Entry<Byte, Byte>, Link> entry: map.getLinks())
+		{
+			byte x = entry.getKey().getKey();
+			byte y = entry.getKey().getValue();
+
+			// Horizontal lines
+			graphs.drawLine(x * 32, y * 32, (x + 1) * 32, y * 32);
+			graphs.drawLine(x * 32, (y + 1) * 32, (x + 1) * 32, (y + 1) * 32);
+
+			// Vertical lines
+			graphs.drawLine(x * 32, y * 32, x * 32, (y + 1) * 32);
+			graphs.drawLine((x + 1) * 32, y * 32, (x + 1) * 32, (y + 1) * 32);
+		}
 
 		return new ImageIcon(img);
 	}
@@ -213,17 +228,20 @@ MouseListener {
 			x = ((e.getX() - (lblMap.getWidth() - 32 * map.getWidth()) / 2) / 32);
 			y = ((e.getY() - (lblMap.getHeight() - 32 * map.getWidth()) / 2) / 32);
 
-			if (toolBar.isAddingLink())
+			if (map.getSquare(x, y) != null)
 			{
-				addLink(x, y);
-			}
-			else if (toolBar.isEditingLink())
-			{
-				editLink(x, y);
-			}
-			else if (toolBar.isRemovingLink())
-			{
-				removeLink(x, y);
+				if (toolBar.isAddingLink())
+				{
+					addLink(x, y);
+				}
+				else if (toolBar.isEditingLink())
+				{
+					editLink(x, y);
+				}
+				else if (toolBar.isRemovingLink())
+				{
+					removeLink(x, y);
+				}
 			}
 		}
 	}
@@ -247,7 +265,8 @@ MouseListener {
 
 			if (pane.getValue() == options[0])
 			{
-				// TODO add link
+				map.addLink((byte) x, (byte) y, p.getLink());
+				this.isSaved = false;
 			}
 
 			dialog.dispose();
@@ -280,7 +299,9 @@ MouseListener {
 
 			if (pane.getValue() == options[0])
 			{
-				// TODO edit link
+				map.removeLink((byte) x, (byte) y);
+				map.addLink((byte) x, (byte) y, p.getLink());
+				this.isSaved = false;
 			}
 
 			dialog.dispose();
@@ -297,6 +318,7 @@ MouseListener {
 		JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 		{
 			map.removeLink((byte) x, (byte) y);
+			this.isSaved = false;
 		}
 		toolBar.linkRemoved();
 		lblMap.setIcon(printGrid(map.getImage()));
@@ -305,20 +327,27 @@ MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		// MouseInfo.getPointerInfo().getLocation();
-		try
+		if ( ! toolBar.isAddingLink() && ! toolBar.isEditingLink()
+		&& ! toolBar.isRemovingLink())
 		{
-			if (tree.getSelectedSquare() != null)
+			try
 			{
-				this.clickX = ((e.getX() - (lblMap.getWidth() - 32 * map
-				.getWidth()) / 2) / 32);
-				this.clickY = ((e.getY() - (lblMap.getHeight() - 32 * map
-				.getWidth()) / 2) / 32);
+				if (tree.getSelectedSquare() != null)
+				{
+					this.clickX = ((e.getX() - (lblMap.getWidth() - 32 * map
+					.getWidth()) / 2) / 32);
+					this.clickY = ((e.getY() - (lblMap.getHeight() - 32 * map
+					.getWidth()) / 2) / 32);
+				}
+			}
+			catch (SpriteException | CompressionException e1)
+			{
+				e1.printStackTrace();
 			}
 		}
-		catch (SpriteException | CompressionException e1)
+		else
 		{
-			e1.printStackTrace();
+			this.clickX = 0xFF;
 		}
 	}
 
@@ -327,7 +356,7 @@ MouseListener {
 	{
 		try
 		{
-			if (tree.getSelectedSquare() != null && ! toolBar.isAddingLink())
+			if (tree.getSelectedSquare() != null && this.clickX != 0xFF)
 			{
 				int x, y;
 

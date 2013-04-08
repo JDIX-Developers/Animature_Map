@@ -111,9 +111,9 @@ public class EditLink extends JPanel implements KeyListener {
 		}
 		else
 		{
-			mapField.setText("" + 0);
-			xField.setText("" + 0);
-			yField.setText("" + 0);
+			mapField.setText("0");
+			xField.setText("0");
+			yField.setText("0");
 		}
 	}
 
@@ -122,8 +122,9 @@ public class EditLink extends JPanel implements KeyListener {
 	 */
 	public Link getLink()
 	{
-		// TODO
-		return null;
+		return new Link((short) Integer.parseInt(mapField.getText()),
+		(byte) Integer.parseInt(xField.getText()),
+		(byte) Integer.parseInt(yField.getText()));
 	}
 
 	@Override
@@ -131,6 +132,26 @@ public class EditLink extends JPanel implements KeyListener {
 	{
 		if (e.getKeyChar() > '9' || e.getKeyChar() < '0')
 		{
+			e.consume();
+		}
+		else if ((e.getSource() == xField || e.getSource() == yField)
+		&& Integer.parseInt(((JTextField) e.getSource()).getText()
+		+ e.getKeyChar()) > 254)
+		{
+			((JTextField) e.getSource()).setText("254");
+			e.consume();
+		}
+		else if (Integer.parseInt(((JTextField) e.getSource()).getText()
+		+ e.getKeyChar()) < 0)
+		{
+			((JTextField) e.getSource()).setText("0");
+			e.consume();
+		}
+		else if (e.getSource() == mapField
+		&& Integer.parseInt(((JTextField) e.getSource()).getText()
+		+ e.getKeyChar()) > 65278)
+		{
+			((JTextField) e.getSource()).setText("65278");
 			e.consume();
 		}
 	}

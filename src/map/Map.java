@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import exceptions.SpriteException;
 
@@ -57,6 +58,16 @@ public class Map implements Serializable {
 	}
 
 	/**
+	 * @param x - X coordinate
+	 * @param y - Y coordinate
+	 * @return The square in the given coordinates
+	 */
+	public Square getSquare(int x, int y)
+	{
+		return squares[y][x];
+	}
+
+	/**
 	 * @param x - The X coordinate for the link
 	 * @param y - The Y coordinate for the link
 	 * @param l Link for the square
@@ -83,6 +94,16 @@ public class Map implements Serializable {
 	public Link getLink(byte x, byte y)
 	{
 		return links.get(new SimpleEntry<Byte, Byte>(x, y));
+	}
+
+	/**
+	 * Get the entry set for the map's links
+	 * 
+	 * @return The entry set for the current links
+	 */
+	public Set<Entry<Entry<Byte, Byte>, Link>> getLinks()
+	{
+		return links.entrySet();
 	}
 
 	/**
