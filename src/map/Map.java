@@ -266,7 +266,7 @@ public class Map implements Serializable {
 				// We only save if the square has not been deleted
 				if (element[h] != (byte) 0xFF || element[h + 1] != (byte) 0xFF)
 				{
-					arr[índice++] = element[h]; // TODO index out of bounds
+					arr[índice++] = element[h];
 					arr[índice++] = element[h + 1];
 				}
 			}
