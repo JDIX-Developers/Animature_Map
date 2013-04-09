@@ -24,7 +24,6 @@ import utils.Lang;
 
 import components.IMenu;
 import components.IMenuItem;
-import components.ITabbedPane;
 
 import exceptions.SpriteException;
 
@@ -38,7 +37,6 @@ public class Menu extends JMenuBar implements ActionListener {
 	private IMenu				file, edit, help;
 	private IMenuItem			newFile, open, save, save_as, export;
 	private IMenuItem			preferences;
-	private ITabbedPane			tabbedPane;
 
 	/**
 	 * Create the menu.
@@ -176,119 +174,106 @@ public class Menu extends JMenuBar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		tabbedPane = ((Start) Window.getInstance().getContentPane())
-		.getTabbedPane();
-
-		// TODO sprites
 		switch (e.getActionCommand())
 		{
 			case "new":
-				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
+				if (replaceMap())
 				{
-					if (replaceMap())
+					NewMap p = new NewMap();
+
+					String[] options = {Lang.getLine("conf_dialog_ok"),
+					Lang.getLine("conf_dialog_cancel")};
+					JOptionPane pane = new JOptionPane(p,
+					JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION,
+					null, options, options[1]);
+					JDialog dialog = pane.createDialog(Lang.getLine("new_map"));
+					dialog.setSize(500, 200);
+					dialog.setLocationRelativeTo(Window.getInstance());
+					dialog.setVisible(true);
+
+					if (pane.getValue() == options[0])
 					{
-						NewMap p = new NewMap();
-
-						String[] options = {Lang.getLine("conf_dialog_ok"),
-						Lang.getLine("conf_dialog_cancel")};
-						JOptionPane pane = new JOptionPane(p,
-						JOptionPane.PLAIN_MESSAGE,
-						JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
-						JDialog dialog = pane.createDialog(Lang
-						.getLine("new_map"));
-						dialog.setSize(500, 200);
-						dialog.setLocationRelativeTo(Window.getInstance());
-						dialog.setVisible(true);
-
-						if (pane.getValue() == options[0])
+						if (p.getMap() == null)
 						{
-							if (p.getMap() == null)
-							{
-								JOptionPane.showMessageDialog(null, Lang
-								.getLine("sprite_load_error"), Lang
-								.getLine("error"), JOptionPane.ERROR_MESSAGE,
-								new ImageIcon("img/error.png"));
-							}
-							else
-							{
-								MapEditor m = new MapEditor();
-								((Start) Window.getInstance().getContentPane())
-								.getTabbedPane().setComponentAt(0, m);
+							JOptionPane.showMessageDialog(null,
+							Lang.getLine("sprite_load_error"),
+							Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
+							new ImageIcon("img/error.png"));
+						}
+						else
+						{
+							MapEditor m = new MapEditor();
+							((Start) Window.getInstance().getContentPane())
+							.setMapEditor(m);
 
-								try
-								{
-									m.setMap(p.getMap(), null);
-								}
-								catch (SpriteException e1)
-								{
-									e1.printStackTrace();
-								}
+							try
+							{
+								m.setMap(p.getMap(), null);
+							}
+							catch (SpriteException e1)
+							{
+								e1.printStackTrace();
 							}
 						}
-
-						dialog.dispose();
 					}
+
+					dialog.dispose();
 				}
-			// TODO Sprites
 			break;
 			case "open":
-				if (tabbedPane.getSelectedComponent() instanceof MapEditor)
+				if (replaceMap())
 				{
-					if (replaceMap())
+					OpenMap p = new OpenMap();
+
+					String[] options = {Lang.getLine("conf_dialog_ok"),
+					Lang.getLine("conf_dialog_cancel")};
+					JOptionPane pane = new JOptionPane(p,
+					JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION,
+					null, options, options[1]);
+					JDialog dialog = pane
+					.createDialog(Lang.getLine("open_map"));
+					dialog.setSize(500, 200);
+					dialog.setLocationRelativeTo(Window.getInstance());
+					dialog.setVisible(true);
+
+					if (pane.getValue() == options[0])
 					{
-						OpenMap p = new OpenMap();
-
-						String[] options = {Lang.getLine("conf_dialog_ok"),
-						Lang.getLine("conf_dialog_cancel")};
-						JOptionPane pane = new JOptionPane(p,
-						JOptionPane.PLAIN_MESSAGE,
-						JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
-						JDialog dialog = pane.createDialog(Lang
-						.getLine("open_map"));
-						dialog.setSize(500, 200);
-						dialog.setLocationRelativeTo(Window.getInstance());
-						dialog.setVisible(true);
-
-						if (pane.getValue() == options[0])
+						if (p.getMap() == null)
 						{
-							if (p.getMap() == null)
-							{
-								JOptionPane.showMessageDialog(null, Lang
-								.getLine("map_load_error"), Lang
-								.getLine("error"), JOptionPane.ERROR_MESSAGE,
-								new ImageIcon("img/error.png"));
-							}
-							else
-							{
-								MapEditor m = new MapEditor();
-								((Start) Window.getInstance().getContentPane())
-								.getTabbedPane().setComponentAt(0, m);
+							JOptionPane.showMessageDialog(null,
+							Lang.getLine("map_load_error"),
+							Lang.getLine("error"), JOptionPane.ERROR_MESSAGE,
+							new ImageIcon("img/error.png"));
+						}
+						else
+						{
+							MapEditor m = new MapEditor();
+							((Start) Window.getInstance().getContentPane())
+							.setMapEditor(m);
 
-								try
-								{
-									m.setMap(p.getMap(), p.getFile());
-								}
-								catch (SpriteException e1)
-								{
-									e1.printStackTrace();
-								}
+							try
+							{
+								m.setMap(p.getMap(), p.getFile());
+							}
+							catch (SpriteException e1)
+							{
+								e1.printStackTrace();
 							}
 						}
-
-						dialog.dispose();
 					}
+
+					dialog.dispose();
 				}
-			// TODO sprites
 			break;
 			case "save":
-				if (tabbedPane.getSelectedComponent() instanceof MapEditor
-				&& ((MapEditor) tabbedPane.getSelectedComponent()).hasMap())
+				if (((Start) Window.getInstance().getContentPane())
+				.getMapEditor().hasMap())
 				{
-					if (((MapEditor) tabbedPane.getSelectedComponent())
-					.getFile() != null)
+					if (((Start) Window.getInstance().getContentPane())
+					.getMapEditor().getFile() != null)
 					{
-						MapEditor editor = (MapEditor) tabbedPane
-						.getSelectedComponent();
+						MapEditor editor = ((Start) Window.getInstance()
+						.getContentPane()).getMapEditor();
 						ObjectOutputStream oos = null;
 						try
 						{
@@ -308,21 +293,20 @@ public class Menu extends JMenuBar implements ActionListener {
 						save_as();
 					}
 				}
-			// TODO Sprites
 			break;
 			case "save-as":
 				save_as();
 			break;
 			case "export":
-				if (tabbedPane.getSelectedComponent() instanceof MapEditor
-				&& ((MapEditor) tabbedPane.getSelectedComponent()).hasMap())
+				if (((Start) Window.getInstance().getContentPane())
+				.getMapEditor().hasMap())
 				{
-					if (((MapEditor) tabbedPane.getSelectedComponent())
-					.getMap().isFinished())
+					if (((Start) Window.getInstance().getContentPane())
+					.getMapEditor().getMap().isFinished())
 					{
-						FileChooser.saveFile(((MapEditor) tabbedPane
-						.getSelectedComponent()).getMap().export(), Lang
-						.getLine("map_file"), "map");
+						FileChooser.saveFile(((Start) Window.getInstance()
+						.getContentPane()).getMapEditor().getMap().export(),
+						Lang.getLine("map_file"), "map");
 					}
 					else
 					{
@@ -339,7 +323,8 @@ public class Menu extends JMenuBar implements ActionListener {
 	private boolean replaceMap()
 	{
 		boolean r = true;
-		if (((MapEditor) tabbedPane.getSelectedComponent()).hasMap())
+		if (((Start) Window.getInstance().getContentPane()).getMapEditor()
+		.hasMap())
 		{
 			String[] options = {Lang.getLine("confirm_yes"),
 			Lang.getLine("confirm_no")};
@@ -360,13 +345,13 @@ public class Menu extends JMenuBar implements ActionListener {
 
 	private void save_as()
 	{
-		if (tabbedPane.getSelectedComponent() instanceof MapEditor
-		&& ((MapEditor) tabbedPane.getSelectedComponent()).getMap() != null)
+		if (((Start) Window.getInstance().getContentPane()).getMapEditor()
+		.getMap() != null)
 		{
-			MapEditor editor = (MapEditor) tabbedPane.getSelectedComponent();
+			MapEditor editor = ((Start) Window.getInstance().getContentPane())
+			.getMapEditor();
 			editor.saved(FileChooser.saveObjectFile(editor.getMap(),
 			Lang.getLine("map_dev_file"), "dmap"));
 		}
-		// TODO sprites
 	}
 }

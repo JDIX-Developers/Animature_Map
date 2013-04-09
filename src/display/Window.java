@@ -34,10 +34,8 @@ public class Window extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent winEvt)
 			{
-				if ( ! ((MapEditor) ((Start) getContentPane()).getTabbedPane()
-				.getComponentAt(0)).isSaved()
-				|| ! ((SpriteEditor) ((Start) getContentPane()).getTabbedPane()
-				.getComponentAt(1)).isSaved())
+				if ( ! ((Start) Window.getInstance().getContentPane())
+				.getMapEditor().isSaved())
 				{
 					String[] options = {Lang.getLine("confirm_yes"),
 					Lang.getLine("confirm_no")};

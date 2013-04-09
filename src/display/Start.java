@@ -10,10 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-import utils.Lang;
-
 import components.ILabel;
-import components.ITabbedPane;
 
 /**
  * @author Razican (Iban Eguia)
@@ -21,7 +18,7 @@ import components.ITabbedPane;
 public class Start extends JPanel {
 
 	private static final long	serialVersionUID	= - 6969744533822338215L;
-	private ITabbedPane			tabs;
+	private MapEditor			mapEditor;
 
 	/**
 	 * Create the panel.
@@ -30,15 +27,8 @@ public class Start extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		tabs = new ITabbedPane(ITabbedPane.TOP);
-		add(tabs, BorderLayout.CENTER);
-
-		MapEditor mapEditor = new MapEditor();
-		tabs.addTab(null, mapEditor);
-		Lang.setLine(tabs.getTabAt(0), "map_editor");
-
-		tabs.addTab(null, new SpriteEditor());
-		Lang.setLine(tabs.getTabAt(1), "sprite_editor");
+		mapEditor = new MapEditor();
+		add(mapEditor, BorderLayout.CENTER);
 
 		ILabel copyLabel = new ILabel("JDIX Developers");
 		copyLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 10));
@@ -50,11 +40,23 @@ public class Start extends JPanel {
 	}
 
 	/**
-	 * @return Current tabbed pane of the view
+	 * @return The current map editor
 	 */
-	public ITabbedPane getTabbedPane()
+	public MapEditor getMapEditor()
 	{
-		return tabs;
+		return this.mapEditor;
+	}
+
+	/**
+	 * Set a new map editor
+	 * 
+	 * @param m - The new MapEditor
+	 */
+	public void setMapEditor(MapEditor m)
+	{
+		remove(mapEditor);
+		this.mapEditor = m;
+		add(mapEditor, BorderLayout.CENTER);
 	}
 
 	/**
