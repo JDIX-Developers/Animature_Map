@@ -10,10 +10,12 @@ import javax.swing.JOptionPane;
 
 import utils.Lang;
 
+import components.Internationalizable;
+
 /**
  * @author Razican (Iban Eguia)
  */
-public class Window extends JFrame {
+public class Window extends JFrame implements Internationalizable {
 
 	private static final long	serialVersionUID	= - 8641413596663241575L;
 	private static Window		instance;
@@ -24,7 +26,7 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setIconImage((new ImageIcon("img/app-icon.png")).getImage());
 		setSize(800, 600);
-		setTitle("Animature Map Creator");
+		Lang.setLine(this, "creator_title");
 		setLocationRelativeTo(null);
 		// setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
 
@@ -80,5 +82,11 @@ public class Window extends JFrame {
 		}
 
 		return instance;
+	}
+
+	@Override
+	public void changeLanguage(String newText)
+	{
+		setTitle(newText);
 	}
 }
