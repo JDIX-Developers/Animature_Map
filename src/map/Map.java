@@ -230,8 +230,7 @@ public class Map implements Serializable {
 				// We count repetitions
 				while (i + r < arr2d.length && arr2d[i][h] == arr2d[i + r][h]
 				&& arr2d[i][h + 1] == arr2d[i + r][h + 1]
-				&& arr2dc[i][h] != (byte) 0xFF
-				&& arr2dc[i][h + 1] != (byte) 0xFF)
+				&& arr2dc[i + r][h + 1] != (byte) 0xFF)
 				{
 					r++;
 				}
@@ -267,7 +266,7 @@ public class Map implements Serializable {
 				// We only save if the square has not been deleted
 				if (element[h] != (byte) 0xFF || element[h + 1] != (byte) 0xFF)
 				{
-					arr[índice++] = element[h];
+					arr[índice++] = element[h]; // TODO index out of bounds
 					arr[índice++] = element[h + 1];
 				}
 			}
