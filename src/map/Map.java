@@ -6,10 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import utils.MathUtils;
 import exceptions.SpriteException;
 
 /**
@@ -114,7 +116,7 @@ public class Map implements Serializable {
 		if (isFinished())
 		{
 			byte[] array = compress();
-			addLinks(array);
+			array = addLinks(array);
 			return array;
 		}
 		return null;
@@ -241,6 +243,11 @@ public class Map implements Serializable {
 			}
 		}
 
+		System.out.println(2 + 2 * height * width - deleted * 2);
+		System.out.println(deleted);
+		System.out.println(arr2dc.length);
+		System.out.println(arr2dc[0].length);
+
 		// We create the compressed array
 		byte[] arr = new byte[2 + 2 * height * width - deleted * 2];
 		arr[0] = (byte) width;
@@ -263,9 +270,23 @@ public class Map implements Serializable {
 		return arr;
 	}
 
-	private void addLinks(byte[] array)
+	private byte[] addLinks(byte[] array)
 	{
-		// TODO Add links to map's array
+		byte[] result = Arrays.copyOf(array, array.length + links.size() * 6
+		+ 2);
+		int i = array.length;
+		result[i] = result[i + 1] = (byte) 0xFF;
+		i += 2;
+		for (Entry<Entry<Byte, Byte>, Link> ent: links.entrySet())
+		{
+			result[i++] = ent.getKey().getKey();
+			result[i++] = ent.getKey().getValue();
+			result[i++] = MathUtils.getByte(ent.getValue().getMap(), 1);
+			result[i++] = MathUtils.getByte(ent.getValue().getMap(), 0);
+			result[i++] = ent.getValue().getX();
+			result[i++] = ent.getValue().getY();
+		}
+		return result;
 	}
 
 	private Object writeReplace() throws ObjectStreamException

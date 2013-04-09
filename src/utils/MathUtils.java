@@ -10,7 +10,7 @@ public final class MathUtils {
 	}
 
 	/**
-	 * @param b Unsigned byte
+	 * @param b - Unsigned byte
 	 * @return int representing the byte, so for example, 0xFF would be 255, and
 	 *         not -1
 	 */
@@ -30,8 +30,8 @@ public final class MathUtils {
 	}
 
 	/**
-	 * @param b1 left byte for the short
-	 * @param b2 right byte for the short
+	 * @param b1 - left byte for the short
+	 * @param b2 - right byte for the short
 	 * @return Short representing the unsigned number contained by the two
 	 *         bytes.
 	 */
@@ -41,11 +41,21 @@ public final class MathUtils {
 	}
 
 	/**
-	 * @param b byte to convert
+	 * @param b - The byte to convert
 	 * @return String with hexadecimal representation of the byte
 	 */
 	public static String toHex(byte b)
 	{
 		return String.format("%02X", b);
+	}
+
+	/**
+	 * @param num - The short to convert
+	 * @param i - The number of the byte (1 -> left, 0 -> right)
+	 * @return The byte in that position
+	 */
+	public static byte getByte(short num, int i)
+	{
+		return (byte) (num >> i * 8);
 	}
 }
