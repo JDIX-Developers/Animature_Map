@@ -189,10 +189,12 @@ public class Map implements Serializable {
 		{
 			for (int h = 0; h < arr2d[i].length; h += 2)
 			{
+				// We copy the first data
 				arr2dc[i][h] = arr2d[i][h];
 				arr2dc[i][h + 1] = arr2d[i][h + 1];
 				int r = 1;
 
+				// We count repetitions
 				while ((h + r * 2) < arr2d[i].length
 				&& arr2d[i][h] == arr2d[i][h + r * 2]
 				&& arr2d[i][h + 1] == arr2d[i][h + r * 2 + 1])
@@ -202,8 +204,11 @@ public class Map implements Serializable {
 
 				if (r > 2)
 				{
+					// We set the repetition data
 					arr2dc[i][h + 2] = (byte) (r - 1);
 					arr2dc[i][h + 3] = (byte) 0xFF;
+
+					// We delete the extra data
 					for (int j = 4; j < r * 2; j += 2)
 					{
 						arr2dc[i][h + j + 1] = arr2dc[i][h + j] = (byte) 0xFF;
@@ -222,16 +227,22 @@ public class Map implements Serializable {
 			{
 				int r = 1;
 
+				// We count repetitions
 				while (i + r < arr2d.length && arr2d[i][h] == arr2d[i + r][h]
-				&& arr2d[i][h + 1] == arr2d[i + r][h + 1])
+				&& arr2d[i][h + 1] == arr2d[i + r][h + 1]
+				&& arr2dc[i][h] != (byte) 0xFF
+				&& arr2dc[i][h + 1] != (byte) 0xFF)
 				{
 					r++;
 				}
 
 				if (r > 2)
 				{
+					// We set the repetition data
 					arr2dc[i + 1][h] = (byte) 0xFF;
 					arr2dc[i + 1][h + 1] = (byte) (r - 1);
+
+					// We delete extra data
 					for (int j = 2; j < r; j++)
 					{
 						arr2dc[i + j][h + 1] = arr2dc[i + j][h] = (byte) 0xFF;
@@ -242,11 +253,6 @@ public class Map implements Serializable {
 				}
 			}
 		}
-
-		System.out.println(2 + 2 * height * width - deleted * 2);
-		System.out.println(deleted);
-		System.out.println(arr2dc.length);
-		System.out.println(arr2dc[0].length);
 
 		// We create the compressed array
 		byte[] arr = new byte[2 + 2 * height * width - deleted * 2];
