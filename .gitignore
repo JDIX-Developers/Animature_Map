@@ -8,6 +8,7 @@
 *.ear
 doc/*
 bin/*
+maps/*
 
 *~
 *.DS_Store
