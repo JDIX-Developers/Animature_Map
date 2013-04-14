@@ -24,6 +24,7 @@ import utils.Lang;
 
 import components.IMenu;
 import components.IMenuItem;
+import components.Window;
 
 import exceptions.SpriteException;
 

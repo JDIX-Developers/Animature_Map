@@ -1,4 +1,4 @@
-package display;
+package components;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import utils.Lang;
 
-import components.Internationalizable;
+import display.Start;
 
 /**
  * @author Razican (Iban Eguia)

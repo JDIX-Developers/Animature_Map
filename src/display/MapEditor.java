@@ -26,6 +26,7 @@ import utils.Lang;
 import components.ILabel;
 import components.SpriteTree;
 import components.ToolBar;
+import components.Window;
 
 import exceptions.CompressionException;
 import exceptions.SpriteException;

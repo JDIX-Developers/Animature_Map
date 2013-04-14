@@ -11,6 +11,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
 import components.ILabel;
+import components.Window;
 
 /**
  * @author Razican (Iban Eguia)
