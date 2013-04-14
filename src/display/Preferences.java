@@ -21,8 +21,8 @@ import utils.Lang;
 public class Preferences extends JPanel {
 
 	private static final long		serialVersionUID	= -9082799207563983259L;
-	private JComboBox<String>		langCombo, lfCombo;
-	private HashMap<String, String>	lfhm;
+	private JComboBox<String>		langCombo, lookNFeelCombo;
+	private HashMap<String, String>	lookNFeelHashMap;
 	private String					currentLookAndFeel;
 
 	/**
@@ -65,13 +65,13 @@ public class Preferences extends JPanel {
 		gbc_lbLookandfeel.gridy = 1;
 		panel.add(lbLookandfeel, gbc_lbLookandfeel);
 
-		lfCombo = new JComboBox<>(getAvailableLF());
-		lfCombo.setSelectedItem(currentLookAndFeel);
+		lookNFeelCombo = new JComboBox<>(getAvailableLF());
+		lookNFeelCombo.setSelectedItem(currentLookAndFeel);
 		GridBagConstraints gbc_lfCombo = new GridBagConstraints();
 		gbc_lfCombo.insets = new Insets(0, 0, 0, 5);
 		gbc_lfCombo.gridx = 2;
 		gbc_lfCombo.gridy = 1;
-		panel.add(lfCombo, gbc_lfCombo);
+		panel.add(lookNFeelCombo, gbc_lfCombo);
 	}
 
 	/**
@@ -87,18 +87,18 @@ public class Preferences extends JPanel {
 	 */
 	public String getLookAndFeel()
 	{
-		return lfhm.get(lfCombo.getSelectedItem());
+		return lookNFeelHashMap.get(lookNFeelCombo.getSelectedItem());
 	}
 
 	private Vector<String> getAvailableLF()
 	{
 		LookAndFeelInfo lfs[] = UIManager.getInstalledLookAndFeels();
-		lfhm = new HashMap<>(lfs.length);
+		lookNFeelHashMap = new HashMap<>(lfs.length);
 		Vector<String> v = new Vector<>(lfs.length);
 
 		for (LookAndFeelInfo lf2: lfs)
 		{
-			lfhm.put(lf2.getName(), lf2.getClassName());
+			lookNFeelHashMap.put(lf2.getName(), lf2.getClassName());
 			v.add(lf2.getName());
 			if (utils.Preferences.getLookAndFeel().equals(lf2.getClassName()))
 			{
