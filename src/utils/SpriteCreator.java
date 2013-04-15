@@ -12,11 +12,11 @@ import java.util.Map;
  */
 public class SpriteCreator {
 
-	// private String ANDABLE;
-	// private String CAMBIABLE;
-	// private String SALTABLE;
-	// private String NOANDABLE;
-	// private String TRANSPORTABLE;
+	private final byte	ANDABLE			= 0;
+	private final byte	CAMBIABLE		= 1;
+	private final byte	SALTABLE		= 2;
+	private final byte	NOANDABLE		= 3;
+	private final byte	TRANSPORTABLE	= 4;
 
 	/**
 	 * @param args Arguments for the application
