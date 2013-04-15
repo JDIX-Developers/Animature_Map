@@ -1,6 +1,8 @@
 package map;
 
 import java.awt.image.BufferedImage;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.Arrays;
 
 import utils.MathUtils;
@@ -10,8 +12,9 @@ import exceptions.SpriteException;
 /**
  * @author Razican (Iban Eguia)
  */
-public class Square {
+public class Square implements Serializable {
 
+	private static final long	serialVersionUID	= - 4474108808050819394L;
 	private static Sprite		sprite;
 	private static Square[][]	squares;
 	private BufferedImage		image;
@@ -32,11 +35,10 @@ public class Square {
 		this.x = x;
 		this.y = y;
 
-		this.image = new BufferedImage(sprite.getSize(), sprite.getSize(),
-		BufferedImage.TYPE_INT_ARGB);
+		this.image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
 
-		this.image.createGraphics().drawImage(sprite.getImage(),
-		-this.x * sprite.getSize(), -this.y * sprite.getSize(), null);
+		this.image.createGraphics().drawImage(sprite.getImage(), - this.x * 32,
+		- this.y * 32, null);
 	}
 
 	/**
@@ -78,11 +80,11 @@ public class Square {
 	}
 
 	/**
-	 * @param x X coordinate
-	 * @param y Y coordinate
+	 * @param x - X coordinate
+	 * @param y - Y coordinate
 	 * @return Square in that position of the sprite
-	 * @throws SpriteException If the sprite has not been initialized
-	 * @throws CompressionException If there is a compression error
+	 * @throws SpriteException - If the sprite has not been initialized
+	 * @throws CompressionException - If there is a compression error
 	 */
 	public static Square load(byte x, byte y) throws SpriteException,
 	CompressionException
@@ -95,11 +97,9 @@ public class Square {
 		}
 		if (squares == null)
 		{
-			squares = new Square[sprite.getWidth() / sprite.getSize()][sprite
-			.getHeight() / sprite.getSize()];
+			squares = new Square[sprite.getWidth()][sprite.getHeight()];
 		}
-		if (xi > sprite.getWidth() / sprite.getSize() - 1
-		|| yi > sprite.getHeight() / sprite.getSize() - 1)
+		if (xi > sprite.getWidth() - 1 || yi > sprite.getHeight() - 1)
 		{
 			throw new SpriteException("There is no image for coordinates (0x"
 			+ MathUtils.toHex(x) + ", 0x" + MathUtils.toHex(y) + ")");
@@ -110,5 +110,50 @@ public class Square {
 		}
 
 		return squares[xi][yi];
+	}
+
+	/**
+	 * @return The current sprite
+	 * @throws SpriteException if the sprite is not set
+	 */
+	public static Sprite getSprite() throws SpriteException
+	{
+		if (sprite == null)
+		{
+			throw new SpriteException();
+		}
+		return sprite;
+	}
+
+	private Object writeReplace() throws ObjectStreamException
+	{
+		Square s = null;
+		try
+		{
+			s = new Square(x, y);
+		}
+		catch (CompressionException e)
+		{
+			e.printStackTrace();
+		}
+
+		s.image = null;
+		return s;
+	}
+
+	private Object readResolve() throws ObjectStreamException
+	{
+		Square s = null;
+
+		try
+		{
+			s = load(x, y);
+		}
+		catch (SpriteException | CompressionException e)
+		{
+			e.printStackTrace();
+		}
+
+		return s;
 	}
 }

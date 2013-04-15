@@ -1,13 +1,16 @@
 package map;
 
+import java.io.Serializable;
+
 /**
  * @author Razican (Iban Eguia)
  */
-public class Link {
+public class Link implements Serializable {
 
-	private short	map;
-	private byte	x;
-	private byte	y;
+	private static final long	serialVersionUID	= 623807882317126365L;
+	private short				map;
+	private byte				x;
+	private byte				y;
 
 	/**
 	 * @param map Map's resource ID to where the link points
