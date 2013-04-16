@@ -68,7 +68,7 @@ public class Lang {
 	}
 
 	@SuppressWarnings ("unchecked")
-	private void changeLocale(Locale newLocale)
+	private void changeLocale(final Locale newLocale)
 	{
 		if (locales.contains(newLocale))
 		{
@@ -91,7 +91,8 @@ public class Lang {
 				JOptionPane.ERROR_MESSAGE, new ImageIcon("img/error.png"));
 			}
 
-			for (Map.Entry<Internationalizable, String> e: observed.entrySet())
+			for (final Map.Entry<Internationalizable, String> e: observed
+			.entrySet())
 			{
 				e.getKey().changeLanguage(getLine(e.getValue()));
 			}
@@ -101,12 +102,12 @@ public class Lang {
 	private static void initializeLocales()
 	{
 		locales = new Vector<>();
-		for (File file: (new File("lang").listFiles()))
+		for (final File file: (new File("lang").listFiles()))
 		{
 			if (file.getName().matches("[a-z]{2}_[A-Z]{2}.lang"))
 			{
-				String lang = file.getName().substring(0, 2);
-				String country = file.getName().substring(3, 5);
+				final String lang = file.getName().substring(0, 2);
+				final String country = file.getName().substring(3, 5);
 				locales.add(new Locale(lang, country));
 			}
 		}
@@ -117,7 +118,7 @@ public class Lang {
 	 *            JLabel, since if it's not, this method will do nothing.
 	 * @param key Language key
 	 */
-	public static void setLine(Internationalizable c, String key)
+	public static void setLine(final Internationalizable c, final String key)
 	{
 		if (observed == null)
 		{
@@ -132,7 +133,7 @@ public class Lang {
 	 * @param key Key for the line
 	 * @return String for the current language
 	 */
-	public static String getLine(String key)
+	public static String getLine(final String key)
 	{
 		if (locales == null)
 		{
@@ -175,9 +176,9 @@ public class Lang {
 			currentLang = new Lang();
 		}
 
-		Vector<String> combo = new Vector<>(locales.size());
+		final Vector<String> combo = new Vector<>(locales.size());
 
-		for (Locale l: locales)
+		for (final Locale l: locales)
 		{
 			combo.add(StringUtils.firstToUpper(l.getDisplayLanguage()) + " ("
 			+ l.getDisplayCountry() + ")");
@@ -215,7 +216,7 @@ public class Lang {
 	/**
 	 * @param newLocale New locale for the interface
 	 */
-	public static void setLang(Locale newLocale)
+	public static void setLang(final Locale newLocale)
 	{
 		if (locales == null)
 		{

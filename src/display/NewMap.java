@@ -36,16 +36,16 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	private static final long	serialVersionUID	= - 4235181786593609509L;
 
 	private Sprite				sprite;
-	private JTextField			textWidth, textHeight;
-	private IButton				btnExamine;
-	private ILabel				lblArchivo;
+	private final JTextField	textWidth, textHeight;
+	private final IButton		btnExamine;
+	private final ILabel		lblArchivo;
 
 	/**
 	 * Create the panel.
 	 */
 	public NewMap()
 	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
+		final GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[] {0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 1.0, 1.0, 1.0,
@@ -54,9 +54,9 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		ILabel lblWidthsquares = new ILabel();
+		final ILabel lblWidthsquares = new ILabel();
 		Lang.setLine(lblWidthsquares, "map_width");
-		GridBagConstraints gbc_lblWidthsquares = new GridBagConstraints();
+		final GridBagConstraints gbc_lblWidthsquares = new GridBagConstraints();
 		gbc_lblWidthsquares.anchor = GridBagConstraints.EAST;
 		gbc_lblWidthsquares.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWidthsquares.gridx = 1;
@@ -66,7 +66,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		textWidth = new JTextField("1");
 		textWidth.addKeyListener(this);
 		textWidth.setBackground(Color.WHITE);
-		GridBagConstraints gbc_textWidth = new GridBagConstraints();
+		final GridBagConstraints gbc_textWidth = new GridBagConstraints();
 		gbc_textWidth.gridwidth = 2;
 		gbc_textWidth.insets = new Insets(0, 0, 5, 5);
 		gbc_textWidth.fill = GridBagConstraints.HORIZONTAL;
@@ -75,9 +75,9 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		add(textWidth, gbc_textWidth);
 		textWidth.setColumns(10);
 
-		ILabel lblHeightsquares = new ILabel();
+		final ILabel lblHeightsquares = new ILabel();
 		Lang.setLine(lblHeightsquares, "map_height");
-		GridBagConstraints gbc_lblHeightsquares = new GridBagConstraints();
+		final GridBagConstraints gbc_lblHeightsquares = new GridBagConstraints();
 		gbc_lblHeightsquares.anchor = GridBagConstraints.EAST;
 		gbc_lblHeightsquares.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHeightsquares.gridx = 1;
@@ -87,7 +87,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		textHeight = new JTextField("1");
 		textHeight.addKeyListener(this);
 		textHeight.setBackground(Color.WHITE);
-		GridBagConstraints gbc_textHeight = new GridBagConstraints();
+		final GridBagConstraints gbc_textHeight = new GridBagConstraints();
 		gbc_textHeight.gridwidth = 2;
 		gbc_textHeight.insets = new Insets(0, 0, 5, 5);
 		gbc_textHeight.fill = GridBagConstraints.HORIZONTAL;
@@ -96,9 +96,9 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 		add(textHeight, gbc_textHeight);
 		textHeight.setColumns(10);
 
-		ILabel lblSprite = new ILabel();
+		final ILabel lblSprite = new ILabel();
 		Lang.setLine(lblSprite, "map_sprite");
-		GridBagConstraints gbc_lblSprite = new GridBagConstraints();
+		final GridBagConstraints gbc_lblSprite = new GridBagConstraints();
 		gbc_lblSprite.insets = new Insets(0, 0, 0, 5);
 		gbc_lblSprite.gridx = 1;
 		gbc_lblSprite.gridy = 2;
@@ -110,13 +110,13 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 
 		lblArchivo = new ILabel();
 		lblArchivo.setFont(new Font("Dialog", Font.ITALIC, 12));
-		GridBagConstraints gbc_lblArchivo = new GridBagConstraints();
+		final GridBagConstraints gbc_lblArchivo = new GridBagConstraints();
 		gbc_lblArchivo.insets = new Insets(0, 0, 0, 5);
 		gbc_lblArchivo.gridx = 2;
 		gbc_lblArchivo.gridy = 2;
 		add(lblArchivo, gbc_lblArchivo);
 
-		GridBagConstraints gbc_btnExamine = new GridBagConstraints();
+		final GridBagConstraints gbc_btnExamine = new GridBagConstraints();
 		gbc_btnExamine.insets = new Insets(0, 0, 0, 5);
 		gbc_btnExamine.gridx = 3;
 		gbc_btnExamine.gridy = 2;
@@ -149,7 +149,7 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e)
+	public void keyTyped(final KeyEvent e)
 	{
 		if (e.getSource() == textWidth || e.getSource() == textHeight)
 		{
@@ -173,21 +173,22 @@ public class NewMap extends JPanel implements KeyListener, ActionListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e)
+	public void keyPressed(final KeyEvent e)
 	{
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e)
+	public void keyReleased(final KeyEvent e)
 	{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void actionPerformed(final ActionEvent e)
 	{
 		if (e.getSource() == btnExamine)
 		{
-			File f = FileChooser.openFile(Lang.getLine("sprite_file"), "spr");
+			final File f = FileChooser.openFile(Lang.getLine("sprite_file"),
+			"spr");
 			if (f != null)
 			{
 				try

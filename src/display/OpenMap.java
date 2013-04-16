@@ -33,8 +33,8 @@ import exceptions.SpriteException;
 public class OpenMap extends JPanel {
 
 	private static final long	serialVersionUID	= - 2133910597250819834L;
-	private ILabel				lblSpriteFile, lblMapFile;
-	private IButton				btnBrowseMap;
+	private final ILabel		lblSpriteFile, lblMapFile;
+	private final IButton		btnBrowseMap;
 	private Map					map;
 	private File				file;
 
@@ -43,7 +43,7 @@ public class OpenMap extends JPanel {
 	 */
 	public OpenMap()
 	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
+		final GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[] {0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 0.0, 1.0, 1.0,
@@ -52,10 +52,10 @@ public class OpenMap extends JPanel {
 		Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		ILabel lblSprite = new ILabel();
+		final ILabel lblSprite = new ILabel();
 		lblSprite.setHorizontalAlignment(SwingConstants.TRAILING);
 		Lang.setLine(lblSprite, "map_sprite");
-		GridBagConstraints gbc_lblSprite = new GridBagConstraints();
+		final GridBagConstraints gbc_lblSprite = new GridBagConstraints();
 		gbc_lblSprite.anchor = GridBagConstraints.EAST;
 		gbc_lblSprite.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSprite.gridx = 1;
@@ -65,22 +65,22 @@ public class OpenMap extends JPanel {
 		lblSpriteFile = new ILabel();
 		lblSpriteFile.setHorizontalTextPosition(SwingConstants.LEADING);
 		lblSpriteFile.setFont(new Font("Dialog", Font.ITALIC, 12));
-		GridBagConstraints gbc_lblSpriteFile = new GridBagConstraints();
+		final GridBagConstraints gbc_lblSpriteFile = new GridBagConstraints();
 		gbc_lblSpriteFile.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSpriteFile.gridx = 2;
 		gbc_lblSpriteFile.gridy = 1;
 		add(lblSpriteFile, gbc_lblSpriteFile);
 
-		IButton btnBrowseSpr = new IButton();
+		final IButton btnBrowseSpr = new IButton();
 		Lang.setLine(btnBrowseSpr, "btn_examine");
 		btnBrowseSpr.addActionListener(new ActionListener()
 		{
 
 			@Override
-			public void actionPerformed(ActionEvent e)
+			public void actionPerformed(final ActionEvent e)
 			{
-				File f = FileChooser.openFile(Lang.getLine("sprite_file"),
-				"spr");
+				final File f = FileChooser.openFile(
+				Lang.getLine("sprite_file"), "spr");
 				if (f != null)
 				{
 					Sprite sprite = null;
@@ -112,16 +112,16 @@ public class OpenMap extends JPanel {
 				}
 			}
 		});
-		GridBagConstraints gbc_btnBrowseSpr = new GridBagConstraints();
+		final GridBagConstraints gbc_btnBrowseSpr = new GridBagConstraints();
 		gbc_btnBrowseSpr.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBrowseSpr.gridx = 3;
 		gbc_btnBrowseSpr.gridy = 1;
 		add(btnBrowseSpr, gbc_btnBrowseSpr);
 
-		ILabel lblMap = new ILabel();
+		final ILabel lblMap = new ILabel();
 		lblMap.setHorizontalAlignment(SwingConstants.TRAILING);
 		Lang.setLine(lblMap, "map_file");
-		GridBagConstraints gbc_lblMap = new GridBagConstraints();
+		final GridBagConstraints gbc_lblMap = new GridBagConstraints();
 		gbc_lblMap.anchor = GridBagConstraints.EAST;
 		gbc_lblMap.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMap.gridx = 1;
@@ -131,7 +131,7 @@ public class OpenMap extends JPanel {
 		lblMapFile = new ILabel();
 		lblMapFile.setHorizontalTextPosition(SwingConstants.LEADING);
 		lblMapFile.setFont(new Font("Dialog", Font.ITALIC, 12));
-		GridBagConstraints gbc_lblMapFile = new GridBagConstraints();
+		final GridBagConstraints gbc_lblMapFile = new GridBagConstraints();
 		gbc_lblMapFile.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMapFile.gridx = 2;
 		gbc_lblMapFile.gridy = 2;
@@ -142,15 +142,16 @@ public class OpenMap extends JPanel {
 		{
 
 			@Override
-			public void actionPerformed(ActionEvent e)
+			public void actionPerformed(final ActionEvent e)
 			{
-				File f = FileChooser.openFile(Lang.getLine("map_file"), "dmap");
+				final File f = FileChooser.openFile(Lang.getLine("map_file"),
+				"dmap");
 				if (f != null)
 				{
 					map = null;
 					try
 					{
-						ObjectInputStream ois = new ObjectInputStream(
+						final ObjectInputStream ois = new ObjectInputStream(
 						new FileInputStream(f));
 						map = (Map) ois.readObject();
 						ois.close();
@@ -177,7 +178,7 @@ public class OpenMap extends JPanel {
 		});
 		Lang.setLine(btnBrowseMap, "btn_examine");
 		btnBrowseMap.setEnabled(false);
-		GridBagConstraints gbc_btnBrowseMap = new GridBagConstraints();
+		final GridBagConstraints gbc_btnBrowseMap = new GridBagConstraints();
 		gbc_btnBrowseMap.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBrowseMap.gridx = 3;
 		gbc_btnBrowseMap.gridy = 2;

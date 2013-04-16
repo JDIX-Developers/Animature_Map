@@ -31,7 +31,7 @@ public class Start extends JPanel {
 		mapEditor = new MapEditor();
 		add(mapEditor, BorderLayout.CENTER);
 
-		ILabel copyLabel = new ILabel("JDIX Developers");
+		final ILabel copyLabel = new ILabel("JDIX Developers");
 		copyLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 10));
 		copyLabel.setForeground(Color.GRAY);
 		copyLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -53,7 +53,7 @@ public class Start extends JPanel {
 	 * 
 	 * @param m - The new MapEditor
 	 */
-	public void setMapEditor(MapEditor m)
+	public void setMapEditor(final MapEditor m)
 	{
 		remove(mapEditor);
 		this.mapEditor = m;
@@ -63,7 +63,7 @@ public class Start extends JPanel {
 	/**
 	 * @param args Arguments for the program
 	 */
-	public static void main(String[] args)
+	public static void main(final String[] args)
 	{
 		try
 		{

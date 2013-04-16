@@ -35,9 +35,9 @@ public class Menu extends JMenuBar implements ActionListener {
 
 	private static final long	serialVersionUID	= - 2674054941368737779L;
 
-	private IMenu				file, edit, help;
-	private IMenuItem			newFile, open, save, save_as, export;
-	private IMenuItem			preferences;
+	private final IMenu			file, edit, help;
+	private final IMenuItem		newFile, open, save, save_as, export;
+	private final IMenuItem		preferences;
 
 	/**
 	 * Create the menu.
@@ -118,16 +118,17 @@ public class Menu extends JMenuBar implements ActionListener {
 		{
 
 			@Override
-			public void actionPerformed(ActionEvent e)
+			public void actionPerformed(final ActionEvent e)
 			{
-				Preferences p = new Preferences();
+				final Preferences p = new Preferences();
 
-				String[] options = {Lang.getLine("conf_dialog_ok"),
+				final String[] options = {Lang.getLine("conf_dialog_ok"),
 				Lang.getLine("conf_dialog_cancel")};
-				JOptionPane pane = new JOptionPane(p,
+				final JOptionPane pane = new JOptionPane(p,
 				JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
 				options, options[1]);
-				JDialog dialog = pane.createDialog(Lang.getLine("preferences"));
+				final JDialog dialog = pane.createDialog(Lang
+				.getLine("preferences"));
 				dialog.setLocationRelativeTo(Window.getInstance());
 				dialog.setVisible(true);
 
@@ -173,21 +174,22 @@ public class Menu extends JMenuBar implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void actionPerformed(final ActionEvent e)
 	{
 		switch (e.getActionCommand())
 		{
 			case "new":
 				if (replaceMap())
 				{
-					NewMap p = new NewMap();
+					final NewMap p = new NewMap();
 
-					String[] options = {Lang.getLine("conf_dialog_ok"),
+					final String[] options = {Lang.getLine("conf_dialog_ok"),
 					Lang.getLine("conf_dialog_cancel")};
-					JOptionPane pane = new JOptionPane(p,
+					final JOptionPane pane = new JOptionPane(p,
 					JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION,
 					null, options, options[1]);
-					JDialog dialog = pane.createDialog(Lang.getLine("new_map"));
+					final JDialog dialog = pane.createDialog(Lang
+					.getLine("new_map"));
 					dialog.setSize(500, 200);
 					dialog.setLocationRelativeTo(Window.getInstance());
 					dialog.setVisible(true);
@@ -203,7 +205,7 @@ public class Menu extends JMenuBar implements ActionListener {
 						}
 						else
 						{
-							MapEditor m = new MapEditor();
+							final MapEditor m = new MapEditor();
 							((Start) Window.getInstance().getContentPane())
 							.setMapEditor(m);
 
@@ -211,7 +213,7 @@ public class Menu extends JMenuBar implements ActionListener {
 							{
 								m.setMap(p.getMap(), null);
 							}
-							catch (SpriteException e1)
+							catch (final SpriteException e1)
 							{
 								e1.printStackTrace();
 							}
@@ -224,15 +226,15 @@ public class Menu extends JMenuBar implements ActionListener {
 			case "open":
 				if (replaceMap())
 				{
-					OpenMap p = new OpenMap();
+					final OpenMap p = new OpenMap();
 
-					String[] options = {Lang.getLine("conf_dialog_ok"),
+					final String[] options = {Lang.getLine("conf_dialog_ok"),
 					Lang.getLine("conf_dialog_cancel")};
-					JOptionPane pane = new JOptionPane(p,
+					final JOptionPane pane = new JOptionPane(p,
 					JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION,
 					null, options, options[1]);
-					JDialog dialog = pane
-					.createDialog(Lang.getLine("open_map"));
+					final JDialog dialog = pane.createDialog(Lang
+					.getLine("open_map"));
 					dialog.setSize(500, 200);
 					dialog.setLocationRelativeTo(Window.getInstance());
 					dialog.setVisible(true);
@@ -248,7 +250,7 @@ public class Menu extends JMenuBar implements ActionListener {
 						}
 						else
 						{
-							MapEditor m = new MapEditor();
+							final MapEditor m = new MapEditor();
 							((Start) Window.getInstance().getContentPane())
 							.setMapEditor(m);
 
@@ -256,7 +258,7 @@ public class Menu extends JMenuBar implements ActionListener {
 							{
 								m.setMap(p.getMap(), p.getFile());
 							}
-							catch (SpriteException e1)
+							catch (final SpriteException e1)
 							{
 								e1.printStackTrace();
 							}
@@ -273,7 +275,7 @@ public class Menu extends JMenuBar implements ActionListener {
 					if (((Start) Window.getInstance().getContentPane())
 					.getMapEditor().getFile() != null)
 					{
-						MapEditor editor = ((Start) Window.getInstance()
+						final MapEditor editor = ((Start) Window.getInstance()
 						.getContentPane()).getMapEditor();
 						ObjectOutputStream oos = null;
 						try
@@ -283,7 +285,7 @@ public class Menu extends JMenuBar implements ActionListener {
 							oos.writeObject(editor.getMap());
 							oos.close();
 						}
-						catch (IOException e1)
+						catch (final IOException e1)
 						{
 							e1.printStackTrace();
 						}
@@ -327,13 +329,14 @@ public class Menu extends JMenuBar implements ActionListener {
 		if (((Start) Window.getInstance().getContentPane()).getMapEditor()
 		.hasMap())
 		{
-			String[] options = {Lang.getLine("confirm_yes"),
+			final String[] options = {Lang.getLine("confirm_yes"),
 			Lang.getLine("confirm_no")};
-			JOptionPane pane = new JOptionPane(
+			final JOptionPane pane = new JOptionPane(
 			Lang.getLine("mess_map_in_editor"), JOptionPane.WARNING_MESSAGE,
 			JOptionPane.YES_NO_OPTION, new ImageIcon("img/warning.png"),
 			options, options[1]);
-			JDialog dialog = pane.createDialog(Lang.getLine("map_in_editor"));
+			final JDialog dialog = pane.createDialog(Lang
+			.getLine("map_in_editor"));
 			dialog.setLocationRelativeTo(Window.getInstance());
 			dialog.setVisible(true);
 
@@ -349,8 +352,8 @@ public class Menu extends JMenuBar implements ActionListener {
 		if (((Start) Window.getInstance().getContentPane()).getMapEditor()
 		.getMap() != null)
 		{
-			MapEditor editor = ((Start) Window.getInstance().getContentPane())
-			.getMapEditor();
+			final MapEditor editor = ((Start) Window.getInstance()
+			.getContentPane()).getMapEditor();
 			editor.saved(FileChooser.saveObjectFile(editor.getMap(),
 			Lang.getLine("map_dev_file"), "dmap"));
 		}

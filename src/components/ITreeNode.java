@@ -13,7 +13,7 @@ Internationalizable {
 	private static final long	serialVersionUID	= 2477222581759751680L;
 
 	@Override
-	public void changeLanguage(String newText)
+	public void changeLanguage(final String newText)
 	{
 		setUserObject(newText);
 	}

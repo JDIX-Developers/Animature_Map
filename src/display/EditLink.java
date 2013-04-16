@@ -20,9 +20,9 @@ import components.ILabel;
 public class EditLink extends JPanel implements KeyListener {
 
 	private static final long	serialVersionUID	= 2813349405233711479L;
-	private JTextField			mapField;
-	private JTextField			xField;
-	private JTextField			yField;
+	private final JTextField	mapField;
+	private final JTextField	xField;
+	private final JTextField	yField;
 
 	/**
 	 * Creates a new link
@@ -35,9 +35,9 @@ public class EditLink extends JPanel implements KeyListener {
 	/**
 	 * @param l - The link to edit
 	 */
-	public EditLink(Link l)
+	public EditLink(final Link l)
 	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
+		final GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[] {1.0, 0.0, 1.0, 1.0,
@@ -46,9 +46,9 @@ public class EditLink extends JPanel implements KeyListener {
 		Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 
-		ILabel lblMap = new ILabel();
+		final ILabel lblMap = new ILabel();
 		Lang.setLine(lblMap, "edit_link_map");
-		GridBagConstraints gbc_lblMap = new GridBagConstraints();
+		final GridBagConstraints gbc_lblMap = new GridBagConstraints();
 		gbc_lblMap.anchor = GridBagConstraints.WEST;
 		gbc_lblMap.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMap.gridx = 1;
@@ -57,7 +57,7 @@ public class EditLink extends JPanel implements KeyListener {
 
 		mapField = new JTextField();
 		mapField.addKeyListener(this);
-		GridBagConstraints gbc_mapField = new GridBagConstraints();
+		final GridBagConstraints gbc_mapField = new GridBagConstraints();
 		gbc_mapField.insets = new Insets(0, 0, 5, 5);
 		gbc_mapField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_mapField.gridx = 2;
@@ -65,9 +65,9 @@ public class EditLink extends JPanel implements KeyListener {
 		add(mapField, gbc_mapField);
 		mapField.setColumns(10);
 
-		ILabel lblXCoord = new ILabel();
+		final ILabel lblXCoord = new ILabel();
 		Lang.setLine(lblXCoord, "edit_link_x");
-		GridBagConstraints gbc_lblXCoord = new GridBagConstraints();
+		final GridBagConstraints gbc_lblXCoord = new GridBagConstraints();
 		gbc_lblXCoord.anchor = GridBagConstraints.WEST;
 		gbc_lblXCoord.insets = new Insets(0, 0, 5, 5);
 		gbc_lblXCoord.gridx = 1;
@@ -76,7 +76,7 @@ public class EditLink extends JPanel implements KeyListener {
 
 		xField = new JTextField();
 		xField.addKeyListener(this);
-		GridBagConstraints gbc_xField = new GridBagConstraints();
+		final GridBagConstraints gbc_xField = new GridBagConstraints();
 		gbc_xField.insets = new Insets(0, 0, 5, 5);
 		gbc_xField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_xField.gridx = 2;
@@ -84,9 +84,9 @@ public class EditLink extends JPanel implements KeyListener {
 		add(xField, gbc_xField);
 		xField.setColumns(10);
 
-		ILabel lblYCoord = new ILabel();
+		final ILabel lblYCoord = new ILabel();
 		Lang.setLine(lblYCoord, "edit_link_y");
-		GridBagConstraints gbc_lblYCoord = new GridBagConstraints();
+		final GridBagConstraints gbc_lblYCoord = new GridBagConstraints();
 		gbc_lblYCoord.anchor = GridBagConstraints.WEST;
 		gbc_lblYCoord.insets = new Insets(0, 0, 5, 5);
 		gbc_lblYCoord.gridx = 1;
@@ -95,7 +95,7 @@ public class EditLink extends JPanel implements KeyListener {
 
 		yField = new JTextField();
 		yField.addKeyListener(this);
-		GridBagConstraints gbc_yField = new GridBagConstraints();
+		final GridBagConstraints gbc_yField = new GridBagConstraints();
 		gbc_yField.insets = new Insets(0, 0, 5, 5);
 		gbc_yField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_yField.gridx = 2;
@@ -128,7 +128,7 @@ public class EditLink extends JPanel implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e)
+	public void keyTyped(final KeyEvent e)
 	{
 		if (e.getKeyChar() > '9' || e.getKeyChar() < '0')
 		{
@@ -157,12 +157,12 @@ public class EditLink extends JPanel implements KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e)
+	public void keyPressed(final KeyEvent e)
 	{
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e)
+	public void keyReleased(final KeyEvent e)
 	{
 	}
 }

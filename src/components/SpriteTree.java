@@ -35,15 +35,15 @@ public class SpriteTree extends JTree {
 	public SpriteTree() throws SpriteException
 	{
 		super(new DefaultMutableTreeNode("root"));
-		Sprite sprite = Square.getSprite();
+		final Sprite sprite = Square.getSprite();
 
-		DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel
+		final DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel
 		.getRoot();
 
-		for (Entry<String, Entry<Byte, Byte>> ent: sprite.getHierarchy()
+		for (final Entry<String, Entry<Byte, Byte>> ent: sprite.getHierarchy()
 		.entrySet())
 		{
-			String[] path = ent.getKey().split("/");
+			final String[] path = ent.getKey().split("/");
 			setNode(root, path, 0);
 		}
 
@@ -52,15 +52,16 @@ public class SpriteTree extends JTree {
 		setShowsRootHandles(true);
 	}
 
-	private void setNode(DefaultMutableTreeNode root, String[] path, int cPath)
+	private void setNode(final DefaultMutableTreeNode root,
+	final String[] path, final int cPath)
 	{
 		@SuppressWarnings ("rawtypes")
-		Enumeration e = root.preorderEnumeration();
+		final Enumeration e = root.preorderEnumeration();
 
 		DefaultMutableTreeNode n = null;
 		while (e.hasMoreElements())
 		{
-			DefaultMutableTreeNode cn = (DefaultMutableTreeNode) e
+			final DefaultMutableTreeNode cn = (DefaultMutableTreeNode) e
 			.nextElement();
 
 			if (cn.getUserObject().equals(path[cPath]) && cn != root)
@@ -90,19 +91,19 @@ public class SpriteTree extends JTree {
 	 */
 	public ImageIcon getSelectedIcon() throws SpriteException
 	{
-		Sprite sprite = Square.getSprite();
+		final Sprite sprite = Square.getSprite();
 
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
-		HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
+		final DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+		final HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
 
 		if (node != null && node.isLeaf())
 		{
-			Image img = sprite.getRealImage();
-			Entry<Byte, Byte> coord = coords.get(getPath(node));
+			final Image img = sprite.getRealImage();
+			final Entry<Byte, Byte> coord = coords.get(getPath(node));
 
-			BufferedImage i = new BufferedImage(128, 128,
+			final BufferedImage i = new BufferedImage(128, 128,
 			BufferedImage.TYPE_INT_RGB);
-			Graphics g = i.createGraphics();
+			final Graphics g = i.createGraphics();
 
 			g.drawImage(img, 0, 0, 128, 128,
 			128 * MathUtils.uByteToInt(coord.getKey()),
@@ -116,15 +117,16 @@ public class SpriteTree extends JTree {
 		return null;
 	}
 
-	private String getPath(DefaultMutableTreeNode node) throws SpriteException
+	private String getPath(final DefaultMutableTreeNode node)
+	throws SpriteException
 	{
-		TreeNode[] path = node.getPath();
+		final TreeNode[] path = node.getPath();
 		String formattedPath = "";
-		for (TreeNode element: path)
+		for (final TreeNode element: path)
 		{
-			DefaultMutableTreeNode cN = (DefaultMutableTreeNode) element;
+			final DefaultMutableTreeNode cN = (DefaultMutableTreeNode) element;
 
-			String pathStr = (String) cN.getUserObject();
+			final String pathStr = (String) cN.getUserObject();
 
 			if ( ! pathStr.equals("root"))
 			{
@@ -147,14 +149,14 @@ public class SpriteTree extends JTree {
 	public Square getSelectedSquare() throws SpriteException,
 	CompressionException
 	{
-		Sprite sprite = Square.getSprite();
+		final Sprite sprite = Square.getSprite();
 
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
-		HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
+		final DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+		final HashMap<String, Entry<Byte, Byte>> coords = sprite.getHierarchy();
 
 		if (node != null && node.isLeaf())
 		{
-			Entry<Byte, Byte> coord = coords.get(getPath(node));
+			final Entry<Byte, Byte> coord = coords.get(getPath(node));
 
 			return Square.load(coord.getKey(), coord.getValue());
 		}

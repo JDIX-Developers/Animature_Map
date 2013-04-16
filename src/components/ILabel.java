@@ -22,7 +22,7 @@ public class ILabel extends JLabel implements Internationalizable {
 	 * @param image Image for the label
 	 * @param horizontalAlignment Horizontal alignment
 	 */
-	public ILabel(Icon image, int horizontalAlignment)
+	public ILabel(final Icon image, final int horizontalAlignment)
 	{
 		super(image, horizontalAlignment);
 	}
@@ -30,7 +30,7 @@ public class ILabel extends JLabel implements Internationalizable {
 	/**
 	 * @param image Image for the label
 	 */
-	public ILabel(Icon image)
+	public ILabel(final Icon image)
 	{
 		super(image);
 	}
@@ -40,7 +40,8 @@ public class ILabel extends JLabel implements Internationalizable {
 	 * @param icon Icon for the label
 	 * @param horizontalAlignment Horizontal alignment
 	 */
-	public ILabel(String text, Icon icon, int horizontalAlignment)
+	public ILabel(final String text, final Icon icon,
+	final int horizontalAlignment)
 	{
 		super(text, icon, horizontalAlignment);
 	}
@@ -49,7 +50,7 @@ public class ILabel extends JLabel implements Internationalizable {
 	 * @param text Text for the label
 	 * @param horizontalAlignment Horizontal alignment
 	 */
-	public ILabel(String text, int horizontalAlignment)
+	public ILabel(final String text, final int horizontalAlignment)
 	{
 		super(text, horizontalAlignment);
 	}
@@ -57,13 +58,13 @@ public class ILabel extends JLabel implements Internationalizable {
 	/**
 	 * @param text Text for the label
 	 */
-	public ILabel(String text)
+	public ILabel(final String text)
 	{
 		super(text);
 	}
 
 	@Override
-	public void changeLanguage(String newText)
+	public void changeLanguage(final String newText)
 	{
 		setText(newText);
 	}

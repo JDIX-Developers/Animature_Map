@@ -18,14 +18,14 @@ public class Square implements Serializable {
 	private static Sprite		sprite;
 	private static Square[][]	squares;
 	private BufferedImage		image;
-	private byte				x, y;
+	private final byte			x, y;
 
 	/**
 	 * @param x X Coordinate
 	 * @param y Y Coordinate
 	 * @throws CompressionException If there is a compression error
 	 */
-	private Square(byte x, byte y) throws CompressionException
+	private Square(final byte x, final byte y) throws CompressionException
 	{
 		if (x == 0xFF || y == 0xFF)
 		{
@@ -46,7 +46,7 @@ public class Square implements Serializable {
 	 */
 	public byte[] bytes()
 	{
-		byte[] a = {this.x, this.y};
+		final byte[] a = {this.x, this.y};
 		return a;
 	}
 
@@ -57,7 +57,7 @@ public class Square implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object sq)
+	public boolean equals(final Object sq)
 	{
 		return (sq instanceof Square && Arrays.equals(((Square) sq).bytes(),
 		bytes()));
@@ -66,7 +66,7 @@ public class Square implements Serializable {
 	/**
 	 * @param s Sprite
 	 */
-	public static void setSprite(Sprite s)
+	public static void setSprite(final Sprite s)
 	{
 		sprite = s;
 	}
@@ -86,10 +86,10 @@ public class Square implements Serializable {
 	 * @throws SpriteException - If the sprite has not been initialized
 	 * @throws CompressionException - If there is a compression error
 	 */
-	public static Square load(byte x, byte y) throws SpriteException,
-	CompressionException
+	public static Square load(final byte x, final byte y)
+	throws SpriteException, CompressionException
 	{
-		int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
+		final int xi = MathUtils.uByteToInt(x), yi = MathUtils.uByteToInt(y);
 
 		if (sprite == null)
 		{
@@ -132,7 +132,7 @@ public class Square implements Serializable {
 		{
 			s = new Square(x, y);
 		}
-		catch (CompressionException e)
+		catch (final CompressionException e)
 		{
 			e.printStackTrace();
 		}

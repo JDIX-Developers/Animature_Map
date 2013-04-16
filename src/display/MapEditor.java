@@ -39,7 +39,9 @@ MouseListener {
 
 	private static final long	serialVersionUID	= - 8557921921364871510L;
 	private Map					map;
-	private ILabel				lblLoad, lblSquareImage, lblMap;
+	private final ILabel		lblLoad;
+	private ILabel				lblSquareImage;
+	private ILabel				lblMap;
 	private SpriteTree			tree;
 	private ToolBar				toolBar;
 	private boolean				isSaved;
@@ -65,7 +67,7 @@ MouseListener {
 	 * @param saveFile - The file in which to save the map
 	 * @throws SpriteException - if the sprite is not set
 	 */
-	public void setMap(Map m, File saveFile) throws SpriteException
+	public void setMap(final Map m, final File saveFile) throws SpriteException
 	{
 		this.isSaved = saveFile != null;
 
@@ -77,7 +79,7 @@ MouseListener {
 		toolBar = new ToolBar(this);
 		add(toolBar, BorderLayout.NORTH);
 
-		JScrollPane mapPanel = new JScrollPane();
+		final JScrollPane mapPanel = new JScrollPane();
 
 		lblMap = new ILabel(printGrid(map.getImage()));
 		lblMap.addMouseListener(this);
@@ -85,14 +87,14 @@ MouseListener {
 
 		add(mapPanel, BorderLayout.CENTER);
 
-		JPanel treePanel = new JPanel();
+		final JPanel treePanel = new JPanel();
 		add(treePanel, BorderLayout.EAST);
 		treePanel.setLayout(new BorderLayout(0, 0));
 
 		lblSquareImage = new ILabel(new ImageIcon("img/void_square.png"));
 		treePanel.add(lblSquareImage, BorderLayout.NORTH);
 
-		JScrollPane scrollPane = new JScrollPane();
+		final JScrollPane scrollPane = new JScrollPane();
 		treePanel.add(scrollPane, BorderLayout.CENTER);
 
 		tree = new SpriteTree();
@@ -102,9 +104,9 @@ MouseListener {
 		updateUI();
 	}
 
-	private ImageIcon printGrid(BufferedImage img)
+	private ImageIcon printGrid(final BufferedImage img)
 	{
-		Graphics2D graphs = img.createGraphics();
+		final Graphics2D graphs = img.createGraphics();
 
 		graphs.setColor(Color.BLACK);
 
@@ -122,10 +124,10 @@ MouseListener {
 
 		graphs.setColor(Color.GREEN);
 
-		for (Entry<Entry<Byte, Byte>, Link> entry: map.getLinks())
+		for (final Entry<Entry<Byte, Byte>, Link> entry: map.getLinks())
 		{
-			byte x = entry.getKey().getKey();
-			byte y = entry.getKey().getValue();
+			final byte x = entry.getKey().getKey();
+			final byte y = entry.getKey().getValue();
 
 			// Horizontal lines
 			graphs.drawLine(x * 32, y * 32, (x + 1) * 32, y * 32);
@@ -160,7 +162,7 @@ MouseListener {
 	 * 
 	 * @param path The path of the saved file
 	 */
-	public void saved(String path)
+	public void saved(final String path)
 	{
 		this.saveFile = path != null && ! path.equals("") ? new File(path)
 		: null;
@@ -194,20 +196,20 @@ MouseListener {
 	/**
 	 * @param cursor - The cursor to set for the map
 	 */
-	public void setMapCursor(int cursor)
+	public void setMapCursor(final int cursor)
 	{
 		lblMap.setCursor(Cursor.getPredefinedCursor(cursor));
 	}
 
 	@Override
-	public void valueChanged(TreeSelectionEvent arg0)
+	public void valueChanged(final TreeSelectionEvent arg0)
 	{
 		ImageIcon i = null;
 		try
 		{
 			i = tree.getSelectedIcon();
 		}
-		catch (SpriteException e)
+		catch (final SpriteException e)
 		{
 			e.printStackTrace();
 		}
@@ -219,7 +221,7 @@ MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e)
+	public void mouseClicked(final MouseEvent e)
 	{
 		if (toolBar.isAddingLink() || toolBar.isEditingLink()
 		|| toolBar.isRemovingLink())
@@ -247,19 +249,20 @@ MouseListener {
 		}
 	}
 
-	private void addLink(int x, int y)
+	private void addLink(final int x, final int y)
 	{
-		Link l = map.getLink((byte) x, (byte) y);
+		final Link l = map.getLink((byte) x, (byte) y);
 
 		if (l == null)
 		{
-			EditLink p = new EditLink();
+			final EditLink p = new EditLink();
 
-			String[] options = {Lang.getLine("conf_dialog_ok"),
+			final String[] options = {Lang.getLine("conf_dialog_ok"),
 			Lang.getLine("conf_dialog_cancel")};
-			JOptionPane pane = new JOptionPane(p, JOptionPane.PLAIN_MESSAGE,
-			JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
-			JDialog dialog = pane.createDialog(Lang.getLine("add_link"));
+			final JOptionPane pane = new JOptionPane(p,
+			JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
+			options, options[1]);
+			final JDialog dialog = pane.createDialog(Lang.getLine("add_link"));
 			dialog.setSize(500, 200);
 			dialog.setLocationRelativeTo(Window.getInstance());
 			dialog.setVisible(true);
@@ -281,19 +284,20 @@ MouseListener {
 		}
 	}
 
-	private void editLink(int x, int y)
+	private void editLink(final int x, final int y)
 	{
-		Link l = map.getLink((byte) x, (byte) y);
+		final Link l = map.getLink((byte) x, (byte) y);
 
 		if (l != null)
 		{
-			EditLink p = new EditLink(l);
+			final EditLink p = new EditLink(l);
 
-			String[] options = {Lang.getLine("conf_dialog_ok"),
+			final String[] options = {Lang.getLine("conf_dialog_ok"),
 			Lang.getLine("conf_dialog_cancel")};
-			JOptionPane pane = new JOptionPane(p, JOptionPane.PLAIN_MESSAGE,
-			JOptionPane.OK_CANCEL_OPTION, null, options, options[1]);
-			JDialog dialog = pane.createDialog(Lang.getLine("edit_link"));
+			final JOptionPane pane = new JOptionPane(p,
+			JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null,
+			options, options[1]);
+			final JDialog dialog = pane.createDialog(Lang.getLine("edit_link"));
 			dialog.setSize(500, 200);
 			dialog.setLocationRelativeTo(Window.getInstance());
 			dialog.setVisible(true);
@@ -312,7 +316,7 @@ MouseListener {
 		}
 	}
 
-	private void removeLink(int x, int y)
+	private void removeLink(final int x, final int y)
 	{
 		if (JOptionPane.showConfirmDialog(null,
 		Lang.getLine("remove_link_confirm"), Lang.getLine("remove_link"),
@@ -326,7 +330,7 @@ MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e)
+	public void mousePressed(final MouseEvent e)
 	{
 		if ( ! toolBar.isAddingLink() && ! toolBar.isEditingLink()
 		&& ! toolBar.isRemovingLink())
@@ -353,7 +357,7 @@ MouseListener {
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e)
+	public void mouseReleased(final MouseEvent e)
 	{
 		try
 		{
@@ -380,12 +384,12 @@ MouseListener {
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e)
+	public void mouseEntered(final MouseEvent e)
 	{
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e)
+	public void mouseExited(final MouseEvent e)
 	{
 	}
 }

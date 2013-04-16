@@ -21,9 +21,9 @@ public class SpriteCreator {
 	/**
 	 * @param args Arguments for the application
 	 */
-	public static void main(String[] args)
+	public static void main(final String[] args)
 	{
-		byte[] arr = {0x00, (byte) 0x80,
+		final byte[] arr = {0x00, (byte) 0x80,
 		/*
 		 * 0x00, 0x00, "CAMBIANTE", 0x01, 0x00, "ANDABLE", 0x02, 0x00,
 		 * "ANDABLE",
@@ -31,16 +31,16 @@ public class SpriteCreator {
 
 		try
 		{
-			FileOutputStream st = new FileOutputStream("prueba.spr");
+			final FileOutputStream st = new FileOutputStream("prueba.spr");
 			st.write(arr);
 			st.close();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			e.printStackTrace();
 		}
 
-		HashMap<String, Map.Entry<Byte, Byte>> m = new HashMap<>();
+		final HashMap<String, Map.Entry<Byte, Byte>> m = new HashMap<>();
 
 		m.put("Soil/Weed", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x00), new Byte((byte) 0x00)));
@@ -90,12 +90,12 @@ public class SpriteCreator {
 
 		try
 		{
-			ObjectOutputStream os = new ObjectOutputStream(
+			final ObjectOutputStream os = new ObjectOutputStream(
 			new FileOutputStream("prueba.dspr"));
 			os.writeObject(m);
 			os.close();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			e.printStackTrace();
 		}

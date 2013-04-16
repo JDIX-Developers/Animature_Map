@@ -24,7 +24,7 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	 * 
 	 * @param text - the text of the JMenuItem
 	 */
-	public IMenuItem(String text)
+	public IMenuItem(final String text)
 	{
 		super(text);
 	}
@@ -34,7 +34,7 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	 * 
 	 * @param icon - the icon of the JMenuItem
 	 */
-	public IMenuItem(Icon icon)
+	public IMenuItem(final Icon icon)
 	{
 		super(icon);
 	}
@@ -44,7 +44,7 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	 * 
 	 * @param a - the action of the JMenuItem
 	 */
-	public IMenuItem(Action a)
+	public IMenuItem(final Action a)
 	{
 		super(a);
 	}
@@ -55,7 +55,7 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	 * @param text - the text of the JMenuItem
 	 * @param icon - the icon of the JMenuItem
 	 */
-	public IMenuItem(String text, Icon icon)
+	public IMenuItem(final String text, final Icon icon)
 	{
 		super(text, icon);
 		// TODO Apéndice de constructor generado automáticamente
@@ -67,14 +67,14 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	 * @param text - the text of the JMenuItem
 	 * @param mnemonic - the keyboard mnemonic for the JMenuItem
 	 */
-	public IMenuItem(String text, int mnemonic)
+	public IMenuItem(final String text, final int mnemonic)
 	{
 		super(text, mnemonic);
 		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	@Override
-	public void changeLanguage(String newText)
+	public void changeLanguage(final String newText)
 	{
 		setText(newText);
 	}

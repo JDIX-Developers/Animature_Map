@@ -22,7 +22,7 @@ public class Map implements Serializable {
 	private static final long					serialVersionUID	= 1630051961654828210L;
 	private BufferedImage						image;
 	private Square[][]							squares;
-	private int									width, height;
+	private final int							width, height;
 	private HashMap<Entry<Byte, Byte>, Link>	links;
 
 	/**
@@ -30,7 +30,7 @@ public class Map implements Serializable {
 	 * @param height Map's height
 	 * @throws SpriteException if the sprite is not set
 	 */
-	public Map(int width, int height) throws SpriteException
+	public Map(final int width, final int height) throws SpriteException
 	{
 		this.squares = new Square[height][width];
 		this.width = width;
@@ -39,7 +39,7 @@ public class Map implements Serializable {
 		this.image = new BufferedImage(width * 32, height * 32,
 		BufferedImage.TYPE_INT_RGB);
 
-		Graphics2D g = this.image.createGraphics();
+		final Graphics2D g = this.image.createGraphics();
 		g.setPaint(Color.WHITE);
 		g.fillRect(0, 0, this.image.getWidth(), this.image.getHeight());
 	}
@@ -51,7 +51,7 @@ public class Map implements Serializable {
 	 * @param y - Y coordinate for the new square
 	 * @param sq Square to set
 	 */
-	public void setSquare(int x, int y, Square sq)
+	public void setSquare(final int x, final int y, final Square sq)
 	{
 		squares[y][x] = sq;
 
@@ -64,7 +64,7 @@ public class Map implements Serializable {
 	 * @param y - Y coordinate
 	 * @return The square in the given coordinates
 	 */
-	public Square getSquare(int x, int y)
+	public Square getSquare(final int x, final int y)
 	{
 		return squares[y][x];
 	}
@@ -74,7 +74,7 @@ public class Map implements Serializable {
 	 * @param y - The Y coordinate for the link
 	 * @param l Link for the square
 	 */
-	public void addLink(byte x, byte y, Link l)
+	public void addLink(final byte x, final byte y, final Link l)
 	{
 		links.put(new SimpleEntry<Byte, Byte>(x, y), l);
 	}
@@ -83,7 +83,7 @@ public class Map implements Serializable {
 	 * @param x - The X coordinate of the link
 	 * @param y - The Y coordinate of the link
 	 */
-	public void removeLink(byte x, byte y)
+	public void removeLink(final byte x, final byte y)
 	{
 		links.remove(new SimpleEntry<Byte, Byte>(x, y));
 	}
@@ -93,7 +93,7 @@ public class Map implements Serializable {
 	 * @param y - The Y coordinate of the link
 	 * @return The link in the given coordinates
 	 */
-	public Link getLink(byte x, byte y)
+	public Link getLink(final byte x, final byte y)
 	{
 		return links.get(new SimpleEntry<Byte, Byte>(x, y));
 	}
@@ -169,8 +169,8 @@ public class Map implements Serializable {
 
 	private byte[] compress()
 	{
-		byte[][] arr2d = new byte[height][2 * width];
-		byte[][] arr2dc = new byte[height][2 * width];
+		final byte[][] arr2d = new byte[height][2 * width];
+		final byte[][] arr2dc = new byte[height][2 * width];
 
 		// We load the bidimensional array, square by square
 		for (int i = 0; i < this.squares.length; i++)
@@ -254,12 +254,12 @@ public class Map implements Serializable {
 		}
 
 		// We create the compressed array
-		byte[] arr = new byte[2 + 2 * height * width - deleted * 2];
+		final byte[] arr = new byte[2 + 2 * height * width - deleted * 2];
 		arr[0] = (byte) width;
 		arr[1] = (byte) height;
 		int índice = 2;
 
-		for (byte[] element: arr2dc)
+		for (final byte[] element: arr2dc)
 		{
 			for (int h = 0; h < element.length; h += 2)
 			{
@@ -275,14 +275,14 @@ public class Map implements Serializable {
 		return arr;
 	}
 
-	private byte[] addLinks(byte[] array)
+	private byte[] addLinks(final byte[] array)
 	{
-		byte[] result = Arrays.copyOf(array, array.length + links.size() * 6
-		+ 2);
+		final byte[] result = Arrays.copyOf(array, array.length + links.size()
+		* 6 + 2);
 		int i = array.length;
 		result[i] = result[i + 1] = (byte) 0xFF;
 		i += 2;
-		for (Entry<Entry<Byte, Byte>, Link> ent: links.entrySet())
+		for (final Entry<Entry<Byte, Byte>, Link> ent: links.entrySet())
 		{
 			result[i++] = ent.getKey().getKey();
 			result[i++] = ent.getKey().getValue();
@@ -301,7 +301,7 @@ public class Map implements Serializable {
 		{
 			m = new Map(width, height);
 		}
-		catch (SpriteException e)
+		catch (final SpriteException e)
 		{
 			e.printStackTrace();
 		}
@@ -320,7 +320,7 @@ public class Map implements Serializable {
 		{
 			m = new Map(width, height);
 		}
-		catch (SpriteException e)
+		catch (final SpriteException e)
 		{
 			e.printStackTrace();
 		}
@@ -332,7 +332,7 @@ public class Map implements Serializable {
 		{
 			for (int h = 0; h < m.squares[1].length; h++)
 			{
-				Square sq = m.squares[i][h];
+				final Square sq = m.squares[i][h];
 				if (sq != null)
 				{
 					m.image.createGraphics().drawImage(sq.getImage(), h * 32,

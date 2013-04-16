@@ -35,7 +35,7 @@ public class Sprite {
 	 *             hierarchy.
 	 */
 	@SuppressWarnings ("unchecked")
-	public Sprite(File f) throws IOException, SpriteException,
+	public Sprite(final File f) throws IOException, SpriteException,
 	ClassNotFoundException
 	{
 		FileInputStream st = null;
@@ -43,24 +43,25 @@ public class Sprite {
 		{
 			st = new FileInputStream(f);
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			e.printStackTrace();
 		}
 
-		byte[] array = new byte[(int) f.length()];
+		final byte[] array = new byte[(int) f.length()];
 		st.read(array);
 
-		short size = MathUtils.twoByteToShort(array[0], array[1]);
+		final short size = MathUtils.twoByteToShort(array[0], array[1]);
 
 		if (size != 0)
 		{
-			File sprite = new File(f.getAbsolutePath().substring(0,
+			final File sprite = new File(f.getAbsolutePath().substring(0,
 			f.getAbsolutePath().length() - 3)
 			+ "png");
 
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f
-			.getAbsolutePath().substring(0, f.getAbsolutePath().length() - 4)
+			final ObjectInputStream ois = new ObjectInputStream(
+			new FileInputStream(f.getAbsolutePath().substring(0,
+			f.getAbsolutePath().length() - 4)
 			+ ".dspr"));
 
 			hierarchy = (HashMap<String, Entry<Byte, Byte>>) ois.readObject();
@@ -71,8 +72,9 @@ public class Sprite {
 			this.height = (byte) (this.image.getHeight() / size);
 			this.width = (byte) (this.image.getWidth() / size);
 
-			Image i = this.image.getScaledInstance(this.image.getWidth() / 4,
-			this.image.getHeight() / 4, Image.SCALE_FAST);
+			final Image i = this.image.getScaledInstance(
+			this.image.getWidth() / 4, this.image.getHeight() / 4,
+			Image.SCALE_FAST);
 			this.resizedImage = new BufferedImage(i.getWidth(null),
 			i.getHeight(null), BufferedImage.TYPE_INT_RGB);
 			this.resizedImage.getGraphics().drawImage(i, 0, 0, null);

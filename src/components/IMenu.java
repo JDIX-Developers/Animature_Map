@@ -21,7 +21,7 @@ public class IMenu extends JMenu implements Internationalizable {
 	/**
 	 * @param a Action for the menu
 	 */
-	public IMenu(Action a)
+	public IMenu(final Action a)
 	{
 		super(a);
 	}
@@ -30,7 +30,7 @@ public class IMenu extends JMenu implements Internationalizable {
 	 * @param s the text for the menu label
 	 * @param b can the menu be torn off
 	 */
-	public IMenu(String s, boolean b)
+	public IMenu(final String s, final boolean b)
 	{
 		super(s, b);
 	}
@@ -38,13 +38,13 @@ public class IMenu extends JMenu implements Internationalizable {
 	/**
 	 * @param s the text for the menu label
 	 */
-	public IMenu(String s)
+	public IMenu(final String s)
 	{
 		super(s);
 	}
 
 	@Override
-	public void changeLanguage(String newText)
+	public void changeLanguage(final String newText)
 	{
 		setText(newText);
 	}

@@ -20,8 +20,8 @@ import utils.Lang;
  */
 public class Preferences extends JPanel {
 
-	private static final long		serialVersionUID	= -9082799207563983259L;
-	private JComboBox<String>		langCombo, lookNFeelCombo;
+	private static final long	serialVersionUID	= - 9082799207563983259L;
+	private final JComboBox<String>	langCombo, lookNFeelCombo;
 	private HashMap<String, String>	lookNFeelHashMap;
 	private String					currentLookAndFeel;
 
@@ -32,9 +32,9 @@ public class Preferences extends JPanel {
 	{
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
-		GridBagLayout gbl_panel = new GridBagLayout();
+		final GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] {0, 78, 32, 0, 0};
 		gbl_panel.rowHeights = new int[] {24, 0, 0};
 		gbl_panel.columnWeights = new double[] {1.0, 0.0, 1.0, 1.0,
@@ -42,8 +42,8 @@ public class Preferences extends JPanel {
 		gbl_panel.rowWeights = new double[] {0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 
-		JLabel lblLanguage = new JLabel(Lang.getLine("pref_lang"));
-		GridBagConstraints gbc_lblLanguage = new GridBagConstraints();
+		final JLabel lblLanguage = new JLabel(Lang.getLine("pref_lang"));
+		final GridBagConstraints gbc_lblLanguage = new GridBagConstraints();
 		gbc_lblLanguage.insets = new Insets(0, 0, 5, 5);
 		gbc_lblLanguage.gridx = 1;
 		gbc_lblLanguage.gridy = 0;
@@ -51,15 +51,16 @@ public class Preferences extends JPanel {
 
 		langCombo = new JComboBox<>(Lang.getCombableLocales());
 		langCombo.setSelectedIndex(Lang.getCurrentLocaleKey());
-		GridBagConstraints gbc_langCombo = new GridBagConstraints();
+		final GridBagConstraints gbc_langCombo = new GridBagConstraints();
 		gbc_langCombo.insets = new Insets(0, 0, 5, 5);
 		gbc_langCombo.anchor = GridBagConstraints.NORTH;
 		gbc_langCombo.gridx = 2;
 		gbc_langCombo.gridy = 0;
 		panel.add(langCombo, gbc_langCombo);
 
-		JLabel lbLookandfeel = new JLabel(Lang.getLine("pref_look_and_feel"));
-		GridBagConstraints gbc_lbLookandfeel = new GridBagConstraints();
+		final JLabel lbLookandfeel = new JLabel(
+		Lang.getLine("pref_look_and_feel"));
+		final GridBagConstraints gbc_lbLookandfeel = new GridBagConstraints();
 		gbc_lbLookandfeel.insets = new Insets(0, 0, 0, 5);
 		gbc_lbLookandfeel.gridx = 1;
 		gbc_lbLookandfeel.gridy = 1;
@@ -67,7 +68,7 @@ public class Preferences extends JPanel {
 
 		lookNFeelCombo = new JComboBox<>(getAvailableLF());
 		lookNFeelCombo.setSelectedItem(currentLookAndFeel);
-		GridBagConstraints gbc_lfCombo = new GridBagConstraints();
+		final GridBagConstraints gbc_lfCombo = new GridBagConstraints();
 		gbc_lfCombo.insets = new Insets(0, 0, 0, 5);
 		gbc_lfCombo.gridx = 2;
 		gbc_lfCombo.gridy = 1;
@@ -92,11 +93,11 @@ public class Preferences extends JPanel {
 
 	private Vector<String> getAvailableLF()
 	{
-		LookAndFeelInfo lfs[] = UIManager.getInstalledLookAndFeels();
+		final LookAndFeelInfo lfs[] = UIManager.getInstalledLookAndFeels();
 		lookNFeelHashMap = new HashMap<>(lfs.length);
-		Vector<String> v = new Vector<>(lfs.length);
+		final Vector<String> v = new Vector<>(lfs.length);
 
-		for (LookAndFeelInfo lf2: lfs)
+		for (final LookAndFeelInfo lf2: lfs)
 		{
 			lookNFeelHashMap.put(lf2.getName(), lf2.getClassName());
 			v.add(lf2.getName());

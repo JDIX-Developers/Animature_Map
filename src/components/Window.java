@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import utils.Lang;
-
 import display.Start;
 
 /**
@@ -34,18 +33,18 @@ public class Window extends JFrame implements Internationalizable {
 		{
 
 			@Override
-			public void windowClosing(WindowEvent winEvt)
+			public void windowClosing(final WindowEvent winEvt)
 			{
 				if ( ! ((Start) Window.getInstance().getContentPane())
 				.getMapEditor().isSaved())
 				{
-					String[] options = {Lang.getLine("confirm_yes"),
+					final String[] options = {Lang.getLine("confirm_yes"),
 					Lang.getLine("confirm_no")};
-					JOptionPane pane = new JOptionPane(
+					final JOptionPane pane = new JOptionPane(
 					Lang.getLine("close_mess_not_saved"),
 					JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION,
 					new ImageIcon("img/warning.png"), options, options[1]);
-					JDialog dialog = pane.createDialog(Lang
+					final JDialog dialog = pane.createDialog(Lang
 					.getLine("close_not_saved"));
 					dialog.setLocationRelativeTo(Window.this);
 					dialog.setVisible(true);
@@ -85,7 +84,7 @@ public class Window extends JFrame implements Internationalizable {
 	}
 
 	@Override
-	public void changeLanguage(String newText)
+	public void changeLanguage(final String newText)
 	{
 		setTitle(newText);
 	}

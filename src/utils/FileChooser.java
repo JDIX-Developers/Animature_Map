@@ -21,9 +21,10 @@ public class FileChooser {
 	 *            extensions.
 	 * @return The file loaded
 	 */
-	public static File openFile(String description, String ... extensions)
+	public static File openFile(final String description,
+	final String ... extensions)
 	{
-		JFileChooser fileChooser = new JFileChooser();
+		final JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileFilter(new FileNameExtensionFilter(description,
 		extensions));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -37,7 +38,7 @@ public class FileChooser {
 				file = new File(path);
 			}
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -52,10 +53,10 @@ public class FileChooser {
 	 * @param extension - The extension of the file
 	 * @return The path of the saved file
 	 */
-	public static String saveObjectFile(Object content, String description,
-	String extension)
+	public static String saveObjectFile(final Object content,
+	final String description, final String extension)
 	{
-		JFileChooser fileChooser = new JFileChooser();
+		final JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileFilter(new FileNameExtensionFilter(description,
 		extension));
 		String path = "";
@@ -68,13 +69,13 @@ public class FileChooser {
 				{
 					path += "." + extension;
 				}
-				File file = new File(path);
+				final File file = new File(path);
 				if ((file.exists() && JOptionPane.OK_OPTION == JOptionPane
 				.showConfirmDialog(null, Lang.getLine("file_exists_replace"),
 				Lang.getLine("file_exists"), JOptionPane.YES_NO_OPTION))
 				|| ! file.exists())
 				{
-					ObjectOutputStream oos = new ObjectOutputStream(
+					final ObjectOutputStream oos = new ObjectOutputStream(
 					new FileOutputStream(path));
 					oos.writeObject(content);
 					oos.close();
@@ -82,7 +83,7 @@ public class FileChooser {
 			}
 			return path;
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 			return path;
@@ -97,10 +98,10 @@ public class FileChooser {
 	 * @param extension - The extension of the file
 	 * @return The path of the saved file
 	 */
-	public static String saveFile(byte[] content, String description,
-	String extension)
+	public static String saveFile(final byte[] content,
+	final String description, final String extension)
 	{
-		JFileChooser fileChooser = new JFileChooser();
+		final JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileFilter(new FileNameExtensionFilter(description,
 		extension));
 		String path = "";
@@ -113,20 +114,20 @@ public class FileChooser {
 				{
 					path += "." + extension;
 				}
-				File file = new File(path);
+				final File file = new File(path);
 				if ((file.exists() && JOptionPane.OK_OPTION == JOptionPane
 				.showConfirmDialog(null, Lang.getLine("file_exists_replace"),
 				Lang.getLine("file_exists"), JOptionPane.YES_NO_OPTION))
 				|| ! file.exists())
 				{
-					FileOutputStream fos = new FileOutputStream(path);
+					final FileOutputStream fos = new FileOutputStream(path);
 					fos.write(content);
 					fos.close();
 				}
 			}
 			return path;
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			e.printStackTrace();
 			return path;

@@ -8,16 +8,16 @@ import java.io.Serializable;
 public class Link implements Serializable {
 
 	private static final long	serialVersionUID	= 623807882317126365L;
-	private short				map;
-	private byte				x;
-	private byte				y;
+	private final short			map;
+	private final byte			x;
+	private final byte			y;
 
 	/**
 	 * @param map Map's resource ID to where the link points
 	 * @param x X coordinate to where the link points
 	 * @param y Y coordinate to where the link points
 	 */
-	public Link(short map, byte x, byte y)
+	public Link(final short map, final byte x, final byte y)
 	{
 		this.map = map;
 		this.x = x;

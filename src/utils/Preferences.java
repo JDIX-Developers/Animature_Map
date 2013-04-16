@@ -17,12 +17,12 @@ import javax.swing.UIManager.LookAndFeelInfo;
  */
 public class Preferences implements Serializable {
 
-	private static final long	serialVersionUID	= -1140374742103678200L;
+	private static final long	serialVersionUID	= - 1140374742103678200L;
 	private static Preferences	preferences;
 	private Locale				locale;
 	private String				lookAndFeelClass;
 
-	private Preferences(Locale l, String lf)
+	private Preferences(final Locale l, final String lf)
 	{
 		locale = l;
 		lookAndFeelClass = lf;
@@ -37,7 +37,7 @@ public class Preferences implements Serializable {
 			oos.writeObject(preferences);
 			oos.close();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			e.printStackTrace();
 
@@ -57,7 +57,7 @@ public class Preferences implements Serializable {
 		}
 		catch (IOException | ClassNotFoundException e)
 		{
-			if (!(e instanceof FileNotFoundException))
+			if ( ! (e instanceof FileNotFoundException))
 			{
 				e.printStackTrace();
 			}
@@ -97,7 +97,7 @@ public class Preferences implements Serializable {
 	/**
 	 * @param l Locale to set as default
 	 */
-	public static void setLocale(Locale l)
+	public static void setLocale(final Locale l)
 	{
 		if (preferences == null)
 		{
@@ -119,7 +119,7 @@ public class Preferences implements Serializable {
 	/**
 	 * @param lf The new Look and feel to set
 	 */
-	public static void setLookAndFeelClass(String lf)
+	public static void setLookAndFeelClass(final String lf)
 	{
 		if (preferences == null)
 		{
@@ -134,10 +134,10 @@ public class Preferences implements Serializable {
 		preferences.update();
 	}
 
-	private static boolean isLFAvailable(String lf)
+	private static boolean isLFAvailable(final String lf)
 	{
-		LookAndFeelInfo lfs[] = UIManager.getInstalledLookAndFeels();
-		for (LookAndFeelInfo lf2: lfs)
+		final LookAndFeelInfo lfs[] = UIManager.getInstalledLookAndFeels();
+		for (final LookAndFeelInfo lf2: lfs)
 		{
 			if (lf2.getClassName().equals(lf))
 			{

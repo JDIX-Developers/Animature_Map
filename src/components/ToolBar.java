@@ -27,7 +27,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 	 * @param context - The context of the toolbar. It could be either a
 	 *            MapEditor or a SpriteEditor
 	 */
-	public ToolBar(JPanel context)
+	public ToolBar(final JPanel context)
 	{
 		super();
 		setMargin(new Insets(0, 5, 0, 5));
@@ -126,7 +126,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void actionPerformed(final ActionEvent e)
 	{
 		if (e.getSource() == btnAddLink)
 		{

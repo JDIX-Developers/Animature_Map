@@ -22,7 +22,7 @@ public class IButton extends JButton implements Internationalizable {
 	/**
 	 * @param a Action of the button
 	 */
-	public IButton(Action a)
+	public IButton(final Action a)
 	{
 		super(a);
 	}
@@ -30,7 +30,7 @@ public class IButton extends JButton implements Internationalizable {
 	/**
 	 * @param icon Icon for the button
 	 */
-	public IButton(Icon icon)
+	public IButton(final Icon icon)
 	{
 		super(icon);
 	}
@@ -39,7 +39,7 @@ public class IButton extends JButton implements Internationalizable {
 	 * @param text Text for the button
 	 * @param icon Image for the button
 	 */
-	public IButton(String text, Icon icon)
+	public IButton(final String text, final Icon icon)
 	{
 		super(text, icon);
 	}
@@ -47,13 +47,13 @@ public class IButton extends JButton implements Internationalizable {
 	/**
 	 * @param text Text for the button
 	 */
-	public IButton(String text)
+	public IButton(final String text)
 	{
 		super(text);
 	}
 
 	@Override
-	public void changeLanguage(String newText)
+	public void changeLanguage(final String newText)
 	{
 		if (getIcon() == null)
 		{
