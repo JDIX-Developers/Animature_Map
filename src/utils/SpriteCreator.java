@@ -52,6 +52,10 @@ public class SpriteCreator {
 		(byte) 0x03), new Byte((byte) 0x00)));
 		m.put("Soil/Grass4", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x04), new Byte((byte) 0x00)));
+		m.put("Path/Corner/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x00)));
+		m.put("Soil/Flowers", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x06), new Byte((byte) 0x00)));
 		m.put("Path/Center", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x00), new Byte((byte) 0x01)));
 		m.put("Path/Top", new SimpleImmutableEntry<Byte, Byte>(new Byte(
@@ -62,6 +66,10 @@ public class SpriteCreator {
 		(byte) 0x03), new Byte((byte) 0x01)));
 		m.put("Path/Left", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x04), new Byte((byte) 0x01)));
+		m.put("Path/Corner/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x01)));
+		m.put("Others/Postbox_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x01)));
 		m.put("Path/Top_Left", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x00), new Byte((byte) 0x02)));
 		m.put("Path/Top_Right", new SimpleImmutableEntry<Byte, Byte>(new Byte(
@@ -70,6 +78,88 @@ public class SpriteCreator {
 		new Byte((byte) 0x02), new Byte((byte) 0x02)));
 		m.put("Path/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x03), new Byte((byte) 0x02)));
+		m.put("Path/Corner/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x02)));
+		m.put("Path/Corner/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x02)));
+		m.put("Others/Postbox_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x02)));
+		m.put("Others/Fence", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x07), new Byte((byte) 0x02)));
+		m.put("Others/Fence_Poster", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x02)));
+		m.put("Others/Poster", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x09), new Byte((byte) 0x02)));
+		m.put("Tree/Ordinary/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x03)));
+		m.put("Tree/Ordinary/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x03)));
+		m.put("Tree/Shadow/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x03)));
+		m.put("Tree/Shadow/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x03)));
+		m.put("Hause/Roof/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x03)));
+		m.put("Hause/Roof/Top_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x03)));
+		m.put("Hause/Roof/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x03)));
+		m.put("Hause/Wall/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x03)));
+		m.put("Hause/Wall/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x03)));
+		m.put("Tree/Ordinary/Center_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x00), new Byte(
+		(byte) 0x04)));
+		m.put("Tree/Ordinary/Center_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x01), new Byte(
+		(byte) 0x04)));
+		m.put("Tree/Shadow/Center_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x04)));
+		m.put("Tree/Shadow/Center_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x04)));
+		m.put("Hause/Roof/Center_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x04)));
+		m.put("Hause/Roof/Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x04)));
+		m.put("Hause/Roof/Center_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x04)));
+		m.put("Hause/Wall/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x04)));
+		m.put("Hause/Wall/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x04)));
+		m.put("Tree/Ordinary/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x00), new Byte(
+		(byte) 0x05)));
+		m.put("Tree/Ordinary/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x01), new Byte(
+		(byte) 0x05)));
+		m.put("Tree/Shadow/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x05)));
+		m.put("Tree/Shadow/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x05)));
+		m.put("Hause/Roof/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x05)));
+		m.put("Hause/Roof/Bottom_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x05)));
+		m.put("Hause/Roof/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x05)));
+		m.put("Hause/Window/Big_Left_Door",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x07), new Byte(
+		(byte) 0x05)));
+		m.put("Hause/Window/Big_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x05)));
+		m.put("Hause/Window/Big_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x09), new Byte((byte) 0x05)));
+		m.put("Hause/Door", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x07), new Byte((byte) 0x06)));
+		m.put("Hause/Window/Small_Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x08), new Byte(
+		(byte) 0x06)));
+		m.put("Hause/Window/Big_Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x06)));
+
 		// m.put("Soil/Grass", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		// (byte) 0x00), new Byte((byte) 0x00)));
 		// m.put("Soil/Soil", new SimpleImmutableEntry<Byte, Byte>(new Byte(
