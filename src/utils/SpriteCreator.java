@@ -52,10 +52,12 @@ public class SpriteCreator {
 		(byte) 0x03), new Byte((byte) 0x00)));
 		m.put("Soil/Grass4", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x04), new Byte((byte) 0x00)));
-		m.put("Path/Corner/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Path/Corner_Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x05), new Byte((byte) 0x00)));
 		m.put("Soil/Flowers", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x06), new Byte((byte) 0x00)));
+		m.put("Others/Black", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x07), new Byte((byte) 0x00)));
 		m.put("Path/Center", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x00), new Byte((byte) 0x01)));
 		m.put("Path/Top", new SimpleImmutableEntry<Byte, Byte>(new Byte(
@@ -66,7 +68,7 @@ public class SpriteCreator {
 		(byte) 0x03), new Byte((byte) 0x01)));
 		m.put("Path/Left", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x04), new Byte((byte) 0x01)));
-		m.put("Path/Corner/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Path/Corner_Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x05), new Byte((byte) 0x01)));
 		m.put("Others/Postbox_Top", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x06), new Byte((byte) 0x01)));
@@ -78,9 +80,9 @@ public class SpriteCreator {
 		new Byte((byte) 0x02), new Byte((byte) 0x02)));
 		m.put("Path/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x03), new Byte((byte) 0x02)));
-		m.put("Path/Corner/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Path/Corner_Top_Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x04), new Byte((byte) 0x02)));
-		m.put("Path/Corner/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Path/Corner_Top_Left", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x05), new Byte((byte) 0x02)));
 		m.put("Others/Postbox_Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x06), new Byte((byte) 0x02)));
@@ -159,6 +161,76 @@ public class SpriteCreator {
 		m.put("Hause/Window/Big_Bottom_Right",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
 		(byte) 0x06)));
+		m.put("Lab/Roof/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x06)));
+		m.put("Lab/Roof/Top_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x06)));
+		m.put("Lab/Roof/Top_Center_Chimney",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
+		(byte) 0x06)));
+		m.put("Lab/Roof/Top_Right_Chimney",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x06)));
+		m.put("Lab/Roof/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x06)));
+		m.put("Lab/Roof/Center_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x07)));
+		m.put("Lab/Roof/Center", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x01), new Byte((byte) 0x07)));
+		m.put("Lab/Roof/Center_Chimney", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x07)));
+		m.put("Lab/Roof/Center_Right_Chimney",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x07)));
+		m.put("Lab/Roof/Center_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x07)));
+		m.put("Lab/Wall/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x07)));
+		m.put("Lab/Wall/Top_DoubleW_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x06), new Byte(
+		(byte) 0x07)));
+		m.put("Lab/Wall/Top_Window_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x07)));
+		m.put("Lab/Wall/Top_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x07)));
+		m.put("Lab/Wall/Top_Window_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x07)));
+		m.put("Lab/Wall/Top_DoubleW_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x07)));
+		m.put("Lab/Wall/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0B), new Byte((byte) 0x07)));
+		m.put("Lab/Roof/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x08)));
+		m.put("Lab/Roof/Bottom_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x08)));
+		m.put("Lab/Roof/Bottom_Center_Chimney",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
+		(byte) 0x08)));
+		m.put("Lab/Roof/Bottom_Right_Chimney",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x08)));
+		m.put("Lab/Roof/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x08)));
+		m.put("Lab/Wall/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x08)));
+		m.put("Lab/Wall/Bottom_DoubleW_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x06), new Byte(
+		(byte) 0x08)));
+		m.put("Lab/Wall/Bottom_Window_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x07), new Byte(
+		(byte) 0x08)));
+		m.put("Lab/Wall/Door", new SimpleImmutableEntry<Byte, Byte>(new Byte(
+		(byte) 0x08), new Byte((byte) 0x08)));
+		m.put("Lab/Wall/Bottom_Window_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x08)));
+		m.put("Lab/Wall/Bottom_DoubleW_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x08)));
+		m.put("Lab/Wall/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0B), new Byte((byte) 0x08)));
 
 		// m.put("Soil/Grass", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		// (byte) 0x00), new Byte((byte) 0x00)));
