@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.AbstractMap.SimpleImmutableEntry;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,30 +13,27 @@ import java.util.Map;
  */
 public class SpriteCreator {
 
-	private final byte	ANDABLE			= 1;
-	private final byte	CAMBIABLE		= 2;
-	private final byte	SALTABLE		= 4;
-	private final byte	NOANDABLE		= 8;
-	private final byte	TRANSPORTABLE	= 10;
-	private final byte	LEIBLE			= 12;
+	private static final byte	NOANDABLE		= 0;
+	private static final byte	ANDABLE			= 1;
+	private static final byte	CAMBIABLE		= 2;
+	private static final byte	SALTABLE		= 4;
+	private static final byte	TRANSPORTABLE	= 8;
+	private static final byte	LEIBLE			= 16;
 
 	/**
 	 * @param args Arguments for the application
 	 */
 	public static void main(final String[] args)
 	{
-		final byte[] arr = {0x00, (byte) 0x80, 0x00, 0x00, CAMBIABLE | ANDABLE,
-		0x01, 0x00, ANDABLE, 0x02, 0x00, ANDABLE, 0x03, 0x00, ANDABLE, 0x04,
-		0x00, ANDABLE, 0x05, 0x00, ANDABLE, 0x06, 0x00, ANDABLE, 0x07, 0x00,
-		NOANDABLE, 0x08, 0x00, NOANDABLE, 0x09, 0x00, NOANDABLE, 0x0A, 0x00,
-		NOANDABLE, 0x0B, 0x00, NOANDABLE, 0x0C, 0x00, NOANDABLE, /*
-																 * 0x0D, 0x00,
-																 * ANDABLE,
-																 * 0x0E, 0x00,
-																 * ANDABLE,
-																 * 0x0F, 0x00,
-																 * ANDABLE,
-																 */
+		final byte[] arr128 = {0x00, (byte) 0x80, 0x00, 0x00,
+		CAMBIABLE | ANDABLE, 0x01, 0x00, ANDABLE, 0x02, 0x00, ANDABLE, 0x03,
+		0x00, ANDABLE, 0x04, 0x00, ANDABLE, 0x05, 0x00, ANDABLE, 0x06, 0x00,
+		ANDABLE, 0x07, 0x00, NOANDABLE, 0x08, 0x00, NOANDABLE, 0x09, 0x00,
+		NOANDABLE, 0x0A, 0x00, NOANDABLE, 0x0B, 0x00, NOANDABLE, 0x0C, 0x00,
+		NOANDABLE, /*
+					 * 0x0D, 0x00, ANDABLE, 0x0E, 0x00, ANDABLE, 0x0F, 0x00,
+					 * ANDABLE,
+					 */
 		0x00, 0x01, ANDABLE, 0x01, 0x01, ANDABLE, 0x02, 0x01, ANDABLE, 0x03,
 		0x01, ANDABLE, 0x04, 0x01, ANDABLE, 0x05, 0x01, ANDABLE, 0x06, 0x01,
 		NOANDABLE, 0x07, 0x01, NOANDABLE, 0x08, 0x01, NOANDABLE, 0x09, 0x01,
@@ -87,10 +85,30 @@ public class SpriteCreator {
 													 */
 		};
 
+		final byte[] arr48 = Arrays.copyOf(arr128, arr128.length);
+		arr48[1] = 0x30;
+		final byte[] arr64 = Arrays.copyOf(arr128, arr128.length);
+		arr64[1] = 0x40;
+		final byte[] arr96 = Arrays.copyOf(arr128, arr128.length);
+		arr96[1] = 0x60;
+
 		try
 		{
-			final FileOutputStream st = new FileOutputStream("prueba.spr");
-			st.write(arr);
+			FileOutputStream st = new FileOutputStream(
+			"sprites/128x128/sprite.spr");
+			st.write(arr128);
+			st.close();
+
+			st = new FileOutputStream("sprites/96x96/sprite.spr");
+			st.write(arr96);
+			st.close();
+
+			st = new FileOutputStream("sprites/64x64/sprite.spr");
+			st.write(arr64);
+			st.close();
+
+			st = new FileOutputStream("sprites/48x48/sprite.spr");
+			st.write(arr48);
 			st.close();
 		}
 		catch (final IOException e)
@@ -395,28 +413,10 @@ public class SpriteCreator {
 		m.put("Lab/Wall/Bottom/Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x0B), new Byte((byte) 0x08)));
 
-		// m.put("Soil/Grass", new SimpleImmutableEntry<Byte, Byte>(new Byte(
-		// (byte) 0x00), new Byte((byte) 0x00)));
-		// m.put("Soil/Soil", new SimpleImmutableEntry<Byte, Byte>(new Byte(
-		// (byte) 0x01), new Byte((byte) 0x00)));
-		// m.put("Path/Top left", new SimpleImmutableEntry<Byte, Byte>(new Byte(
-		// (byte) 0x02), new Byte((byte) 0x00)));
-		// m.put("Path/Top", new SimpleImmutableEntry<Byte, Byte>(new Byte(
-		// (byte) 0x03), new Byte((byte) 0x00)));
-		// m.put("Path/Bottom Left", new SimpleImmutableEntry<Byte, Byte>(
-		// new Byte((byte) 0x02), new Byte((byte) 0x01)));
-		// m.put("Path/Bottom", new SimpleImmutableEntry<Byte, Byte>(new Byte(
-		// (byte) 0x03), new Byte((byte) 0x01)));
-		// m.put("Trees/Top Left (Grass)", new SimpleImmutableEntry<Byte, Byte>(
-		// new Byte((byte) 0x00), new Byte((byte) 0x01)));
-		// m.put("Trees/Top Right (Grass)", new SimpleImmutableEntry<Byte,
-		// Byte>(
-		// new Byte((byte) 0x01), new Byte((byte) 0x01)));
-
 		try
 		{
 			final ObjectOutputStream os = new ObjectOutputStream(
-			new FileOutputStream("prueba.dspr"));
+			new FileOutputStream("sprites/sprite.dspr"));
 			os.writeObject(m);
 			os.close();
 		}
