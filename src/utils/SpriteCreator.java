@@ -15,8 +15,8 @@ public class SpriteCreator {
 	private final byte	ANDABLE			= 0;
 	private final byte	CAMBIABLE		= 1;
 	private final byte	SALTABLE		= 2;
-	private final byte	NOANDABLE		= 3;
-	private final byte	TRANSPORTABLE	= 4;
+	private final byte	NOANDABLE		= 4;
+	private final byte	TRANSPORTABLE	= 8;
 
 	/**
 	 * @param args Arguments for the application
@@ -25,7 +25,8 @@ public class SpriteCreator {
 	{
 		final byte[] arr = {0x00, (byte) 0x80,
 		/*
-		 * 0x00, 0x00, CAMBIANTE, 0x01, 0x00, "ANDABLE", 0x02, 0x00, "ANDABLE",
+		 * 0x00, 0x00, CAMBIANTE|ANDABLE, 0x01, 0x00, "ANDABLE", 0x02, 0x00,
+		 * "ANDABLE",
 		 */};
 
 		try
@@ -307,7 +308,7 @@ public class SpriteCreator {
 		new Byte((byte) 0x0E), new Byte((byte) 0x07)));
 		m.put("Lab/Roof/Bottom/Left", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x00), new Byte((byte) 0x08)));
-		m.put("Lab/Roof/Bottom/Center", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Lab/Roof/Bottom_Center", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x01), new Byte((byte) 0x08)));
 		m.put("Lab/Roof/Bottom/Center_Chimney",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
