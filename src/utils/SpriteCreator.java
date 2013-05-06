@@ -94,20 +94,19 @@ public class SpriteCreator {
 
 		try
 		{
-			FileOutputStream st = new FileOutputStream(
-			"sprites/128x128/sprite.spr");
+			FileOutputStream st = new FileOutputStream("sprites/sprite128.spr");
 			st.write(arr128);
 			st.close();
 
-			st = new FileOutputStream("sprites/96x96/sprite.spr");
+			st = new FileOutputStream("sprites/sprite96.spr");
 			st.write(arr96);
 			st.close();
 
-			st = new FileOutputStream("sprites/64x64/sprite.spr");
+			st = new FileOutputStream("sprites/sprite64.spr");
 			st.write(arr64);
 			st.close();
 
-			st = new FileOutputStream("sprites/48x48/sprite.spr");
+			st = new FileOutputStream("sprites/sprite48.spr");
 			st.write(arr48);
 			st.close();
 		}
