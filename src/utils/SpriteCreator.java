@@ -85,21 +85,19 @@ public class SpriteCreator {
 													 */
 		};
 
+		final byte[] arr24 = Arrays.copyOf(arr128, arr128.length);
+		arr24[1] = 0x18;
+		final byte[] arr32 = Arrays.copyOf(arr128, arr128.length);
+		arr32[1] = 0x20;
 		final byte[] arr48 = Arrays.copyOf(arr128, arr128.length);
 		arr48[1] = 0x30;
 		final byte[] arr64 = Arrays.copyOf(arr128, arr128.length);
 		arr64[1] = 0x40;
-		final byte[] arr96 = Arrays.copyOf(arr128, arr128.length);
-		arr96[1] = 0x60;
 
 		try
 		{
 			FileOutputStream st = new FileOutputStream("sprites/sprite128.spr");
 			st.write(arr128);
-			st.close();
-
-			st = new FileOutputStream("sprites/sprite96.spr");
-			st.write(arr96);
 			st.close();
 
 			st = new FileOutputStream("sprites/sprite64.spr");
@@ -108,6 +106,14 @@ public class SpriteCreator {
 
 			st = new FileOutputStream("sprites/sprite48.spr");
 			st.write(arr48);
+			st.close();
+
+			st = new FileOutputStream("sprites/sprite32.spr");
+			st.write(arr32);
+			st.close();
+
+			st = new FileOutputStream("sprites/sprite24.spr");
+			st.write(arr24);
 			st.close();
 		}
 		catch (final IOException e)
