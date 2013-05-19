@@ -29,60 +29,81 @@ public class SpriteCreator {
 		CAMBIABLE | ANDABLE, 0x01, 0x00, ANDABLE, 0x02, 0x00, ANDABLE, 0x03,
 		0x00, ANDABLE, 0x04, 0x00, ANDABLE, 0x05, 0x00, ANDABLE, 0x06, 0x00,
 		ANDABLE, 0x07, 0x00, NOANDABLE, 0x08, 0x00, NOANDABLE, 0x09, 0x00,
-		NOANDABLE, 0x0A, 0x00, NOANDABLE, 0x0B, 0x00, NOANDABLE, 0x0C, 0x00,
-		NOANDABLE, /*
-					 * 0x0D, 0x00, ANDABLE, 0x0E, 0x00, ANDABLE, 0x0F, 0x00,
-					 * ANDABLE,
-					 */
+		NOANDABLE, 0x0A, 0x00, NOANDABLE, 0x0B, 0x00, NOANDABLE,
+
 		0x00, 0x01, ANDABLE, 0x01, 0x01, ANDABLE, 0x02, 0x01, ANDABLE, 0x03,
 		0x01, ANDABLE, 0x04, 0x01, ANDABLE, 0x05, 0x01, ANDABLE, 0x06, 0x01,
 		NOANDABLE, 0x07, 0x01, NOANDABLE, 0x08, 0x01, NOANDABLE, 0x09, 0x01,
 		NOANDABLE, 0x0A, 0x01, NOANDABLE, 0x0B, 0x01, NOANDABLE, 0x0C, 0x01,
-		NOANDABLE, 0x0D, 0x01, NOANDABLE, 0x0E, 0x01, NOANDABLE, 0x0F, 0x01,
-		NOANDABLE, 0x00, 0x02, ANDABLE, 0x01, 0x02, ANDABLE, 0x02, 0x02,
-		ANDABLE, 0x03, 0x02, ANDABLE, 0x04, 0x02, ANDABLE, 0x05, 0x02, ANDABLE,
-		0x06, 0x02, NOANDABLE, 0x07, 0x02, NOANDABLE, 0x08, 0x02,
-		NOANDABLE | LEIBLE, 0x09, 0x02, NOANDABLE | LEIBLE, 0x0A, 0x02,
-		NOANDABLE, 0x0B, 0x02, NOANDABLE, 0x0C, 0x02, NOANDABLE, 0x0D, 0x02,
-		NOANDABLE, 0x0E, 0x02, NOANDABLE, 0x0F, 0x02, TRANSPORTABLE, 0x00,
-		0x03, NOANDABLE, 0x01, 0x03, NOANDABLE, 0x02, 0x03, NOANDABLE, 0x03,
-		0x03, NOANDABLE, 0x04, 0x03, NOANDABLE, 0x05, 0x03, NOANDABLE, 0x06,
-		0x03, NOANDABLE, 0x07, 0x03, NOANDABLE, 0x08, 0x03, NOANDABLE, 0x09,
-		0x03, NOANDABLE, 0x0A, 0x03, NOANDABLE, 0x0B, 0x03, NOANDABLE, 0x0C,
-		0x03, NOANDABLE, 0x0D, 0x03, NOANDABLE, 0x0E, 0x03, NOANDABLE, 0x0F,
-		0x03, NOANDABLE, 0x00, 0x04, NOANDABLE, 0x01, 0x04, NOANDABLE, 0x02,
-		0x04, NOANDABLE, 0x03, 0x04, NOANDABLE, 0x04, 0x04, NOANDABLE, 0x05,
-		0x04, NOANDABLE, 0x06, 0x04, NOANDABLE, 0x07, 0x04, NOANDABLE, 0x08,
-		0x04, NOANDABLE, 0x09, 0x04, NOANDABLE, 0x0A, 0x04, NOANDABLE, 0x0B,
-		0x04, NOANDABLE, 0x0C, 0x04, NOANDABLE, 0x0D, 0x04, NOANDABLE, 0x0E,
-		0x04, NOANDABLE, 0x0F, 0x04, TRANSPORTABLE, 0x00, 0x05, NOANDABLE,
-		0x01, 0x05, NOANDABLE, 0x02, 0x05, NOANDABLE, 0x03, 0x05, NOANDABLE,
-		0x04, 0x05, NOANDABLE, 0x05, 0x05, NOANDABLE, 0x06, 0x05, NOANDABLE,
-		0x07, 0x05, NOANDABLE, 0x08, 0x05, NOANDABLE, 0x09, 0x05, NOANDABLE,
-		0x0A, 0x05, NOANDABLE, 0x0B, 0x05, NOANDABLE, 0x0C, 0x05, NOANDABLE,
-		0x0D, 0x05, NOANDABLE, 0x0E, 0x05, NOANDABLE, 0x0F, 0x05, NOANDABLE,
+		NOANDABLE, 0x0D, 0x01, NOANDABLE, 0x0E, 0x01, NOANDABLE,
+
+		0x00, 0x02, ANDABLE, 0x01, 0x02, ANDABLE, 0x02, 0x02, ANDABLE, 0x03,
+		0x02, ANDABLE, 0x04, 0x02, ANDABLE, 0x05, 0x02, ANDABLE, 0x06, 0x02,
+		NOANDABLE, 0x07, 0x02, NOANDABLE, 0x08, 0x02, NOANDABLE | LEIBLE, 0x09,
+		0x02, NOANDABLE | LEIBLE, 0x0A, 0x02, NOANDABLE, 0x0B, 0x02, NOANDABLE,
+		0x0C, 0x02, NOANDABLE, 0x0D, 0x02, NOANDABLE, 0x0E, 0x02,
+		TRANSPORTABLE,
+
+		0x00, 0x03, NOANDABLE, 0x01, 0x03, NOANDABLE, 0x02, 0x03, NOANDABLE,
+		0x03, 0x03, NOANDABLE, 0x04, 0x03, NOANDABLE, 0x05, 0x03, NOANDABLE,
+		0x06, 0x03, NOANDABLE, 0x07, 0x03, NOANDABLE, 0x08, 0x03, NOANDABLE,
+		0x09, 0x03, NOANDABLE, 0x0A, 0x03, NOANDABLE, 0x0B, 0x03, NOANDABLE,
+		0x0C, 0x03, NOANDABLE, 0x0D, 0x03, NOANDABLE, 0x0E, 0x03, NOANDABLE,
+
+		0x00, 0x04, NOANDABLE, 0x01, 0x04, NOANDABLE, 0x02, 0x04, NOANDABLE,
+		0x03, 0x04, NOANDABLE, 0x04, 0x04, NOANDABLE, 0x05, 0x04, NOANDABLE,
+		0x06, 0x04, NOANDABLE, 0x07, 0x04, NOANDABLE, 0x08, 0x04, NOANDABLE,
+		0x09, 0x04, NOANDABLE, 0x0A, 0x04, NOANDABLE, 0x0B, 0x04, NOANDABLE,
+		0x0C, 0x04, NOANDABLE, 0x0D, 0x04, NOANDABLE, 0x0E, 0x04,
+		TRANSPORTABLE,
+
+		0x00, 0x05, NOANDABLE, 0x01, 0x05, NOANDABLE, 0x02, 0x05, NOANDABLE,
+		0x03, 0x05, NOANDABLE, 0x04, 0x05, NOANDABLE, 0x05, 0x05, NOANDABLE,
+		0x06, 0x05, NOANDABLE, 0x07, 0x05, NOANDABLE, 0x08, 0x05, NOANDABLE,
+		0x09, 0x05, NOANDABLE, 0x0A, 0x05, NOANDABLE, 0x0B, 0x05, NOANDABLE,
+		0x0C, 0x05, NOANDABLE, 0x0D, 0x05, NOANDABLE, 0x0E, 0x05, NOANDABLE,
+
 		0x00, 0x06, NOANDABLE, 0x01, 0x06, NOANDABLE, 0x02, 0x06, NOANDABLE,
-		0x03, 0x06, NOANDABLE, 0x04, 0x06, NOANDABLE,/*
-													 * 0x05, 0x06, NOANDABLE,
-													 * 0x06, 0x06, NOANDABLE,
-													 */0x07, 0x06,
-		TRANSPORTABLE, 0x08, 0x06, NOANDABLE, 0x09, 0x06, NOANDABLE, 0x0A,
-		0x06, NOANDABLE, 0x0B, 0x06, NOANDABLE, 0x0C, 0x06, NOANDABLE, 0x0D,
-		0x06, NOANDABLE, 0x0E, 0x06, NOANDABLE, 0x0F, 0x06, NOANDABLE, 0x00,
-		0x07, NOANDABLE, 0x01, 0x07, NOANDABLE, 0x02, 0x07, NOANDABLE, 0x03,
-		0x07, NOANDABLE, 0x04, 0x07, NOANDABLE, 0x05, 0x07, NOANDABLE, 0x06,
-		0x07, NOANDABLE, 0x07, 0x07, NOANDABLE, 0x08, 0x07, NOANDABLE, 0x09,
-		0x07, NOANDABLE, 0x0A, 0x07, NOANDABLE, 0x0B, 0x07, NOANDABLE, 0x0C,
-		0x07, NOANDABLE, 0x0D, 0x07, NOANDABLE, 0x0E, 0x07, NOANDABLE, 0x0F,
-		0x07, NOANDABLE, 0x00, 0x08, NOANDABLE, 0x01, 0x08, NOANDABLE, 0x02,
-		0x08, NOANDABLE, 0x03, 0x08, NOANDABLE, 0x04, 0x08, NOANDABLE, 0x05,
-		0x08, NOANDABLE, 0x06, 0x08, NOANDABLE, 0x07, 0x08, NOANDABLE, 0x08,
-		0x08, NOANDABLE, 0x09, 0x08, TRANSPORTABLE, 0x0A, 0x08, NOANDABLE,
-		0x0B, 0x08, NOANDABLE, 0x0C, 0x08, NOANDABLE,/*
-													 * 0x0D, 0x08, NOANDABLE,
-													 * 0x0E, 0x08, NOANDABLE,
-													 * 0x0F, 0x08, NOANDABLE,
-													 */
+		0x03, 0x06, NOANDABLE, 0x04, 0x06, NOANDABLE, 0x05, 0x06, ANDABLE,
+		0x06, 0x06, ANDABLE, 0x07, 0x06, TRANSPORTABLE, 0x08, 0x06, NOANDABLE,
+		0x09, 0x06, NOANDABLE, 0x0A, 0x06, NOANDABLE, 0x0B, 0x06, NOANDABLE,
+		0x0C, 0x06, NOANDABLE, 0x0D, 0x06, NOANDABLE, 0x0E, 0x06, NOANDABLE,
+
+		0x00, 0x07, NOANDABLE, 0x01, 0x07, NOANDABLE, 0x02, 0x07, NOANDABLE,
+		0x03, 0x07, NOANDABLE, 0x04, 0x07, NOANDABLE, 0x05, 0x07, NOANDABLE,
+		0x06, 0x07, NOANDABLE, 0x07, 0x07, NOANDABLE, 0x08, 0x07, NOANDABLE,
+		0x09, 0x07, NOANDABLE, 0x0A, 0x07, NOANDABLE, 0x0B, 0x07, NOANDABLE,
+		0x0C, 0x07, NOANDABLE, 0x0D, 0x07, NOANDABLE, 0x0E, 0x07, NOANDABLE,
+
+		0x00, 0x08, NOANDABLE, 0x01, 0x08, NOANDABLE, 0x02, 0x08, NOANDABLE,
+		0x03, 0x08, NOANDABLE, 0x04, 0x08, NOANDABLE, 0x05, 0x08, NOANDABLE,
+		0x06, 0x08, NOANDABLE, 0x07, 0x08, NOANDABLE, 0x08, 0x08,
+		TRANSPORTABLE, 0x09, 0x08, NOANDABLE, 0x0A, 0x08, NOANDABLE, 0x0B,
+		0x08, NOANDABLE, 0x0D, 0x08, NOANDABLE, 0x0E, 0x08, NOANDABLE,
+
+		0x00, 0x09, ANDABLE, 0x01, 0x09, NOANDABLE, 0x02, 0x09, ANDABLE, 0x03,
+		0x09, ANDABLE, 0x04, 0x09, ANDABLE, 0x05, 0x09, NOANDABLE, 0x06, 0x09,
+		ANDABLE, 0x07, 0x09, ANDABLE, 0x08, 0x09, ANDABLE, 0x09, 0x09,
+		NOANDABLE, 0x0A, 0x09, NOANDABLE, 0x0B, 0x09, NOANDABLE, 0x0D, 0x09,
+		NOANDABLE, 0x0E, 0x09, NOANDABLE,
+
+		0x00, 0x0A, ANDABLE, 0x01, 0x0A, NOANDABLE, 0x02, 0x0A, NOANDABLE,
+		0x03, 0x0A, ANDABLE | TRANSPORTABLE, 0x04, 0x0A, NOANDABLE, 0x05, 0x0A,
+		NOANDABLE, 0x06, 0x0A, ANDABLE, 0x07, 0x0A, ANDABLE, 0x08, 0x0A,
+		ANDABLE, 0x09, 0x0A, NOANDABLE, 0x0A, 0x0A, NOANDABLE, 0x0B, 0x0A,
+		NOANDABLE, 0x0D, 0x0A, NOANDABLE, 0x0E, 0x0A, NOANDABLE,
+
+		0x00, 0x0B, NOANDABLE, 0x01, 0x0B, NOANDABLE, 0x02, 0x0B, NOANDABLE,
+		0x03, 0x0B, NOANDABLE, 0x04, 0x0B, NOANDABLE, 0x05, 0x0B, ANDABLE,
+		0x06, 0x0B, ANDABLE, 0x07, 0x0B, ANDABLE, 0x08, 0x0B, ANDABLE, 0x09,
+		0x0B, NOANDABLE, 0x0A, 0x0B, NOANDABLE,
+
+		0x00, 0x0C, NOANDABLE, 0x01, 0x0C, NOANDABLE, 0x02, 0x0C, NOANDABLE,
+		0x03, 0x0C, NOANDABLE, 0x04, 0x0C, NOANDABLE, 0x05, 0x0C, ANDABLE,
+		0x09, 0x0C, ANDABLE | TRANSPORTABLE, 0x0A, 0x0C, NOANDABLE,
+
+		0x01, 0x0D, NOANDABLE, 0x09, 0x0D, NOANDABLE, 0x0A, 0x0D, NOANDABLE,
+
 		};
 
 		final byte[] arr24 = Arrays.copyOf(arr128, arr128.length);
@@ -320,6 +341,7 @@ public class SpriteCreator {
 		new Byte((byte) 0x0D), new Byte((byte) 0x05)));
 		m.put("Shop/Roof/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x0E), new Byte((byte) 0x05)));
+
 		m.put("Lab/Roof/Top/Left", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x00), new Byte((byte) 0x06)));
 		m.put("Lab/Roof/Top_Center", new SimpleImmutableEntry<Byte, Byte>(
@@ -332,6 +354,10 @@ public class SpriteCreator {
 		(byte) 0x06)));
 		m.put("Lab/Roof/Top/Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x04), new Byte((byte) 0x06)));
+		m.put("House/Indoor/Chair_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x06)));
+		m.put("House/Indoor/Chair_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x06)));
 		m.put("Hause/Door", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x07), new Byte((byte) 0x06)));
 		m.put("Hause/Window/Small_Bottom_Left",
@@ -352,6 +378,7 @@ public class SpriteCreator {
 		new Byte((byte) 0x0D), new Byte((byte) 0x06)));
 		m.put("Shop/Roof/Center_Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x0E), new Byte((byte) 0x06)));
+
 		m.put("Lab/Roof/Center/Left", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x00), new Byte((byte) 0x07)));
 		m.put("Lab/Roof/Center/Center", new SimpleImmutableEntry<Byte, Byte>(
@@ -417,6 +444,161 @@ public class SpriteCreator {
 		(byte) 0x08)));
 		m.put("Lab/Wall/Bottom/Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x0B), new Byte((byte) 0x08)));
+		m.put("House/Indoor/Wardrobe/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0D), new Byte(
+		(byte) 0x08)));
+		m.put("House/Indoor/Wardrobe/Top_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0E), new Byte(
+		(byte) 0x08)));
+
+		m.put("House/Indoor/Floor_Shadow",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x00), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Plant/Shadow_Top",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x01), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Door/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Door/Top_Center",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Door/Top_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x04), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Plant/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x09)));
+		m.put("House/Indoor/Carpet/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x06), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Carpet/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x09)));
+		m.put("House/Indoor/Carpet/Top_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x08), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Table/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Table/Top_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Sink/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0B), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Sink/Top_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0C), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Wardrobe/Center_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0D), new Byte(
+		(byte) 0x09)));
+		m.put("House/Indoor/Wardrobe/Center_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0E), new Byte(
+		(byte) 0x09)));
+
+		m.put("House/Indoor/Floor", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x0A)));
+		m.put("House/Indoor/Plant/Shadow_Bottom",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x01), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Door/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Door/Bottom_Center",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Door/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x04), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Plant/Bottom",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x05), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Carpet/Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x0A)));
+		m.put("House/Indoor/Carpet/Center",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x07), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Carpet/Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x08), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Table/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Table/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Sink/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0B), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Sink/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0C), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Wardrobe/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0D), new Byte(
+		(byte) 0x0A)));
+		m.put("House/Indoor/Wardrobe/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0E), new Byte(
+		(byte) 0x0A)));
+
+		m.put("House/Indoor/Wall/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x0B)));
+		m.put("House/Indoor/TV/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x0B)));
+		m.put("House/Indoor/Window/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
+		(byte) 0x0B)));
+		m.put("House/Indoor/Window/Top_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x0B)));
+		m.put("House/Indoor/Picture/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x0B)));
+		m.put("House/Indoor/Rug/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x0B)));
+		m.put("House/Indoor/Carpet/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x06), new Byte(
+		(byte) 0x0B)));
+		m.put("House/Indoor/Carpet/Bottom",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x07), new Byte(
+		(byte) 0x0B)));
+		m.put("House/Indoor/Carpet/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x08), new Byte(
+		(byte) 0x0B)));
+		m.put("House/Indoor/Stairs/Top_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x0B)));
+		m.put("House/Indoor/Stairs/Top_Rihgt",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x0B)));
+
+		m.put("House/Indoor/Wall/Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x0C)));
+		m.put("House/Indoor/TV/Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x0C)));
+		m.put("House/Indoor/Window/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x02), new Byte(
+		(byte) 0x0C)));
+		m.put("House/Indoor/Window/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x03), new Byte(
+		(byte) 0x0C)));
+		m.put("House/Indoor/Picture/Bottom_Top",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x04), new Byte(
+		(byte) 0x0C)));
+		m.put("House/Indoor/Rug/Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x0C)));
+		m.put("House/Indoor/Stairs/Center_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x0C)));
+		m.put("House/Indoor/Stairs/Center_Rihgt",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x0C)));
+
+		m.put("House/Indoor/TV/Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x0D)));
+		m.put("House/Indoor/Stairs/Bottom_Left",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
+		(byte) 0x0D)));
+		m.put("House/Indoor/Stairs/Bottom_Right",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
+		(byte) 0x0D)));
 
 		try
 		{
