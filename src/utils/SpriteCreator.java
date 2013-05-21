@@ -19,6 +19,7 @@ public class SpriteCreator {
 	private static final byte	SALTABLE		= 4;
 	private static final byte	TRANSPORTABLE	= 8;
 	private static final byte	LEIBLE			= 16;
+	private static final byte	HIERBANIM		= 32;
 
 	/**
 	 * @param args Arguments for the application
