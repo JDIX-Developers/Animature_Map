@@ -30,7 +30,7 @@ public class SpriteCreator {
 		final byte[] arr128 = 
 		{0x00, (byte) 0x80,
 
-		0x00, 0x00, CHANGEABLE | WALKABLE,
+		0x00, 0x00, CHANGEABLE | WALKABLE | GRASSANIM,
 		0x01, 0x00, WALKABLE,
 		0x02, 0x00, WALKABLE,
 		0x03, 0x00, WALKABLE,
@@ -167,6 +167,7 @@ public class SpriteCreator {
 		0x09, 0x08, NONWALKABLE,
 		0x0A, 0x08, NONWALKABLE,
 		0x0B, 0x08, NONWALKABLE,
+		0x0C, 0x08, NONWALKABLE,
 		0x0D, 0x08, NONWALKABLE,
 		0x0E, 0x08, NONWALKABLE,
 
@@ -211,6 +212,10 @@ public class SpriteCreator {
 		0x08, 0x0B, WALKABLE,
 		0x09, 0x0B, NONWALKABLE,
 		0x0A, 0x0B, NONWALKABLE,
+		0x0B, 0x0B, WALKABLE,
+		0x0C, 0x0B, WALKABLE,
+		0x0D, 0x0B, WALKABLE,
+		0x0E, 0x0B, WALKABLE,
 
 		0x00, 0x0C, NONWALKABLE,
 		0x01, 0x0C, NONWALKABLE,
@@ -218,12 +223,71 @@ public class SpriteCreator {
 		0x03, 0x0C, NONWALKABLE,
 		0x04, 0x0C, NONWALKABLE,
 		0x05, 0x0C, WALKABLE,
+		0x06, 0x0C, NONWALKABLE,
+		0x07, 0x0C, NONWALKABLE,
+		0x08, 0x0C, NONWALKABLE,
 		0x09, 0x0C, WALKABLE | TRANSPORTABLE,
 		0x0A, 0x0C, NONWALKABLE,
-
+		0x0B, 0x0C, WALKABLE,
+		0x0C, 0x0C, NONWALKABLE,
+		0x0D, 0x0C, NONWALKABLE,
+		0x0E, 0x0C, NONWALKABLE,
+		
+		0x00, 0x0D, WALKABLE,
 		0x01, 0x0D, NONWALKABLE,
+		0x02, 0x0D, WALKABLE,
+		0x03, 0x0D, WALKABLE,
+		0x04, 0x0D, NONWALKABLE,
+		0x05, 0x0D, NONWALKABLE,
+		0x06, 0x0D, NONWALKABLE,
+		0x07, 0x0D, NONWALKABLE,
+		0x08, 0x0D, NONWALKABLE,
 		0x09, 0x0D, NONWALKABLE,
 		0x0A, 0x0D, NONWALKABLE,
+		0x0B, 0x0D, NONWALKABLE,
+		0x0C, 0x0D, NONWALKABLE,
+		0x0D, 0x0D, NONWALKABLE,
+		0x0E, 0x0D, NONWALKABLE,
+
+		0x00, 0x0E, WALKABLE,
+		0x01, 0x0E, WALKABLE,
+		0x02, 0x0E, WALKABLE,
+		0x03, 0x0E, WALKABLE,
+		0x04, 0x0E, WALKABLE,
+		0x05, 0x0E, NONWALKABLE,
+		0x06, 0x0E, NONWALKABLE,
+		0x07, 0x0E, NONWALKABLE,
+		0x08, 0x0E, NONWALKABLE,
+		0x09, 0x0E, WALKABLE,
+		0x0A, 0x0E, WALKABLE,
+		0x0B, 0x0E, WALKABLE,
+		0x0C, 0x0E, NONWALKABLE,
+		0x0D, 0x0E, WALKABLE,
+		0x0E, 0x0E, WALKABLE,
+
+		0x00, 0x0F, NONWALKABLE,
+		0x01, 0x0F, NONWALKABLE,
+		0x02, 0x0F, NONWALKABLE,
+		0x03, 0x0F, NONWALKABLE,
+		0x04, 0x0F, NONWALKABLE,
+		0x05, 0x0F, WALKABLE,
+		0x06, 0x0F, NONWALKABLE,
+		
+		0x00, 0x10, NONWALKABLE,
+		0x01, 0x10, NONWALKABLE,
+		0x02, 0x10, NONWALKABLE,
+		0x03, 0x10, NONWALKABLE,
+		0x04, 0x10, NONWALKABLE | CHANGEABLE,
+		0x05, 0x10, NONWALKABLE | CHANGEABLE,
+		0x06, 0x10, NONWALKABLE,
+		
+		0x00, 0x11, NONWALKABLE,
+		0x01, 0x11, NONWALKABLE,
+		0x02, 0x11, NONWALKABLE,
+		0x03, 0x11, NONWALKABLE,
+		0x04, 0x11, NONWALKABLE | CHANGEABLE,
+		0x05, 0x11, NONWALKABLE | CHANGEABLE,
+		0x06, 0x11, NONWALKABLE,
 
 		};
 		//@formatter:on
@@ -580,6 +644,8 @@ public class SpriteCreator {
 		(byte) 0x08)));
 		m.put("Lab/Wall/Bottom/Right", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x0B), new Byte((byte) 0x08)));
+		m.put("Pokemon_Center/Indoor/Floor/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0C), new Byte((byte) 0x08)));
 		m.put("House/Indoor/Wardrobe/Top_Left",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0D), new Byte(
 		(byte) 0x08)));
@@ -704,6 +770,18 @@ public class SpriteCreator {
 		m.put("House/Indoor/Stairs/Top_Rihgt",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
 		(byte) 0x0B)));
+		m.put("Pokemon_Center/Indoor/Floor/Floor",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0B), new Byte(
+		(byte) 0x0B)));
+		m.put("Pokemon_Center/Indoor/Floor/Floor2",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0C), new Byte(
+		(byte) 0x0B)));
+		m.put("Pokemon_Center/Indoor/Floor/Floor3",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0D), new Byte(
+		(byte) 0x0B)));
+		m.put("Pokemon_Center/Indoor/Floor/Floor4",
+		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0E), new Byte(
+		(byte) 0x0B)));
 
 		m.put("House/Indoor/Wall/Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x00), new Byte((byte) 0x0C)));
@@ -720,21 +798,135 @@ public class SpriteCreator {
 		(byte) 0x0C)));
 		m.put("House/Indoor/Rug/Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x05), new Byte((byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Wardrobe/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Wardrobe/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Wall/Left_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x0C)));
 		m.put("House/Indoor/Stairs/Center_Left",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
 		(byte) 0x0C)));
 		m.put("House/Indoor/Stairs/Center_Rihgt",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
 		(byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Floor/Floor5", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0B), new Byte((byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Wall/Right_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0C), new Byte((byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Table/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0D), new Byte((byte) 0x0C)));
+		m.put("Pokemon_Center/Indoor/Table/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0E), new Byte((byte) 0x0C)));
 
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Left_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x0D)));
 		m.put("House/Indoor/TV/Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x01), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Center_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Right_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Right_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Wall/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Wardrobe/Center_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Wardrobe/Center_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Wall/Left_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x0D)));
 		m.put("House/Indoor/Stairs/Bottom_Left",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
 		(byte) 0x0D)));
 		m.put("House/Indoor/Stairs/Bottom_Right",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
 		(byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Floor/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0B), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Wall/Right_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0C), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Table/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0D), new Byte((byte) 0x0D)));
+		m.put("Pokemon_Center/Indoor/Table/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0E), new Byte((byte) 0x0D)));
+		
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Left_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Center_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Right_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Wall/Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Wardrobe/Bottom_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Wardrobe/Bottom_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x07), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Wall/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x08), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Door/Top_Left", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x09), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Door/Top_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0A), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Door/Top_Right", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0B), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Wall/Right_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0C), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Cushion/Yellow", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0D), new Byte((byte) 0x0E)));
+		m.put("Pokemon_Center/Indoor/Cushion/Blue", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0E), new Byte((byte) 0x0E)));
+		
+		m.put("Pokemon_Center/Indoor/Counter/Right_Left_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x0F)));
+		m.put("Pokemon_Center/Indoor/TV/Left_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x0F)));
+		m.put("Pokemon_Center/Indoor/TV/Rightop", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x0F)));
+		m.put("Pokemon_Center/Indoor/TV/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x0F)));
+		m.put("Pokemon_Center/Indoor/TV/Right_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x0F)));
+		m.put("Pokemon_Center/Indoor/Floor/Floor1", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x0F)));
+		m.put("Pokemon_Center/Indoor/PC/Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x0F)));
+		
+		m.put("Pokemon_Center/Indoor/Counter/Left_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x10)));
+		m.put("Pokemon_Center/Indoor/Counter/Top1", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x10)));
+		m.put("Pokemon_Center/Indoor/Counter/Top2", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x10)));
+		m.put("Pokemon_Center/Indoor/Counter/Right_Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x10)));
+		m.put("Pokemon_Center/Indoor/Machine/Left_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x10)));
+		m.put("Pokemon_Center/Indoor/Machine/Right_Top", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x10)));
+		m.put("Pokemon_Center/Indoor/PC/Center", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x10)));
+		
+		m.put("Pokemon_Center/Indoor/Counter/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x00), new Byte((byte) 0x11)));
+		m.put("Pokemon_Center/Indoor/Counter/Bottom1", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x01), new Byte((byte) 0x11)));
+		m.put("Pokemon_Center/Indoor/Counter/Bottom2", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x02), new Byte((byte) 0x11)));
+		m.put("Pokemon_Center/Indoor/Counter/Right_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x03), new Byte((byte) 0x11)));
+		m.put("Pokemon_Center/Indoor/Machine/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x04), new Byte((byte) 0x11)));
+		m.put("Pokemon_Center/Indoor/Machine/Right_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x05), new Byte((byte) 0x11)));
+		m.put("Pokemon_Center/Indoor/PC/Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x06), new Byte((byte) 0x11)));
 		
 		//@formatter:on
 
