@@ -335,6 +335,7 @@ public class SpriteCreator {
 		0x0B, 0x10, NONWALKABLE,
 		0x0C, 0x10, NONWALKABLE,
 		0x0D, 0x10, NONWALKABLE,
+		0x0E, 0x10, NONWALKABLE,
 		
 		
 		0x00, 0x11, NONWALKABLE,
@@ -1116,6 +1117,8 @@ public class SpriteCreator {
 		new Byte((byte) 0x0C), new Byte((byte) 0x10)));
 		m.put("Shop/Indoor/Wall/Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x0D), new Byte((byte) 0x10)));
+		m.put("Shop/Indoor/Floor/Head", new SimpleImmutableEntry<Byte, Byte>(
+		new Byte((byte) 0x0E), new Byte((byte) 0x10)));
 		
 		m.put("Pokemon_Center/Indoor/Counter/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x00), new Byte((byte) 0x11)));
