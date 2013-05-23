@@ -433,7 +433,7 @@ public class SpriteCreator {
 		(byte) 0x06), new Byte((byte) 0x00)));
 		m.put("Others/Black", new SimpleImmutableEntry<Byte, Byte>(new Byte(
 		(byte) 0x07), new Byte((byte) 0x00)));
-		m.put("Pokemon_Center/Outdoor/Wall/Top_CenterR",
+		m.put("Pokemon_Center/Outdoor/Wall/Top_CenterL",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x08), new Byte(
 		(byte) 0x00)));
 		m.put("Pokemon_Center/Outdoor/Wall/Top_Right",
@@ -455,9 +455,9 @@ public class SpriteCreator {
 		new Byte((byte) 0x10), new Byte((byte) 0x00)));
 		m.put("Lab/Indoor/Wardrobe/Left_Top", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x11), new Byte((byte) 0x00)));
-		m.put("Lab/Indoor/Wardobe/Right_Top", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Lab/Indoor/Wardrobe/Right_Top", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x12), new Byte((byte) 0x00)));
-		m.put("Lab/Indoor/Wardobe/Left_Top_Shadow", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Lab/Indoor/Wardrobe/Left_Top_Shadow", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x13), new Byte((byte) 0x00)));
 		
 		m.put("Path/Center", new SimpleImmutableEntry<Byte, Byte>(new Byte(
@@ -769,14 +769,14 @@ public class SpriteCreator {
 		m.put("Lab/Outdoor/Wall/Top/DoubleW_Left",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x06), new Byte(
 		(byte) 0x07)));
-		m.put("Lab/Wall/Top/Window_Left", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Lab/Outdoor/Wall/Top/Window_Left", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x07), new Byte((byte) 0x07)));
 		m.put("Lab/Outdoor/Wall/Top/Center", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x08), new Byte((byte) 0x07)));
 		m.put("Lab/Outdoor/Wall/Top/Window_Right",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x09), new Byte(
 		(byte) 0x07)));
-		m.put("Lab/Wall/Top/DoubleW_Right",
+		m.put("Lab/Outdoor/Wall/Top/DoubleW_Right",
 		new SimpleImmutableEntry<Byte, Byte>(new Byte((byte) 0x0A), new Byte(
 		(byte) 0x07)));
 		m.put("Lab/Outdoor/Wall/Top/Right", new SimpleImmutableEntry<Byte, Byte>(
@@ -1031,9 +1031,9 @@ public class SpriteCreator {
 		new Byte((byte) 0x01), new Byte((byte) 0x0E)));
 		m.put("Pokemon_Center/Indoor/Floor/Poke/Center_Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x02), new Byte((byte) 0x0E)));
-		m.put("Pokemon_Center/Indoor/Floor/Poke/Right_Center", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Center_Top", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x03), new Byte((byte) 0x0E)));
-		m.put("Pokemon_Center/Indoor/Floor/Poke/Left_Bottom", new SimpleImmutableEntry<Byte, Byte>(
+		m.put("Pokemon_Center/Indoor/Floor/Poke/Right_Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x04), new Byte((byte) 0x0E)));
 		m.put("Pokemon_Center/Indoor/Wall/Bottom", new SimpleImmutableEntry<Byte, Byte>(
 		new Byte((byte) 0x05), new Byte((byte) 0x0E)));
