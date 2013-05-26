@@ -286,6 +286,8 @@ public class Map implements Serializable {
 		{
 			result[i++] = ent.getKey().getKey();
 			result[i++] = ent.getKey().getValue();
+			result[i++] = MathUtils.getByte(ent.getValue().getMap(), 3);
+			result[i++] = MathUtils.getByte(ent.getValue().getMap(), 2);
 			result[i++] = MathUtils.getByte(ent.getValue().getMap(), 1);
 			result[i++] = MathUtils.getByte(ent.getValue().getMap(), 0);
 			result[i++] = ent.getValue().getX();

@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Link implements Serializable {
 
 	private static final long	serialVersionUID	= 623807882317126365L;
-	private final short			map;
+	private final int			map;
 	private final byte			x;
 	private final byte			y;
 
@@ -17,7 +17,7 @@ public class Link implements Serializable {
 	 * @param x X coordinate to where the link points
 	 * @param y Y coordinate to where the link points
 	 */
-	public Link(final short map, final byte x, final byte y)
+	public Link(final int map, final byte x, final byte y)
 	{
 		this.map = map;
 		this.x = x;
@@ -43,7 +43,7 @@ public class Link implements Serializable {
 	/**
 	 * @return Map for the link
 	 */
-	public short getMap()
+	public int getMap()
 	{
 		return map;
 	}

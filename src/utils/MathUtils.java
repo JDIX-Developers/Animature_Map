@@ -50,12 +50,13 @@ public final class MathUtils {
 	}
 
 	/**
-	 * @param num - The short to convert
-	 * @param i - The number of the byte (1 -> left, 0 -> right)
+	 * @param j - The int to convert
+	 * @param i - The number of the byte: the higher the more left byte, up to
+	 *            four
 	 * @return The byte in that position
 	 */
-	public static byte getByte(final short num, final int i)
+	public static byte getByte(final int j, final int i)
 	{
-		return (byte) (num >> i * 8);
+		return (byte) (j >> i * 8);
 	}
 }
