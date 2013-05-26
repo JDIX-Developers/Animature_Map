@@ -278,7 +278,7 @@ public class Map implements Serializable {
 	private byte[] addLinks(final byte[] array)
 	{
 		final byte[] result = Arrays.copyOf(array, array.length + links.size()
-		* 6 + 2);
+		* 8 + 2);
 		int i = array.length;
 		result[i] = result[i + 1] = (byte) 0xFF;
 		i += 2;
