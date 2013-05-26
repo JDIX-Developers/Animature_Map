@@ -117,6 +117,7 @@ public class Map implements Serializable {
 		{
 			byte[] array = compress();
 			array = addLinks(array);
+			System.out.println(Arrays.toString(array));
 			return array;
 		}
 		return null;
@@ -169,6 +170,9 @@ public class Map implements Serializable {
 
 	private byte[] compress()
 	{
+		System.out.println(Arrays.deepToString(squares));
+
+		// TODO El algoritmo de compresión falla
 		final byte[][] arr2d = new byte[height][2 * width];
 		final byte[][] arr2dc = new byte[height][2 * width];
 
@@ -220,6 +224,8 @@ public class Map implements Serializable {
 			}
 		}
 
+		System.out.println(Arrays.deepToString(arr2dc));
+
 		// Now we compress in Y coordinate
 		for (int h = 0; h < arr2d[0].length; h += 2)
 		{
@@ -244,14 +250,19 @@ public class Map implements Serializable {
 					// We delete extra data
 					for (int j = 2; j < r; j++)
 					{
+						// if (arr2dc[i + j][h + 1] != (byte) 0xFF)
+						// {
 						arr2dc[i + j][h + 1] = arr2dc[i + j][h] = (byte) 0xFF;
 						deleted++;
+						// }
 					}
 
 					i += r - 1;
 				}
 			}
 		}
+
+		System.out.println(Arrays.deepToString(arr2dc));
 
 		// We create the compressed array
 		final byte[] arr = new byte[2 + 2 * height * width - deleted * 2];

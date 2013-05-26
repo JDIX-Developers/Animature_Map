@@ -58,7 +58,6 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	public IMenuItem(final String text, final Icon icon)
 	{
 		super(text, icon);
-		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	/**
@@ -70,7 +69,6 @@ public class IMenuItem extends JMenuItem implements Internationalizable {
 	public IMenuItem(final String text, final int mnemonic)
 	{
 		super(text, mnemonic);
-		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	@Override
