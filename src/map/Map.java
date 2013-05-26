@@ -244,11 +244,8 @@ public class Map implements Serializable {
 					// We delete extra data
 					for (int j = 2; j < r; j++)
 					{
-						// if (arr2dc[i + j][h + 1] != (byte) 0xFF)
-						// {
 						arr2dc[i + j][h + 1] = arr2dc[i + j][h] = (byte) 0xFF;
 						deleted++;
-						// }
 					}
 
 					i += r - 1;
