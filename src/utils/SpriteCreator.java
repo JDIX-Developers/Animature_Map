@@ -386,11 +386,17 @@ public class SpriteCreator {
 		arr48[1] = 0x30;
 		final byte[] arr64 = Arrays.copyOf(arr128, arr128.length);
 		arr64[1] = 0x40;
+		final byte[] arr96 = Arrays.copyOf(arr128, arr128.length);
+		arr96[1] = 0x60;
 
 		try
 		{
 			FileOutputStream st = new FileOutputStream("sprites/sprite128.spr");
 			st.write(arr128);
+			st.close();
+
+			st = new FileOutputStream("sprites/sprite96.spr");
+			st.write(arr96);
 			st.close();
 
 			st = new FileOutputStream("sprites/sprite64.spr");
